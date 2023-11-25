@@ -1,5 +1,4 @@
-# POGG by "Nef Fan Club"
-Perth Original Geographical Guess "POGG"  
+# (project) by "Nef Fan Club"  
 Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)  
 > Members: [Torry](https://torrytw.ooo), [Anay](https://github.com/Anay-Joshi26) & [Connor](https://github.com/connorstegall77997761125)
 
@@ -7,7 +6,7 @@ Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)
 0. [Original Repository](#original-repository)
 1. [Concept](#concept)
 2. [Features](#features)
-3. [Google Maps Platform API](#google-maps-platform-api)
+3. [something](#something)
 4. [Dependencies & "Setup" (Stack)](#dependencies--setup-stack)
 5. [Structure](#structure)
 6. [Running](#running)    
@@ -16,19 +15,12 @@ Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)
 9. [LICENSE](#license)
 
 ## Concept
-Implementation of the popular "GeoGuessr" game set in the context of Perth, Western Australia.  
-Upon user selection (input) said user will be presented with a Google street view image/location, this is paired with a map in which a pinpoint must be selected and submitted. The goal of this is to match the pinpoint as close to the presented streetview image/location as possible, the smaller the difference in distance the more points awarded to the user. This will repeat with new locations for a set amount of rounds each of which are timed to calculate a final score which will remain on a persistent scoreboard.
+`SECTION TO BE UPDATED - TBD`
 
 ## Features
-`SECTION TO BE UPDATED - need to actually make the thing`  
-- Multiple Users
-- "How to play" Meny
-- Geoguessr except its Perth
-- Timed set of (n) Rounds
-- Score Formula (time and distance)
-- Persistent Scoreboard
+`SECTION TO BE UPDATED - TBD`
 
-## Google Maps Platform API
+## something
 `SECTION TO BE UPDATED - need to actually use the api`  
 
 ## Dependencies & "Setup" (Stack)
@@ -81,9 +73,9 @@ python3 app/init.py
 
 ## Notes & To Do:
 stuff to do
-- figure out google maps api stuff
 - add sqlite3 database or fastapi edition
 - modularise the API blah blah blah
+- refactor the terrible architecture
 - make the actual web app
 
 ## LICENSE
