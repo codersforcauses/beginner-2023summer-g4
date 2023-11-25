@@ -1,93 +1,95 @@
-# Getting Started with JavaScript for Complete Beginners
+# POGG by "Nef Fan Club"
+Perth Original Geographical Guess "POGG"  
+Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)  
+> Members: [Torry](https://torrytw.ooo), [Anay](https://github.com/Anay-Joshi26) & [Connor](https://github.com/connorstegall77997761125)
 
-Welcome to the world of web development! If you're new to JavaScript, follow these steps to set up a basic project on your computer.
+## Table of Contents:
+0. [Original Repository](#original-repository)
+1. [Concept](#concept)
+2. [Features](#features)
+3. [Google Maps Platform API](#google-maps-platform-api)
+4. [Dependencies & "Setup" (Stack)](#dependencies--setup-stack)
+5. [Structure](#structure)
+6. [Running](#running)    
+7. [Demo](#demo)  
+8. [Notes & To Do](#notes--to-do)
+9. [LICENSE](#license)
 
-## Step 1: Install a Text Editor
+## Concept
+Implementation of the popular "GeoGuessr" game set in the context of Perth, Western Australia.  
+Upon user selection (input) said user will be presented with a Google street view image/location, this is paired with a map in which a pinpoint must be selected and submitted. The goal of this is to match the pinpoint as close to the presented streetview image/location as possible, the smaller the difference in distance the more points awarded to the user. This will repeat with new locations for a set amount of rounds each of which are timed to calculate a final score which will remain on a persistent scoreboard.
 
-Choose a code editor to write your HTML, CSS, and JavaScript code. A recommended choice is:
+## Features
+`SECTION TO BE UPDATED - need to actually make the thing`  
+- Multiple Users
+- "How to play" Meny
+- Geoguessr except its Perth
+- Timed set of (n) Rounds
+- Score Formula (time and distance)
+- Persistent Scoreboard
 
--   [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
+## Google Maps Platform API
+`SECTION TO BE UPDATED - need to actually use the api`  
 
-## Step 2: Install Git and GitHub CLI
+## Dependencies & "Setup" (Stack)
+`SECTION TO BE UPDATED - need more detail`  
 
-Git is a version control system that helps you track changes in your code. Follow these steps to install Git:
+POGG is written in Python using FastAPI, SQLite3 for the backend with a pure HTML/CSS/JS frontend.
 
-1.  Download and install Git from [Git official website](https://git-scm.com/downloads).
-
-2.  Verify the installation by running the following command in your terminal:
-
-    ```sh
-    git --version
-    ```
-
-    You should see the Git version printed in the terminal, confirming a successful installation.
-
-GitHub CLI allows you to interact with GitHub from the command line. Follow these steps:
-
-1.  Install GitHub CLI on macOS, Windows, or Linux. For more information, see [Installation](https://github.com/cli/cli#installation) in the GitHub CLI repository.
-
-2.  Verify the installation by running the following command in your terminal:
-
-    ```sh
-    gh --version
-    ```
-
-    You should see the GitHub CLI version printed in the terminal, indicating a successful installation.
-
-3.  Authenticate with GitHub by running this command from your terminal:
-
-    ```sh
-    gh auth login
-    ```
-
-4.  Follow the on-screen prompts.
-
-    > GitHub CLI automatically stores your Git credentials for you when you choose HTTPS as your preferred protocol for Git operations and answer "yes" to the prompt asking if you would like to authenticate to Git with your GitHub credentials. This can be useful as it allows you to use git push, git pull, and so on, without needing to set up a separate credential manager or use SSH.
-
-## Step 4: Write Your HTML Code
-
-Open the file named `index.html` in the project root directory and write basic HTML:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Your Web Page Title</title>
-        <!-- Link to your CSS file (e.g., styles.css) -->
-        <link rel="stylesheet" href="src/styles.css" />
-    </head>
-    <body>
-        <!-- Your content goes here -->
-        <script src="src/app.js"></script>
-    </body>
-</html>
+Install Dependencies:
+```
+pip install -r requirements.txt
 ```
 
-## Step 5: Write Your JavaScript and CSS Code
+## Stucture
+`SECTION TO BE UPDATED - need more detail +updates`  
+```
+.
+├── LICENSE
+├── README.md
+├── app
+│   ├── backend
+│   │   └── main.py
+│   ├── config.py
+│   ├── frontend
+│   │   ├── css
+│   │   │   └── main.css
+│   │   ├── index.html
+│   │   ├── js
+│   │   │   ├── main.js
+│   │   │   └── proxy.js
+│   │   └── static
+│   │       └── quacker.jpg
+│   └── init.py
+├── beginner-2023summer-g4.bak
+│   ├── README.md.bak
+│   ├── index.html
+│   ├── main.js
+│   └── style.css
+└── requirements.txt
+```
 
-`js` for JavaScript and `css` for CSS. Write your code in these files.
+## Running
+`SECTION TO BE UPDATED - need more detail`  
+POGG can be launched with a single python file `init.py`, then simply browse to the host as defined in `config.py` (or enable debug)  
+```
+python3 app/init.py
+```
 
--   `main.js`:
+## Demo
+`SECTION TO BE UPDATED - soon TM`  
 
-    ```javascript
-    // Your JavaScript code goes here
-    console.log("Hello, World!");
-    ```
+## Notes & To Do:
+stuff to do
+- figure out google maps api stuff
+- add sqlite3 database or fastapi edition
+- modularise the API blah blah blah
+- make the actual web app
 
--   `styles.css`:
+## LICENSE
+License: [here](/LICENSE)
 
-    ```css
-    /* Your CSS code goes here */
-    body {
-        font-family: "Arial", sans-serif;
-        background-color: #f0f0f0;
-    }
-    ```
+### Original Repository:
+The contents of the original repository (generated via `beginner-2023S`) is located [here](/beginner-2023summer-g4.bak/).  
+This is for use of learning web technologies, namely javascript etc, etc...
 
-## Step 6: Run Your Frontend Project
-
-Open the `index.html` file in your browser to view your web page.
-
-Congratulations! You've set up a basic JavaScript project. Experiment with your HTML, CSS, and JavaScript code to build exciting web applications.
