@@ -8,7 +8,7 @@ Choose a code editor to write your HTML, CSS, and JavaScript code. A recommended
 
 -   [Visual Studio Code (VSCode)](https://code.visualstudio.com/)
 
-## Step 2: Install Git, GitHub CLI, Node.js and Node Package Manager (npm)
+## Step 2: Install Git and GitHub CLI
 
 Git is a version control system that helps you track changes in your code. Follow these steps to install Git:
 
