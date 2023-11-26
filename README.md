@@ -36,34 +36,12 @@ pip install -r requirements.txt
 ## Stucture
 `SECTION TO BE UPDATED - need more detail +updates`  
 ```
-.
-├── LICENSE
-├── README.md
-├── app
-│   ├── backend
-│   │   └── main.py
-│   ├── config.py
-│   ├── frontend
-│   │   ├── css
-│   │   │   └── main.css
-│   │   ├── index.html
-│   │   ├── js
-│   │   │   ├── main.js
-│   │   │   └── proxy.js
-│   │   └── static
-│   │       └── quacker.jpg
-│   └── init.py
-├── beginner-2023summer-g4.bak
-│   ├── README.md.bak
-│   ├── index.html
-│   ├── main.js
-│   └── style.css
-└── requirements.txt
+tmp
 ```
 
 ## Running
 `SECTION TO BE UPDATED - need more detail`  
-POGG can be launched with a single python file `init.py`, then simply browse to the host as defined in `config.py` (or enable debug)  
+app can be launched with a single python file `init.py`, then simply browse to the host as defined in `config.py` (or enable debug)  
 ```
 python3 app/init.py
 ```
@@ -74,8 +52,6 @@ python3 app/init.py
 ## Notes & To Do:
 stuff to do
 - add sqlite3 database or fastapi edition
-- modularise the API blah blah blah
-- refactor the terrible architecture
 - make the actual web app
 
 ## LICENSE

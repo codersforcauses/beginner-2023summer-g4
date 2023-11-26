@@ -1,5 +1,5 @@
-fetch(`${endpoint}/api/v1/backend`)
+fetch(`${endpoint}/api/example`)
     .then(res => res.json())    
     .then(data => {
-        document.getElementById('test').innerText = JSON.stringify(data, null, 2);
+        document.getElementById('example').innerText = JSON.stringify(data, null, 2);
     })
