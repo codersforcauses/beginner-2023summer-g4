@@ -2,9 +2,14 @@
 
 import uvicorn
 from config import *
+from core.utils import *
 
 if __name__ == "__main__":
-    log(f"[+] Frontend Serving @ {path_host}{path_serve}/index.html") # HTML rewrite later
+
+    if DEBUG:
+        print(f"[+] DEBUG: True, Debugging (log) enabled.")
+
+    log(f"[+] Initialising Application")
     
     uvicorn.run(
         "backend.main:app",
@@ -14,6 +19,5 @@ if __name__ == "__main__":
         )
 
 '''
-Note:
-The reload and workers parameters are mutually exclusive.
+Note: The reload and workers parameters are mutually exclusive.
 '''
