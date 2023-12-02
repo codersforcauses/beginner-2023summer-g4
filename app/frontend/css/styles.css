@@ -18,16 +18,32 @@ header {
     position: absolute;
 }
 
-#map, #sv-iframe {
+#map-guess-container, #sv-iframe {
     position: absolute;
 }
 
-#map {
+#map-guess-container{
     bottom: 5px;
     left: 5px; 
     z-index: 5;
     width: 28%;
-    height: 33%;
+    height: 40%;
+}
+
+#map {
+    position: relative;
+    bottom: 5px;
+    left: 5px; 
+    z-index: 5;
+    width: 95%;
+    height: 80%;
+    border-radius: 10px;
+}
+
+#guess-button {
+    position: relative;
+    height: 35%;
+    width: 95%;
 }
 
 #sv-iframe {
