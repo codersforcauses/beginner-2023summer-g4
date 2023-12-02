@@ -1,10 +1,24 @@
+// game.js
+
+var picked;
+var distanced;
+
+var marker = {};
+
 map.on('click', function(e) {
 
-  L.marker(e.latlng).addTo(map);
+  if (marker != undefined){
+    map.removeLayer(marker);
+  }
 
-  
-  
-  const dist = e.latlng.distanceTo(streetViewLocation);
+  marker = L.marker(e.latlng).addTo(map);
 
-  console.log("The distance between the Street View and where you clicked is " + Math.round(dist));
+  picked = e.latlng;
+  distanced = e.latlng.distanceTo(streetViewLocation);
+
 });
+
+function submit() {
+  console.log(`picked: ${picked}, distance: ${distanced}`);
+  
+}
