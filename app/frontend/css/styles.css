@@ -4,27 +4,46 @@ body {
 
 
 header { 
+    display: flex;
     position: sticky; top: 0;
     background-color: #000000;
     height: 50px;
     padding: 15px 5px;
     width: 100%;
     z-index: 5;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
     color: greenyellow;
     position: absolute;
 }
 
-#map, #sv-iframe {
+#map-guess-container, #sv-iframe {
     position: absolute;
 }
 
-#map {
+#map-guess-container{
     bottom: 5px;
     left: 5px; 
     z-index: 5;
     width: 28%;
-    height: 33%;
+    height: 40%;
+}
+
+#map {
+    position: relative;
+    bottom: 5px;
+    left: 5px; 
+    z-index: 5;
+    width: 95%;
+    height: 80%;
+    border-radius: 10px;
+}
+
+#guess-button {
+    position: relative;
+    height: 35%;
+    width: 95%;
 }
 
 #sv-iframe {

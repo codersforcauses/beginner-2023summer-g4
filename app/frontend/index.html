@@ -34,14 +34,17 @@
     <div id="content">
         <header>
             <h1>Test street view</h1>
-            <button onclick="submit()">clickmeeeeeeee</button>
         </header>
-        <div id="map-container">
-            <div id = "map"></div> 
+        <div id="map-guess-container">
+            <div id = "map"></div>
+            <div id = "guess-button">
+                <button onclick="submit()">Click me</button>
+            </div>
+        </div>
             <div id = "sv">
                 <iframe id="sv-iframe"></iframe>
             </div>          
-        </div>
+        
         <script>
             var map = L.map('map').setView([-31.997564, 115.824893], 9); 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
