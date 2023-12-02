@@ -1,25 +1,47 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+    <head>
     <meta name="generator" content="beginner-2023summer-g4">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="canonical" href="/"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 
     <script src="/static/js/proxy.js"></script> <!-- Global Const Required -->
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/location_picked_checker.js" defer></script> <!-- Global Const Required -->
+    <script src="/static/js/streetview_checker.js" defer></script>
 
     <title>app</title>
 
     <meta name="description" content="app">
     <meta name="keywords" content='web'>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 
 <body>
 
-    <p>Data from backend at /api/example/</p><p id="example"></p>
+    <p>Data from backend at /api/example/</p>
+    <p id="example"></p>
+
+    <div id="content">
+        <h1 id="introduction">Test street view</h1>
+        <div id="map-container">
+            <div id = "map"></div> 
+            <div id = "sv">
+                <iframe id="sv-iframe"></iframe>
+            </div>          
+        </div>
+        <script>
+            var map = L.map('map').setView([-31.997564, 115.824893], 9); 
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        </script>
+    </div>
 
 </body>
 

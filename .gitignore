@@ -1,2 +1,3 @@
 # Ignore Pycache Created by Uvicorn
 __pycache__/
+.env
