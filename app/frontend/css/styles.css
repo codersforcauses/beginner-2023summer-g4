@@ -1,42 +1,22 @@
 body {
-    margin: 20px;
+    margin: 0%;
 }
 
-#introduction{
+
+header { 
+    position: sticky; top: 0;
+    background-color: #000000;
+    height: 50px;
+    padding: 15px 5px;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
     color: greenyellow;
-}
-
-#banner {
-    background-color: #262626; /* Background color of the banner */
-    padding: 12px; /* Padding inside the banner */
-    border-radius: 11px;
-}
-
-nav {
-    text-align: center; /* Align the navigation to the right */
-}
-
-nav ul {
-    list-style-type: none; /* Remove default list styling */
-    margin: 0;
-    padding: 0;
-}
-
-nav li {
-    display: inline-block; /* Display list items horizontally */
-    margin-right: 150px; /* Add some space between list items */
-}
-
-nav a {
-    text-decoration: none; /* Remove underline from links */
-    color: white; /* Text color of the links */
-    font-weight: bold; /* Make the text bold */
-    font-size: 18px; /* Set the font size */
-    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
 }
 
 #map, #sv-iframe {
-    position: absolute; float: left; clear: both; width: 100%; height: 350px; z-index: 0; left no-repeat;
+    position: absolute;
 }
 
 #map {
