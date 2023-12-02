@@ -6,28 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="canonical" href="/"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
 
     <script src="/static/js/proxy.js"></script> <!-- Global Const Required -->
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/location_picked_checker.js" defer></script> <!-- Global Const Required -->
-    <script src="/static/js/streetview_checker.js" defer></script>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsZY2whhB9VouVJ-OJ9rNsdb19PddEqBc" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Google Maps API -->
+
+    <script src="/static/js/game.js" defer></script> <!-- Global Const Required -->
+    <script src="/static/js/streetview.js" defer></script>
+
 
     <title>app</title>
 
     <meta name="description" content="app">
     <meta name="keywords" content='web'>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=" defer></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 </head>
 
 <body>
-
-    <p>Data from backend at /api/example/</p>
-    <p id="example"></p>
 
     <div id="content">
         <h1 id="introduction">Test street view</h1>

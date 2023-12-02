@@ -20,8 +20,9 @@ Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)
 ## Features
 `SECTION TO BE UPDATED - TBD`
 
-## something
+## API KEY
 `SECTION TO BE UPDATED - need to actually use the api`  
+- in src rn, do this later
 
 ## Dependencies & "Setup" (Stack)
 `SECTION TO BE UPDATED - need more detail`  
@@ -51,6 +52,7 @@ python3 app/init.py
 
 ## Notes & To Do:
 stuff to do
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 - add sqlite3 database or fastapi edition
 - make the actual web app
 

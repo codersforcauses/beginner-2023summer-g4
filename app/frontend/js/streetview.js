@@ -6,8 +6,10 @@ function checkStreetViewAvailability(lat, lng) {
     const streetViewService = new google.maps.StreetViewService();
     const location = new google.maps.LatLng(lat, lng);
 
-    streetViewService.getPanorama({ location: location, radius: 10000 }, (data, status) => {
+    streetViewService.getPanorama({ preference: "nearest", location: location }, (data, status) => {
+        // radius: 10000
         if (status === google.maps.StreetViewStatus.OK) {
+    
             const panoramaLocation = data.location.latLng; // Extracting panorama location
             const panoramaLat = panoramaLocation.lat();
             const panoramaLng = panoramaLocation.lng();
@@ -26,7 +28,7 @@ function checkStreetViewAvailability(lat, lng) {
 
 function updateIframeLocation(lat, lng) {
     const sv = document.getElementById('sv-iframe');
-    sv.src = `https://www.google.com/maps/embed/v1/streetview?location=${lat}%2C${lng}&key=`;
+    sv.src = `https://www.google.com/maps/embed/v1/streetview?location=${lat}%2C${lng}&key=AIzaSyDsZY2whhB9VouVJ-OJ9rNsdb19PddEqBc`;
 }
 
 function getRandomCoordinates() {
