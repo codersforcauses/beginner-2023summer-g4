@@ -14,7 +14,6 @@ function checkStreetViewAvailability(lat, lng) {
             const panoramaLat = panoramaLocation.lat();
             const panoramaLng = panoramaLocation.lng();
             streetViewLocation = {lat: panoramaLat, lng: panoramaLng};
-            console.log(streetViewLocation);
             console.log(`Street View is available at ${panoramaLat},${panoramaLng}`);
             updateIframeLocation(panoramaLat, panoramaLng);
 
