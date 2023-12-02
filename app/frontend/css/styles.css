@@ -1,0 +1,53 @@
+body {
+    margin: 20px;
+}
+
+#introduction{
+    color: greenyellow;
+}
+
+#banner {
+    background-color: #262626; /* Background color of the banner */
+    padding: 12px; /* Padding inside the banner */
+    border-radius: 11px;
+}
+
+nav {
+    text-align: center; /* Align the navigation to the right */
+}
+
+nav ul {
+    list-style-type: none; /* Remove default list styling */
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block; /* Display list items horizontally */
+    margin-right: 150px; /* Add some space between list items */
+}
+
+nav a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* Text color of the links */
+    font-weight: bold; /* Make the text bold */
+    font-size: 18px; /* Set the font size */
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#map, #sv-iframe {
+    position: absolute;
+}
+
+#map {
+    bottom: 5px;
+    left: 5px; 
+    z-index: 5;
+    width: 28%;
+    height: 33%;
+}
+
+#sv-iframe {
+    width: 100%;
+    height: 100%;
+}
