@@ -22,7 +22,7 @@
     <script src="/static/js/streetview.js" defer></script>
 
 
-    <title>app</title>
+    <title>PerthPicker</title>
 
     <meta name="description" content="app">
     <meta name="keywords" content='web'>
@@ -46,14 +46,29 @@
             </div>          
         
         <script>
-            var map = L.map('map').setView([-31.997564, 115.824893], 9); 
+            var map = L.map('map', {
+                                zoomDelta: 0.1,
+                                zoomSnap: 0,
+                                wheelDebounceTime: 100
+                            }).setView([-31.997564, 115.824893], 9); 
+
+            map.doubleClickZoom = false;
+
+            const corner1 = L.latLng(-32.572409, 116.315080);
+            const corner2 = L.latLng(-31.571878, 115.318021);
+            bounds = L.latLngBounds(corner1, corner2);
+
+            map.setMaxBounds(bounds);
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            // Add event listener for hover
+            document.getElementById('map-guess-container').addEventListener('mouseover', function() {
+                map.invalidateSize(true);
+                console.log("size invalidatd or smth...");
+            });
         </script>
     </div>
-
-    <button onclick="">
-
-    </button>
 
 </body>
 

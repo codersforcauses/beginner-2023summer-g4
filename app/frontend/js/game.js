@@ -37,7 +37,6 @@ function post_data(send){
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    
     },
     body: JSON.stringify(send)
   };

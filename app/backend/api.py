@@ -3,6 +3,8 @@
 from fastapi import APIRouter, Body
 from fastapi import Request
 from core.utils import log
+from backend.calc_points import calc_points
+import json
 
 
 router = APIRouter()
@@ -14,7 +16,15 @@ def example():
 @router.post("/submit")
 async def data(request: Request):
     data = await request.json()
-    print(data)
+
+    data = json.loads(data)
+
+    if data["data"] == "distanced":
+        calc_points(data)
+
+
+
+    
     
 
 

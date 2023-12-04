@@ -28,6 +28,12 @@ header {
     z-index: 5;
     width: 28%;
     height: 40%;
+    transition: width 0.3s, height 0.3s;
+}
+
+#map-guess-container:hover{
+    width: 56%;
+    height: 80%;
 }
 
 #map {
@@ -49,4 +55,10 @@ header {
 #sv-iframe {
     width: 100%;
     height: 100%;
+}
+
+.leaflet-zoom-anim
+.leaflet-zoom-animated {
+  transition-timing-function: linear;
+  transition-duration: 100ms;
 }
