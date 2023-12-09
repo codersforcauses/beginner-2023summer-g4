@@ -5,15 +5,13 @@
 
 header { 
     display: flex;
-    position: sticky; top: 0;
+    top: 0;
     background-color: #000000;
     height: 50px;
     padding: 15px 5px;
     width: 100%;
-    z-index: 5;
     align-items: center;
     justify-content: center;
-    /* text-align: center; */
     color: greenyellow;
     position: absolute;
 }
