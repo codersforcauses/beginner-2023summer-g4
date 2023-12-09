@@ -12,7 +12,7 @@ def calc_points(data):
 
     distance = data["distance"]
 
-    points = -50/60000*scale_factor + 50
+    points = -50/scale_factor*distance + 50
 
     if points > 49.995:
         return 50
