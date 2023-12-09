@@ -1,7 +1,14 @@
 // game.js
 
+import { generateNewStreetView, streetViewLocation } from './streetview.js';
+
+//const generateNewStreetView = require('./streetview.js')
+
 var picked;
 var distanced; 
+
+var totalScore = 0;
+var roundNumber = 1;
 
 var marker = {};
 
@@ -49,7 +56,28 @@ function post_data(send){
     return response.json();
   })
   .then(data => {
-    console.log('Response data:', data);
+    totalScore += data['score'];
+    //console.log('Response data:', data);
+
+    const popupContainer = document.getElementById('popupContainer');
+    const pointsDisplay = document.getElementById('pointsDisplay');
+
+    pointsDisplay.textContent = data['score'];
+
+    // Show the pop-up
+    pointsDisplay.classList.toggle('show');
+
+    // Hide the pop-up after 3 seconds (adjust as needed)
+    setTimeout(() => {
+      popupContainer.classList.remove('show');
+    }, 3000);
+
+    generateNewStreetView();
+
+    document.getElementById('round-no.').innerHTML = "Round: " +  roundNumber;
+    document.getElementById('total-points').innerHTML = "Points: " +  totalScore;
+
+
   })
   .catch(error => {
     console.error('Error:', error);
@@ -57,7 +85,18 @@ function post_data(send){
 }
 
 function submit() {
-  console.log(`picked: ${picked}, distance: ${distanced}`);
-  post_data(picked);
+  if (roundNumber === 10) {
+    // handle end game stuff
+    // send json to backend, to add to db
+  }
+
+  roundNumber++;
+  console.log(`picked: ${picked} | distance: ${distanced}`);
+  //post_data(picked);
   post_data(distanced);
+
 }
+
+const submit_button = document.getElementById('submit-button');
+
+submit_button.addEventListener('click', submit)

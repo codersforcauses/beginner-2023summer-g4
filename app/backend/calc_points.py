@@ -6,20 +6,18 @@
 # to 500 points
 def calc_points(data):
 
-    scale_factor = 60000 # need to play around with this
-
-    print(data)
+    scale_factor = 70000 # need to play around with this
 
     distance = data["distance"]
 
-    points = -50/scale_factor*distance + 50
+    points = -500/scale_factor*distance + 500
 
-    if points > 49.995:
-        return 50
-    
-
+    if points > 495:
+        points = 500
+    if points < 0:
+        points = 0
 
     print(f"You got {points}!")
 
-    return points
+    return round(points)
 

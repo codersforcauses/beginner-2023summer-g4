@@ -1,6 +1,6 @@
 // streetview_checker.js
 
-var streetViewLocation;
+let streetViewLocation;
 
 function checkStreetViewAvailability(lat, lng) {
     const streetViewService = new google.maps.StreetViewService();
@@ -33,13 +33,13 @@ function updateIframeLocation(lat, lng) {
 }
 
 function getRandomCoordinates() {
-    rotnest = { minLat: -32.030745,
+    let rotnest = { minLat: -32.030745,
         maxLat: -31.989988,
         minLng: 115.442019,
         maxLng: 115.561232,
     };
 
-    mainCity = { minLat: -32.676015,
+    let mainCity = { minLat: -32.676015,
          maxLat: -31.636557,
          minLng: 115.665061,
          maxLng: 116.082104,
@@ -63,8 +63,15 @@ function getRandomCoordinates() {
     return { lat: randomLat, lng: randomLng };
 }
 
+function generateNewStreetView(){
+    const lat_lon_obj = getRandomCoordinates()
 
-const lat_lon_obj = getRandomCoordinates()
+    // Check Street View availability for the example coordinates
+    checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
+}
 
-// Check Street View availability for the example coordinates
-checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
+generateNewStreetView();
+
+export {generateNewStreetView, streetViewLocation};
+
+
