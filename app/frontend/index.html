@@ -1,75 +1,21 @@
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta name="generator" content="beginner-2023summer-g4">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="canonical" href="/"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-
-    <script src="/static/js/proxy.js"></script> <!-- Global Const Required -->
-    <script src="/static/js/main.js"></script>
-
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsZY2whhB9VouVJ-OJ9rNsdb19PddEqBc" defer></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <!-- Google Maps API -->
-
-    <script src="/static/js/game.js" defer></script> <!-- Global Const Required -->
-    <script src="/static/js/streetview.js" defer></script>
-
-
     <title>PerthPicker</title>
-
-    <meta name="description" content="app">
-    <meta name="keywords" content='web'>
-
 </head>
-
 <body>
-
-    <div id="content">
-        <header>
-            <h1>Test street view</h1>
-        </header>
-        <div id="map-guess-container">
-            <div id = "map"></div>
-            <div id = "guess-button">
-                <button onclick="submit()">Click me</button>
-            </div>
-        </div>
-            <div id = "sv">
-                <iframe id="sv-iframe"></iframe>
-            </div>          
-        
-        <script>
-            var map = L.map('map', {
-                                zoomDelta: 0.1,
-                                zoomSnap: 0,
-                                wheelDebounceTime: 100
-                            }).setView([-31.997564, 115.824893], 9); 
-
-            map.doubleClickZoom = false;
-
-            const corner1 = L.latLng(-32.572409, 116.315080);
-            const corner2 = L.latLng(-31.571878, 115.318021);
-            bounds = L.latLngBounds(corner1, corner2);
-
-            map.setMaxBounds(bounds);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-            // Add event listener for hover
-            document.getElementById('map-guess-container').addEventListener('mouseover', function() {
-                map.invalidateSize(true);
-                console.log("size invalidatd or smth...");
-            });
-        </script>
+    <div id="landing-page">
+        <h1>Welcome to the Landing Page!</h1>
+        <p>Click the button below to enter the main playing page.</p>
+        <button id= "game-button" onclick= "enterMainPage()">Enter Main Page</button>
     </div>
-
+    
+    <script>
+        function enterMainPage() {
+            window.location.href = "/static/main.html";
+        }
+    </script>
 </body>
-
 </html>
