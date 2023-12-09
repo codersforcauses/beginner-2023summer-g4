@@ -48,11 +48,16 @@
             </div>  
         
         <!-- Pop-up container -->
-        <div id="popupContainer" class="popup-container">
-            <div class="popup-content">
-            <span id="pointsDisplay">0</span> points!
-            </div>
+        <div class = 'score-for-a-round-popup' id = 'popup'>
+            <h2 id = "popup-message">Nice! You were close to the correct location</h2>
+            <p>Close the pop-up to complete the game</p>
+            <button type = 'button' onclick="closePopup()">OK</button>
         </div>
+        <script>
+            function closePopup(){
+                popup.classList.remove('open-popup');
+            }
+        </script>
         
         <script>
             var map = L.map('map', {
