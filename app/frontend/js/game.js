@@ -59,18 +59,13 @@ function post_data(send){
     totalScore += data['score'];
     //console.log('Response data:', data);
 
-    const popupContainer = document.getElementById('popupContainer');
-    const pointsDisplay = document.getElementById('pointsDisplay');
+    let popup = document.getElementById('popup');
 
-    pointsDisplay.textContent = data['score'];
+    let pop_up_message = document.getElementById('popup-message');
+    pop_up_message.innerHTML
 
-    // Show the pop-up
-    pointsDisplay.classList.toggle('show');
+    popup.classList.add('open-popup');
 
-    // Hide the pop-up after 3 seconds (adjust as needed)
-    setTimeout(() => {
-      popupContainer.classList.remove('show');
-    }, 3000);
 
     generateNewStreetView();
 
@@ -95,6 +90,10 @@ function submit() {
   //post_data(picked);
   post_data(distanced);
 
+}
+
+function closePopup(){
+  popup.classList.remove('open-popup');
 }
 
 const submit_button = document.getElementById('submit-button');
