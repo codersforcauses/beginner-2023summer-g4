@@ -40,7 +40,7 @@
         <div id="map-guess-container">
             <div id = "map"></div>
             <div id = "guess-button">
-                <button id = "submit-button">Click me</button>
+                <button id = "submit-button">Submit Location</button>
             </div>
         </div>
             <div id = "sv">
@@ -50,8 +50,8 @@
         <!-- Pop-up container -->
         <div class = 'score-for-a-round-popup' id = 'popup'>
             <h2 id = "popup-message">Nice! You were close to the correct location</h2>
-            <p>Close the pop-up to complete the game</p>
-            <button type = 'button' onclick="closePopup()">OK</button>
+            <p id = "popup-score"></p>
+            <button type = 'button' onclick="closePopup()">Start Next Round</button>
         </div>
         <script>
             function closePopup(){
