@@ -62,7 +62,41 @@ function post_data(send){
     let popup = document.getElementById('popup');
 
     let pop_up_message = document.getElementById('popup-message');
-    pop_up_message.innerHTML
+
+    let pop_up_score = document.getElementById('popup-score');
+
+    let popupElement = document.querySelector('.score-for-a-round-popup');
+    let pop_up_button = popupElement.querySelector('button');
+
+
+    if (data['score'] >= 495) {
+      pop_up_message.innerHTML = 'That is the exact location! Perfect Score!'
+      popupElement.style.borderColor = '#4DC25E';
+      popupElement.style.background = '#e1ffe6';
+      pop_up_button.style.background = '#4DC25E';
+    } else if (data['score'] >= 400) {
+      pop_up_message.innerHTML = 'That guess was very close!'
+      popupElement.style.borderColor = '#b3ff00';
+      popupElement.style.background = '#f3ffd6';
+      pop_up_button.style.background = '#b3ff00';
+    } else if (data['score'] >= 300) {
+      pop_up_message.innerHTML = 'That guess was close!'
+      popupElement.style.borderColor = '#d6ff00';
+      popupElement.style.background = '#f3ffd6';
+      pop_up_button.style.background = '#d6ff00';
+    } else if (data['score'] >= 50) {
+      pop_up_message.innerHTML = 'That guess was ok.'
+      popupElement.style.borderColor = '#ffbf00';
+      popupElement.style.background = '#ffeeba';
+      pop_up_button.style.background = '#ffbf00';
+    } else {
+      pop_up_message.innerHTML = "That was a bad guess."
+      popupElement.style.borderColor = '#ff0000';
+      popupElement.style.background = '#ffe7e7';
+      pop_up_button.style.background = '#ff0000';
+    }
+    
+    pop_up_score.innerHTML = 'You got ' + data['score'] + ' points!'
 
     popup.classList.add('open-popup');
 
