@@ -73,29 +73,19 @@
 
             map.doubleClickZoom = false;
 
-            // const corner1 = L.latLng(-32.572409, 116.315080);
-            // const corner2 = L.latLng(-31.571878, 115.318021);
-            // bounds = L.latLngBounds(corner1, corner2);
-
-            // map.setMaxBounds(bounds);
-
-            L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=yKxYycTR24wt9spqlP62').addTo(map);
+            L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62',{ //style URL
+                tileSize: 512,
+                zoomOffset: -1,
+                minZoom: 1,
+                crossOrigin: true,
+            }).addTo(map);
 
             // Function to handle map resizing
             function handleMapResize() {
                 map.invalidateSize();
             }
 
-            // Attach the handleMapResize function to map events
-            // map.on('zoomend', handleMapResize);
-            // map.on('moveend', handleMapResize);
             setInterval(handleMapResize, 0);
-
-            // Add event listener for hover
-            // document.getElementById('map-guess-container').addEventListener('mouseover', function() {
-            //     map.invalidateSize(true);
-            //     console.log("size invalidatd or smth...");
-            // });
         </script>
     </div>
 

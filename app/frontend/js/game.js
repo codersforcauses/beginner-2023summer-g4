@@ -13,6 +13,8 @@ var roundNumber = 1;
 
 var marker = {};
 
+let correct_marker = {};
+
 map.on('click', function(e) {
 
   if (marker != undefined){
@@ -69,7 +71,7 @@ function post_data(send){
     let popupElement = document.querySelector('.score-for-a-round-popup');
     let pop_up_button = popupElement.querySelector('button');
 
-    L.marker(streetViewLocation).addTo(map);
+    correct_marker = L.marker(streetViewLocation).addTo(map);
 
 
     if (data['score'] >= 495) {
@@ -128,11 +130,21 @@ function submit() {
 function closePopup(){
   popup.classList.remove('open-popup');
   generateNewStreetView();
+  map.removeLayer(correct_marker);
+  if (marker != undefined){
+    map.removeLayer(marker);
+  }
+  resetMap();
+
 
   document.getElementById('round-no.').innerHTML = "Round: " +  roundNumber;
   document.getElementById('total-points').innerHTML = "Points: " +  totalScore;
 
-  runTimer(180);
+  currentTimerID = runTimer(180);
+}
+
+function resetMap() {
+  map.setView([-31.997564, 115.824893], 9);
 }
 
 const submit_button = document.getElementById('submit-button');
