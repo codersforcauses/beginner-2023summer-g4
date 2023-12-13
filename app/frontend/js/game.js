@@ -1,6 +1,7 @@
 // game.js
 
 import { generateNewStreetView, streetViewLocation } from './streetview.js';
+import { runTimer, endTimer, currentTimerID} from './timer.js';
 
 //const generateNewStreetView = require('./streetview.js')
 
@@ -68,6 +69,8 @@ function post_data(send){
     let popupElement = document.querySelector('.score-for-a-round-popup');
     let pop_up_button = popupElement.querySelector('button');
 
+    L.marker(streetViewLocation).addTo(map);
+
 
     if (data['score'] >= 495) {
       pop_up_message.innerHTML = 'That is the exact location! Perfect Score!'
@@ -100,13 +103,6 @@ function post_data(send){
 
     popup.classList.add('open-popup');
 
-
-    generateNewStreetView();
-
-    document.getElementById('round-no.').innerHTML = "Round: " +  roundNumber;
-    document.getElementById('total-points').innerHTML = "Points: " +  totalScore;
-
-
   })
   .catch(error => {
     console.error('Error:', error);
@@ -114,10 +110,13 @@ function post_data(send){
 }
 
 function submit() {
+  endTimer(currentTimerID);
   if (roundNumber === 10) {
     // handle end game stuff
     // send json to backend, to add to db
   }
+
+
 
   roundNumber++;
   console.log(`picked: ${picked} | distance: ${distanced}`);
@@ -128,8 +127,19 @@ function submit() {
 
 function closePopup(){
   popup.classList.remove('open-popup');
+  generateNewStreetView();
+
+  document.getElementById('round-no.').innerHTML = "Round: " +  roundNumber;
+  document.getElementById('total-points').innerHTML = "Points: " +  totalScore;
+
+  runTimer(180);
 }
 
 const submit_button = document.getElementById('submit-button');
 
+const next_round_button = document.getElementById('next-round');
+
+next_round_button.addEventListener('click', closePopup)
+
 submit_button.addEventListener('click', submit)
+
