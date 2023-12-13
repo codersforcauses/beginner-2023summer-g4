@@ -17,6 +17,18 @@ header {
     z-index: 5;
 }
 
+#title {
+    position:absolute;
+}
+#round-details {
+    display:flex;
+    margin-left: 50%;
+}
+
+#round-no, #total-points {
+    padding-left: 200px;
+}
+
 
 #map-guess-container, #sv-iframe {
     position: absolute;
