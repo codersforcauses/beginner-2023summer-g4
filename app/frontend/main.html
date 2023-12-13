@@ -8,6 +8,10 @@
     <link rel="canonical" href="/"/>
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css%7D">
+    
 
     <script src="/static/js/proxy.js"></script> <!-- Global Const Required -->
     <script src="/static/js/main.js"></script>
@@ -15,11 +19,16 @@
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsZY2whhB9VouVJ-OJ9rNsdb19PddEqBc" defer></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="  crossorigin=""/>  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!-- Google Maps API -->
 
     <script type = 'module' src="/static/js/game.js" defer></script> <!-- Global Const Required -->
     <script type = 'module' src="/static/js/streetview.js" defer></script>
+    <script type = 'module' src="/static/js/timer.js" defer></script>
 
 
     <title>PerthPicker</title>
@@ -33,9 +42,10 @@
 
     <div id="content">
         <header>
-            <h1 id = 'title'>Test street view</h1>
-            <p id = 'round-no.'>Round: 1</p>
-            <p id = 'total-points'>Points: 0</p>
+            <h1 id = 'title'>PerthPicker</h1>
+            <p id = 'round-timer'><strong>Timer: </strong></p>
+            <p id = 'round-no.'><strong>Round: 1</strong></p>
+            <p id = 'total-points'><strong>Points: 0</strong></p>
         </header>
         <div id="map-guess-container">
             <div id = "map"></div>
@@ -51,13 +61,8 @@
         <div class = 'score-for-a-round-popup' id = 'popup'>
             <h2 id = "popup-message">Nice! You were close to the correct location</h2>
             <p id = "popup-score"></p>
-            <button type = 'button' onclick="closePopup()">Start Next Round</button>
+            <button type = 'button' id = 'next-round'>Start Next Round</button>
         </div>
-        <script>
-            function closePopup(){
-                popup.classList.remove('open-popup');
-            }
-        </script>
         
         <script>
             var map = L.map('map', {
@@ -68,19 +73,29 @@
 
             map.doubleClickZoom = false;
 
-            const corner1 = L.latLng(-32.572409, 116.315080);
-            const corner2 = L.latLng(-31.571878, 115.318021);
-            bounds = L.latLngBounds(corner1, corner2);
+            // const corner1 = L.latLng(-32.572409, 116.315080);
+            // const corner2 = L.latLng(-31.571878, 115.318021);
+            // bounds = L.latLngBounds(corner1, corner2);
 
-            map.setMaxBounds(bounds);
+            // map.setMaxBounds(bounds);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+            L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=yKxYycTR24wt9spqlP62').addTo(map);
+
+            // Function to handle map resizing
+            function handleMapResize() {
+                map.invalidateSize();
+            }
+
+            // Attach the handleMapResize function to map events
+            // map.on('zoomend', handleMapResize);
+            // map.on('moveend', handleMapResize);
+            setInterval(handleMapResize, 0);
 
             // Add event listener for hover
-            document.getElementById('map-guess-container').addEventListener('mouseover', function() {
-                map.invalidateSize(true);
-                console.log("size invalidatd or smth...");
-            });
+            // document.getElementById('map-guess-container').addEventListener('mouseover', function() {
+            //     map.invalidateSize(true);
+            //     console.log("size invalidatd or smth...");
+            // });
         </script>
     </div>
 
