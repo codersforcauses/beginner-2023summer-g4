@@ -6,7 +6,7 @@ function checkStreetViewAvailability(lat, lng) {
     const streetViewService = new google.maps.StreetViewService();
     const location = new google.maps.LatLng(lat, lng);
 
-    streetViewService.getPanorama({ radius: 30000, location: location, sources: [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR]}, (data, status) => {
+    streetViewService.getPanorama({ radius: 20000, location: location, sources: [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR]}, (data, status) => {
         // preference: "nearest" we could use this
 
         if (status === google.maps.StreetViewStatus.OK) {
@@ -18,7 +18,8 @@ function checkStreetViewAvailability(lat, lng) {
             console.log(`Street View is available at ${panoramaLat},${panoramaLng}`);
             updateIframeLocation(panoramaLat, panoramaLng);
 
-        } else {
+        } 
+        else {
             console.log(`Street View is not available anywhere near ${lat},${lng}, retrying...`);
             const lat_lon_obj = getRandomCoordinates()
             checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
@@ -65,8 +66,6 @@ function getRandomCoordinates() {
 
 function generateNewStreetView(){
     const lat_lon_obj = getRandomCoordinates()
-
-    // Check Street View availability for the example coordinates
     checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
 }
 

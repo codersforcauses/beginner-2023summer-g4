@@ -1,5 +1,12 @@
-    body {
+body {
     margin: 0%;
+}
+
+#timer-container {
+    display: flex;
+    /* justify-content: flex-start; */
+    align-items: center;
+    gap: 9px;
 }
 
 
@@ -23,11 +30,16 @@ header {
 }
 
 #map-guess-container{
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
     bottom: 5px;
     left: 5px; 
     z-index: 5;
     width: 28%;
     height: 40%;
+    margin-left: 12px;
     transition: width 0.3s, height 0.3s;
 }
 
@@ -38,8 +50,6 @@ header {
 
 #map {
     position: relative;
-    bottom: 5px;
-    left: 5px; 
     z-index: 5;
     width: 95%;
     height: 80%;
@@ -102,6 +112,7 @@ header {
     color: black;
     border: 3px solid #4DC25E;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .score-for-a-round-popup h2 {
@@ -127,4 +138,20 @@ header {
     color: black;
     font-weight: 500;
     cursor: pointer;
+}
+
+#submit-button {
+    background-color: rgb(170, 204, 255);
+    padding: 20px;
+    color: #222233;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+
+}
+
+#submit-button:hover {
+    background-color:  rgb(153, 183.6, 229.5);
 }

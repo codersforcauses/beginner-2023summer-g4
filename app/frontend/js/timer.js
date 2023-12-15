@@ -1,32 +1,29 @@
+import {submit} from './game.js';
+
+let currentTimerID;
+
 function countdown(time) {
     var timer = document.getElementById('round-timer');
-    timer.innerHTML = 'Timer: ' + time;
-}
-
-function updateAndDecrement(){
-    countdown(time);
-    time--;
+    timer.innerHTML = `<strong>${time}</strong>`
 }
 
 function runTimer(time) {
 
-    let timerID = setInterval(function () {
+    currentTimerID = setInterval(function () {
         countdown(time);
-        time--; 
-
+        time--;
+        if (time === -1){
+            endTimer(currentTimerID);
+            submit();
+        }
     }, 1000);
-
-    return timerID;
 }
 
 function endTimer(timerID){
     clearInterval(timerID);
 }
 
-function checkIfTimerHasEnded() {
 
-}
-
-let currentTimerID = runTimer(180);
+runTimer(10);
 
 export {runTimer, endTimer, currentTimerID};
