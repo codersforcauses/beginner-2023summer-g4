@@ -40,12 +40,18 @@ header {
     width: 28%;
     height: 40%;
     margin-left: 12px;
-    transition: width 0.3s, height 0.3s;
+    transform: translateX(0);
+    transition: transform 0.5s ease, width 0.3s, height 0.3s;
 }
 
 #map-guess-container:hover{
     width: 56%;
     height: 80%;
+}
+
+#map-guess-container.slide-away {
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
 }
 
 #map {
@@ -100,7 +106,7 @@ header {
 }
 
 .open-popup {
-    width: 35%;
+    width: 65%;
     background: white;
     border-radius: 8px;
     position: absolute;

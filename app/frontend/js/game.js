@@ -11,13 +11,13 @@ var distanced;
 var totalScore = 0;
 var roundNumber = 1;
 
-var marker = {};
+let marker;
 
-let correct_marker = {};
+let correct_marker;
 
 map.on('click', function(e) {
 
-  if (marker != undefined){
+  if (marker !== undefined){
     map.removeLayer(marker);
   }
 
@@ -124,7 +124,6 @@ function post_data(send){
 function submit() {
   endTimer(currentTimerID);
 
-
   if (Object.keys(marker).length === 0){
     let distanced_data = {
       data: String("distanced"),
@@ -142,6 +141,9 @@ function submit() {
 
 
   roundNumber++;
+
+  document.getElementById('map-guess-container').classList.add('slide-away');
+
   console.log(`picked: ${picked} | distance: ${distanced}`);
   //post_data(picked);
   post_data(distanced);
@@ -161,6 +163,8 @@ function closePopup(){
 
   document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
   document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
+
+  document.getElementById('map-guess-container').classList.remove('slide-away');
 
   currentTimerID = runTimer(10);
 }
