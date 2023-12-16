@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     
 
     <script src="/static/js/proxy.js"></script> <!-- Global Const Required -->
@@ -16,20 +18,17 @@
 
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsZY2whhB9VouVJ-OJ9rNsdb19PddEqBc" defer></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="  crossorigin=""/>  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!-- Google Maps API -->
 
-    <script type = 'module' src="/static/js/game.js" defer></script> <!-- Global Const Required -->
     <script type = 'module' src="/static/js/streetview.js" defer></script>
+    <script type = 'module' src="/static/js/game.js" defer></script> <!-- Global Const Required -->
     <script type = 'module' src="/static/js/timer.js" defer></script>
 
 
-    <title>Perth Pinpoint</title>
+    <title>PerthPinpoint</title>
 
     <meta name="description" content="app">
     <meta name="keywords" content='web'>
@@ -60,8 +59,9 @@
         
         <!-- Pop-up container -->
         <div class = 'score-for-a-round-popup' id = 'popup'>
-            <h2 id = "popup-message">Nice! You were close to the correct location</h2>
+            <h2 id = "popup-message"></h2>
             <p id = "popup-score"></p>
+            <div id = 'pop-up-map'></div>
             <button type = 'button' id = 'next-round'>Start Next Round</button>
         </div>
         

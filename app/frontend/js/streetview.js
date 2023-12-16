@@ -6,7 +6,7 @@ function checkStreetViewAvailability(lat, lng) {
     const streetViewService = new google.maps.StreetViewService();
     const location = new google.maps.LatLng(lat, lng);
 
-    streetViewService.getPanorama({ radius: 20000, location: location, sources: [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR]}, (data, status) => {
+    streetViewService.getPanorama({ preference: "nearest", location: location, sources: [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR]}, (data, status) => {
         // preference: "nearest" we could use this
 
         if (status === google.maps.StreetViewStatus.OK) {
