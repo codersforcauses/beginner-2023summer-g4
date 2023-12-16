@@ -158,6 +158,10 @@ function submit() {
     // send json to backend, to add to db
   }
 
+  roundNumber++;
+
+  document.getElementById('map-guess-container').classList.add('slide-away');
+
   console.log(`picked: ${picked} | distance: ${distanced}`);
   //post_data(picked);
   post_data(distanced);
@@ -187,6 +191,8 @@ function closePopup(){
   roundNumber++;
   document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
   document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
+
+  document.getElementById('map-guess-container').classList.remove('slide-away');
 
   currentTimerID = runTimer(10);
 }
