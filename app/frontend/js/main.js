@@ -1,8 +1,19 @@
-/*
-fetch(`${endpoint}/api/example`)
-    .then(res => res.json())    
-    .then(data => {
-        document.getElementById('example').innerText = JSON.stringify(data, null, 2);
-    })
-*/
-    // <p id="example"></p>
+
+let correctIcon = L.icon({
+    iconUrl: '/static/assets/flag.png',
+    iconSize: [38, 50],
+    iconAnchor: [27.26, 48],
+
+});
+
+
+
+let userIcon = L.icon({
+    iconUrl: '/static/assets/pin_2.png',
+    iconSize: [50, 50],
+    iconAnchor: [50 / 2, 50],
+});
+
+
+export {correctIcon, userIcon};
+

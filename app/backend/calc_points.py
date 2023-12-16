@@ -6,7 +6,7 @@
 # to 500 points
 def calc_points(data):
 
-    scale_factor = 70000 # need to play around with this
+    scale_factor = 75000 # need to play around with this
 
     distance = data["distance"]
 

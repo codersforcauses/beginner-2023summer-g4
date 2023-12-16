@@ -2,6 +2,7 @@
 
 import { generateNewStreetView, streetViewLocation } from './streetview.js';
 import { runTimer, endTimer, currentTimerID} from './timer.js';
+import { correctIcon, userIcon } from './main.js';
 
 //const generateNewStreetView = require('./streetview.js')
 //let currentTimerID = currentTimerID;
@@ -11,9 +12,21 @@ var distanced;
 var totalScore = 0;
 var roundNumber = 1;
 
+// all the below variables can be compressed into one fat object which contained all the info on a round
+
 let marker;
 
 let correct_marker;
+
+let userPickedLocation;
+
+let popUpMap;
+
+let popUpUserMarker;
+
+let popUpCorrectMarker;
+
+let line;
 
 map.on('click', function(e) {
 
@@ -21,7 +34,9 @@ map.on('click', function(e) {
     map.removeLayer(marker);
   }
 
-  marker = L.marker(e.latlng).addTo(map);
+  userPickedLocation = e.latlng;
+
+  marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
 
   let picked_data = {
     data: String("picked"),
@@ -64,8 +79,6 @@ function post_data(send){
 
     totalScore += ((score == -1) ? 0 : score);
 
-    //console.log('Response data:', data);
-
     let popup = document.getElementById('popup');
 
     let pop_up_message = document.getElementById('popup-message');
@@ -75,7 +88,7 @@ function post_data(send){
     let popupElement = document.querySelector('.score-for-a-round-popup');
     let pop_up_button = popupElement.querySelector('button');
 
-    correct_marker = L.marker(streetViewLocation).addTo(map);
+    //correct_marker = L.marker(streetViewLocation, {icon: correctIcon}).addTo(map);
 
 
     if (score >= 500) {
@@ -113,6 +126,12 @@ function post_data(send){
     
     pop_up_score.innerHTML = 'You got ' + ((score == -1) ? 0 : score) + ' points!';
 
+    if (roundNumber === 1){
+      generateEndGameMap();
+    }
+
+    updatePopUpMap();
+
     popup.classList.add('open-popup');
 
   })
@@ -124,7 +143,8 @@ function post_data(send){
 function submit() {
   endTimer(currentTimerID);
 
-  if (Object.keys(marker).length === 0){
+
+  if (marker === undefined){
     let distanced_data = {
       data: String("distanced"),
       distance: -1
@@ -137,8 +157,6 @@ function submit() {
     // handle end game stuff
     // send json to backend, to add to db
   }
-
-
 
   roundNumber++;
 
@@ -154,13 +172,23 @@ function closePopup(){
   generateNewStreetView();
 
   popup.classList.remove('open-popup');
-  map.removeLayer(correct_marker);
-  if (marker != undefined){
+  // map.removeLayer(correct_marker);
+  popUpMap.removeLayer(popUpCorrectMarker)
+  if (marker !== undefined){
     map.removeLayer(marker);
+    popUpMap.removeLayer(popUpUserMarker);
+    popUpCorrectMarker.removeLayer(line);
   }
   resetMap();
 
+  marker = undefined;
+  // correct_marker = undefined;
+  popUpCorrectMarker = undefined;
+  popUpUserMarker = undefined;
+  userPickedLocation = undefined;
+  line = undefined;
 
+  roundNumber++;
   document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
   document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
 
@@ -171,6 +199,65 @@ function closePopup(){
 
 function resetMap() {
   map.setView([-31.997564, 115.824893], 9);
+}
+
+function generateEndGameMap() {
+
+  popUpMap = L.map('pop-up-map', {
+    zoomDelta: 0.1,
+    zoomSnap: 0,
+    wheelDebounceTime: 100
+  }).setView(streetViewLocation, 9); 
+
+  popUpMap.doubleClickZoom = false;
+
+  L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62',{ //style URL
+  tileSize: 512,
+  zoomOffset: -1,
+  minZoom: 1,
+  crossOrigin: true,
+  }).addTo(popUpMap);
+
+}
+
+function updatePopUpMap(){
+
+  popUpCorrectMarker = L.marker(streetViewLocation, {icon: correctIcon}).addTo(popUpMap);
+
+  if (userPickedLocation === undefined) {
+    popUpMap.setView(streetViewLocation, 12);
+  }
+  else{
+
+    let bounds = L.latLngBounds(streetViewLocation, userPickedLocation).pad(0.19);
+
+    popUpMap.fitBounds(bounds);
+
+    popUpMap.fitBounds(bounds);
+
+    popUpUserMarker = L.marker(userPickedLocation, {icon: userIcon}).addTo(popUpMap);
+
+    // Add a dotted line between the coordinates
+    line = L.polyline([streetViewLocation, userPickedLocation], {
+      color: 'blue',
+      dashArray: '5, 10', // Adjust the dash pattern (5 pixels dashed, 10 pixels gap)
+      weight: 2, // Adjust the line weight
+    }).addTo(popUpMap);
+
+  }
+
+
+
+  // Function to handle map resizing
+  function handleMapResize() {
+    popUpMap.invalidateSize();
+  }
+
+  setInterval(handleMapResize, 5);
+}
+
+function resetValues(){
+
 }
 
 const submit_button = document.getElementById('submit-button');

@@ -2,10 +2,23 @@ import {submit} from './game.js';
 
 let currentTimerID;
 
-function countdown(time) {
+function countdown(timeInSeconds) {
     var timer = document.getElementById('round-timer');
-    timer.innerHTML = `<strong>${time}</strong>`
+
+    // Calculate minutes and seconds
+    let minutes = Math.floor(timeInSeconds / 60);
+    let seconds = timeInSeconds % 60;
+
+    // Format minutes and seconds with leading zeros if needed
+    let formattedMinutes = String(minutes).padStart(2, '0');
+    let formattedSeconds = String(seconds).padStart(2, '0');
+
+    // Update the timer element
+    timer.innerHTML = `<strong>${formattedMinutes}:${formattedSeconds}</strong>`;
 }
+
+// Example usage: countdown(90); // 1 minute and 30 seconds
+
 
 function runTimer(time) {
 
