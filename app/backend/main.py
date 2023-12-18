@@ -31,6 +31,11 @@ app.mount(static_prefix, static)
 async def index():
     return FileResponse(f"{path_index}", media_type="text/html")
 
+# Game page
+@app.get("/game")
+async def game_page():
+    return FileResponse(f"{path_game}", media_type="text/html")
+
 @app.exception_handler(404)
 async def redirect(_, __):
     return RedirectResponse(f"{host}")

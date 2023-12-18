@@ -119,6 +119,7 @@ header {
     border: 3px solid #4DC25E;
     visibility: visible;
     pointer-events: auto;
+    margin-top: 50px;
 }
 
 .score-for-a-round-popup h2 {

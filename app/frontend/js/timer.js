@@ -17,8 +17,6 @@ function countdown(timeInSeconds) {
     timer.innerHTML = `<strong>${formattedMinutes}:${formattedSeconds}</strong>`;
 }
 
-// Example usage: countdown(90); // 1 minute and 30 seconds
-
 
 function runTimer(time) {
 
@@ -37,6 +35,6 @@ function endTimer(timerID){
 }
 
 
-runTimer(10);
+runTimer(500);
 
 export {runTimer, endTimer, currentTimerID};
