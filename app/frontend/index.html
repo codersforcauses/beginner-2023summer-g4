@@ -3,18 +3,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-    <title>PerthPicker</title>
+    <title>PerthPinpoint</title>
 </head>
 <body>
     <div id="landing-page">
         <h1>Welcome to the Landing Page!</h1>
+
+        <h2>Select a Game Mode:</h2>
+
+        <!-- Game mode options -->
+        <div class="game-mode-options">
+            <label class="game-mode-option">
+                <input type="radio" name="gameMode" value="Standard"> Standard
+                <!-- Additional information or description for the option can be added here -->
+            </label>
+
+            <label class="game-mode-option">
+                <input type="radio" name="gameMode" value="StreetSleuth"> StreetSleuth
+                <!-- Additional information or description for the option can be added here -->
+            </label>
+
+            <label class="game-mode-option">
+                <input type="radio" name="gameMode" value="anotherMode"> Another Game Mode
+                <!-- Additional information or description for the option can be added here -->
+            </label>
+        </div>
+        <p>
+            <strong>Standard: </strong>
+            This game mode will depend on the difficulty level but the premise is the same.
+            You wil be dropped in a location in perth, you are free to roam the location as much as is possible, but you must make a guess as to where in Perth you are within the 
+            given time frame. The closer to the correct location, the higher the points. The game will take the inital drop point as the location you must guess.
+            <br>
+            <br>
+            <strong>StreetSleuth: </strong>
+            This game mode works a little different to the standard game mode. You will be dropped in a random location in a prominent Perth area, this might be the perth CBD,  Fremantle
+            or similar. This time you will know where you have been dropped with a green flag. You will be promted with 5 different locations within that area, you must select on the map where these locations are then pinpoint them. The catch is, the map 
+            will contain no labels so you must relay on the layout of the area and the street view imagery to help you. All this within a time frame of course.
+
+        </p>
         <p>Click the button below to enter the main playing page.</p>
         <button id= "game-button" onclick= "enterMainPage()">Enter Main Page</button>
     </div>
     
     <script>
         function enterMainPage() {
-            window.location.href = "/static/main.html";
+            window.location.href = "/game";
         }
     </script>
 </body>

@@ -92,20 +92,20 @@ function post_data(send){
 
 
     if (score >= 500) {
-      pop_up_message.innerHTML = 'That is the exact location! Perfect Score!'
+      pop_up_message.innerHTML = 'That is close to the exact location, Perfect Score!'
       popupElement.style.borderColor = '#4DC25E';
       popupElement.style.background = '#e1ffe6';
       pop_up_button.style.background = '#4DC25E';
     } else if (score >= 400) {
-      pop_up_message.innerHTML = 'That guess was very close!'
+      pop_up_message.innerHTML = 'That guess was close!'
       popupElement.style.borderColor = '#b3ff00';
       popupElement.style.background = '#f3ffd6';
       pop_up_button.style.background = '#b3ff00';
-    } else if (score >= 300) {
-      pop_up_message.innerHTML = 'That guess was close!'
-      popupElement.style.borderColor = '#d6ff00';
-      popupElement.style.background = '#f3ffd6';
-      pop_up_button.style.background = '#d6ff00';
+    // } else if (score >= 300) {
+    //   pop_up_message.innerHTML = 'That was a decent guess'
+    //   popupElement.style.borderColor = '#d6ff00';
+    //   popupElement.style.background = '#f3ffd6';
+    //   pop_up_button.style.background = '#d6ff00';
     } else if (score >= 200) {
       pop_up_message.innerHTML = 'That guess was ok'
       popupElement.style.borderColor = '#ffbf00';
@@ -124,7 +124,7 @@ function post_data(send){
       pop_up_button.style.background = '#ff0000';
     }
     
-    pop_up_score.innerHTML = 'You got ' + ((score == -1) ? 0 : score) + ' points!';
+    pop_up_score.innerHTML = 'You got ' + ((score == -1) ? 0 : score) + ' points';
 
     if (roundNumber === 1){
       generateEndGameMap();
@@ -133,6 +133,7 @@ function post_data(send){
     updatePopUpMap();
 
     popup.classList.add('open-popup');
+    roundNumber++;
 
   })
   .catch(error => {
@@ -158,8 +159,6 @@ function submit() {
     // send json to backend, to add to db
   }
 
-  roundNumber++;
-
   document.getElementById('map-guess-container').classList.add('slide-away');
 
   console.log(`picked: ${picked} | distance: ${distanced}`);
@@ -177,7 +176,7 @@ function closePopup(){
   if (marker !== undefined){
     map.removeLayer(marker);
     popUpMap.removeLayer(popUpUserMarker);
-    popUpCorrectMarker.removeLayer(line);
+    popUpMap.removeLayer(line);
   }
   resetMap();
 
@@ -188,13 +187,13 @@ function closePopup(){
   userPickedLocation = undefined;
   line = undefined;
 
-  roundNumber++;
   document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
   document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
-
   document.getElementById('map-guess-container').classList.remove('slide-away');
+  document.title = `${roundNumber} | PerthPinpoint`
 
-  currentTimerID = runTimer(10);
+  currentTimerID = runTimer(500);
+
 }
 
 function resetMap() {
