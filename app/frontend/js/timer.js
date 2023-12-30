@@ -1,5 +1,3 @@
-import {submit} from './game.js';
-
 let currentTimerID;
 
 function countdown(timeInSeconds) {
@@ -18,14 +16,14 @@ function countdown(timeInSeconds) {
 }
 
 
-function runTimer(time) {
+function runTimer(time, submit_func) {
 
     currentTimerID = setInterval(function () {
         countdown(time);
         time--;
         if (time === -1){
             endTimer(currentTimerID);
-            submit();
+            submit_func();
         }
     }, 1000);
 }
@@ -33,8 +31,5 @@ function runTimer(time) {
 function endTimer(timerID){
     clearInterval(timerID);
 }
-
-
-runTimer(500);
 
 export {runTimer, endTimer, currentTimerID};
