@@ -14,7 +14,7 @@
 
     <script>
         const game_mode = localStorage.getItem("game_mode");
-        const isStandardGameMode = game_mode === "Standard";
+        const isStandardGameMode = game_mode === "city";
         console.log(game_mode);
     </script>
     
@@ -29,16 +29,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
     <!-- Google Maps API -->
 
-    {% if game_mode == 'standard' %}
-        <script type = 'module' src="/static/js/game.js"></script>
-    {% else %}
-        <script type = 'module' src="/static/js/sleuthGame.js"></script>
+    {% if game_mode == 'city' %}
+    <script type='module' src="/static/js/city.js"></script>
+    {% elif game_mode == 'discoveries' %}
+    <script type='module' src="/static/js/discoveries.js"></script>
+    {% elif game_mode == 'sleuth' %}
+    <script type='module' src="/static/js/sleuth.js"></script>
+    {% elif game_mode == 'landmark' %}
+    <script type='module' src="/static/js/landmark.js"></script>
     {% endif %}
+
     <!-- <script type = 'module' src="/static/js/game.js" defer></script> -->
     <!-- <script type = 'module' src="/static/js/timer.js" defer></script>  -->
 
 
-    <title>1 | PerthPinpoint</title>
+    <title>PerthPinpoint</title>
 
     <meta name="description" content="app">
     <meta name="keywords" content='web'>

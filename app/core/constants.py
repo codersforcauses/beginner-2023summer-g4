@@ -23,3 +23,5 @@ path_game = f"{path_frontend}/main.html"
 path_backend = f"{path_app}/backend"
 path_router = f"{path_backend}/router.py"
 
+path_core = f"{path_app}/core"
+path_db = f"{path_core}/pinpoint.db"
