@@ -20,7 +20,7 @@ async def data(request: Request):
     data = await request.json()
 
     data = json.loads(data)
-    #print(data)
+    print("test test 123")
 
     if data["game_mode"] == "city":
         

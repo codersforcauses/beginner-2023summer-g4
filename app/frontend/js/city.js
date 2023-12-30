@@ -78,6 +78,8 @@ function post_data(send){
     body: JSON.stringify(send)
   };
 
+  console.log(send);
+
   fetch(url, picked_post)
   .then(response => {
     if (!response.ok) {
@@ -159,7 +161,8 @@ function submit() {
   if (marker === undefined){
     let round_data = {
       game_mode: "city",
-      distance: Number(e.latlng.distanceTo(streetViewLocation))
+      round: roundNumber,
+      distance: -1
     }
     round = JSON.stringify(round_data);
   }
@@ -167,6 +170,7 @@ function submit() {
   document.getElementById('map-guess-container').classList.add('slide-away');
 
   post_data(round);
+
 
   if (roundNumber === 10) {
 

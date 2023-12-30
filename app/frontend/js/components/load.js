@@ -24,7 +24,7 @@ async function loadStreetViewAndMap() {
       streetViewLocation = result;
       locationsSelected = getLocations(streetViewLocation);
 
-      if (game_mode === 'Standard') {
+      if (isStandardGameMode) {
         map = L.map('map', {
           zoomDelta: 0.1,
           zoomSnap: 0,
