@@ -14,17 +14,22 @@
         <!-- Game mode options -->
         <div class="game-mode-options">
             <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="Standard"> Standard
+                <input type="radio" name="gameMode" value="city"> Classic City
                 <!-- Additional information or description for the option can be added here -->
             </label>
 
             <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="StreetSleuth"> StreetSleuth
+                <input type="radio" name="gameMode" value="discoveries"> Divs Discoveries
                 <!-- Additional information or description for the option can be added here -->
             </label>
 
             <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="anotherMode"> Another Game Mode
+                <input type="radio" name="gameMode" value="sleuth"> Streeth Sleuth
+                <!-- Additional information or description for the option can be added here -->
+            </label>
+
+            <label class="game-mode-option">
+                <input type="radio" name="gameMode" value="landmark"> Local Landmark
                 <!-- Additional information or description for the option can be added here -->
             </label>
         </div>
@@ -54,12 +59,22 @@
             }
             localStorage.setItem("game_mode", selectedMode.value);
 
-            if (selectedMode.value === "Standard") {
-                window.location.href = "/game";
+            if (selectedMode.value === "city") {
+                window.location.href = "/city";
+            }
+            else if (selectedMode.value == "discoveries"){
+                window.location.href = "/discoveries";
+            }
+            else if (selectedMode.value == "sleuth"){
+                window.location.href = "/sleuth";
+            }
+            else if (selectedMode.value == "landmark"){
+                window.location.href = "/landmark";
             }
             else {
-                window.location.href = "/streetsleuth";
+                window.location.href = "/";
             }
+            
         }
     </script>
 </body>

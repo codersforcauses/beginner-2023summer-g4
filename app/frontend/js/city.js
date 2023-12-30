@@ -1,15 +1,15 @@
-// game.js
+// city.js
 
-import { generateNewStreetView } from './streetview.js';
-import { runTimer, endTimer, currentTimerID} from './timer.js';
-import { correctIcon, userIcon } from './main.js';
-import { loadStreetViewAndMap } from './loadGame.js';
+import { generateNewStreetView } from './components/streetview.js';
+import { runTimer, endTimer, currentTimerID} from './components/timer.js';
+import { correctIcon, userIcon } from './components/main.js';
+import { loadStreetViewAndMap } from './components/load.js';
 
 let map;
 let streetViewLocation;
 
-var picked;
-var distanced; 
+var round;
+var complete;
 
 var totalScore = 0;
 var roundNumber = 1;
@@ -54,20 +54,15 @@ function startGame(){
   
     marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
   
-    let picked_data = {
-      data: String("picked"),
-      latitude: Number(e.latlng.lat),
-      longitude: Number(e.latlng.lng)
-    };
-  
-    picked = JSON.stringify(picked_data);
-  
-    let distanced_data = {
-      data: String("distanced"),
+    let round_data = {
+      game_mode: "city",
+      round: Number(roundNumber),  // TO DO: add elapsed time
       distance: Number(e.latlng.distanceTo(streetViewLocation))
-    };
-  
-    distanced = JSON.stringify(distanced_data);
+    }
+    round = JSON.stringify(round_data);
+
+    // latitude: Number(e.latlng.lat)
+    // longitude: Number(e.latlng.lng)
   
   });
 }
@@ -92,65 +87,65 @@ function post_data(send){
   })
   .then(data => {
 
-    let score = data['score'];
+      let score = data['score'];
 
-    totalScore += ((score == -1) ? 0 : score);
+      totalScore += ((score == -1) ? 0 : score);
 
-    let popup = document.getElementById('popup');
+      let popup = document.getElementById('popup');
 
-    let pop_up_message = document.getElementById('popup-message');
+      let pop_up_message = document.getElementById('popup-message');
 
-    let pop_up_score = document.getElementById('popup-score');
+      let pop_up_score = document.getElementById('popup-score');
 
-    let popupElement = document.querySelector('.score-for-a-round-popup');
-    let pop_up_button = popupElement.querySelector('button');
+      let popupElement = document.querySelector('.score-for-a-round-popup');
+      let pop_up_button = popupElement.querySelector('button');
 
-    //correct_marker = L.marker(streetViewLocation, {icon: correctIcon}).addTo(map);
+      //correct_marker = L.marker(streetViewLocation, {icon: correctIcon}).addTo(map);
 
 
-    if (score >= 500) {
-      pop_up_message.innerHTML = 'That is close to the exact location, Perfect Score!'
-      popupElement.style.borderColor = '#4DC25E';
-      popupElement.style.background = '#e1ffe6';
-      pop_up_button.style.background = '#4DC25E';
-    } else if (score >= 400) {
-      pop_up_message.innerHTML = 'That guess was close!'
-      popupElement.style.borderColor = '#b3ff00';
-      popupElement.style.background = '#f3ffd6';
-      pop_up_button.style.background = '#b3ff00';
-    // } else if (score >= 300) {
-    //   pop_up_message.innerHTML = 'That was a decent guess'
-    //   popupElement.style.borderColor = '#d6ff00';
-    //   popupElement.style.background = '#f3ffd6';
-    //   pop_up_button.style.background = '#d6ff00';
-    } else if (score >= 200) {
-      pop_up_message.innerHTML = 'That guess was ok'
-      popupElement.style.borderColor = '#ffbf00';
-      popupElement.style.background = '#ffeeba';
-      pop_up_button.style.background = '#ffbf00';
-    } else if (score >= 0){
-      pop_up_message.innerHTML = "That was a bad guess"
-      popupElement.style.borderColor = '#ff0000';
-      popupElement.style.background = '#ffe7e7';
-      pop_up_button.style.background = '#ff0000';
-    }
-    else {
-      pop_up_message.innerHTML = "You did not submit a guess!"
-      popupElement.style.borderColor = '#ff0000';
-      popupElement.style.background = '#ffe7e7';
-      pop_up_button.style.background = '#ff0000';
-    }
-    
-    pop_up_score.innerHTML = 'You got ' + ((score == -1) ? 0 : score) + ' points';
+      if (score >= 500) {
+        pop_up_message.innerHTML = 'That is close to the exact location, Perfect Score!'
+        popupElement.style.borderColor = '#4DC25E';
+        popupElement.style.background = '#e1ffe6';
+        pop_up_button.style.background = '#4DC25E';
+      } else if (score >= 400) {
+        pop_up_message.innerHTML = 'That guess was close!'
+        popupElement.style.borderColor = '#b3ff00';
+        popupElement.style.background = '#f3ffd6';
+        pop_up_button.style.background = '#b3ff00';
+      // } else if (score >= 300) {
+      //   pop_up_message.innerHTML = 'That was a decent guess'
+      //   popupElement.style.borderColor = '#d6ff00';
+      //   popupElement.style.background = '#f3ffd6';
+      //   pop_up_button.style.background = '#d6ff00';
+      } else if (score >= 200) {
+        pop_up_message.innerHTML = 'That guess was ok'
+        popupElement.style.borderColor = '#ffbf00';
+        popupElement.style.background = '#ffeeba';
+        pop_up_button.style.background = '#ffbf00';
+      } else if (score >= 0){
+        pop_up_message.innerHTML = "That was a bad guess"
+        popupElement.style.borderColor = '#ff0000';
+        popupElement.style.background = '#ffe7e7';
+        pop_up_button.style.background = '#ff0000';
+      }
+      else {
+        pop_up_message.innerHTML = "You did not submit a guess!"
+        popupElement.style.borderColor = '#ff0000';
+        popupElement.style.background = '#ffe7e7';
+        pop_up_button.style.background = '#ff0000';
+      }
+      
+      pop_up_score.innerHTML = 'You got ' + ((score == -1) ? 0 : score) + ' points';
 
-    if (roundNumber === 1){
-      generateEndGameMap();
-    }
+      if (roundNumber === 1){
+        generateEndGameMap();
+      }
 
-    updatePopUpMap();
+      updatePopUpMap();
 
-    popup.classList.add('open-popup');
-    roundNumber++;
+      popup.classList.add('open-popup');
+      roundNumber++;
 
   })
   .catch(error => {
@@ -161,26 +156,28 @@ function post_data(send){
 function submit() {
   endTimer(currentTimerID);
 
-
   if (marker === undefined){
-    let distanced_data = {
-      data: String("distanced"),
-      distance: -1
-    };
-  
-    distanced = JSON.stringify(distanced_data);
-  }
-
-  if (roundNumber === 10) {
-    // handle end game stuff
-    // send json to backend, to add to db
+    let round_data = {
+      game_mode: "city",
+      distance: Number(e.latlng.distanceTo(streetViewLocation))
+    }
+    round = JSON.stringify(round_data);
   }
 
   document.getElementById('map-guess-container').classList.add('slide-away');
 
-  console.log(`picked: ${picked} | distance: ${distanced}`);
-  //post_data(picked);
-  post_data(distanced);
+  post_data(round);
+
+  if (roundNumber === 10) {
+
+    let complete_data = {
+      game_mode: "city",
+      distance: "complete",
+      totalscore: Number(totalScore)
+    }
+    complete = JSON.stringify(complete_data);
+    post_data(complete);
+  }
 
 }
 

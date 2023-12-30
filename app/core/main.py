@@ -9,10 +9,10 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi.responses import FileResponse
 from fastapi.responses import RedirectResponse
+
 from fastapi.templating import Jinja2Templates
 
 from backend.router import router
-
 from backend.static import router as static
 
 app = FastAPI()
@@ -34,17 +34,22 @@ templates = Jinja2Templates(directory=path_frontend)
 async def index():
     return FileResponse(f"{path_index}", media_type="text/html")
 
-# Game page
-@app.get("/game")
+@app.get("/city")
 async def game_page(request: Request):
-    return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'standard'})
-    #return FileResponse(f"{path_game}", media_type="text/html")
+    return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'city'})
 
-# StreetSleuth Game page
-@app.get("/streetsleuth")
+@app.get("/discoveries")
+async def game_page(request: Request):
+    return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'discoveries'})
+
+@app.get("/sleuth")
 async def street_sleuth(request: Request):
-    return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'streetsleuth'})
-    #return FileResponse(f"{path_game}", media_type="text/html")
+    return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'sleuth'})
+
+@app.get("/landmark")
+async def street_sleuth(request: Request):
+    return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'landmark'})
+
 
 @app.exception_handler(404)
 async def redirect(_, __):

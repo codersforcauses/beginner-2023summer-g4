@@ -1,4 +1,4 @@
-import { getLocations } from "./generateRandomStreets.js";
+import { getLocations } from "./generate.js";
 import { generateNewStreetView } from "./streetview.js";
 import { sleuthIcon } from './main.js';
 
@@ -48,9 +48,9 @@ async function loadStreetViewAndMap() {
           attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e"
         }).addTo(map);
 
-        let sleuthDropLocationMarker = L.marker(streetViewLocation, {
-          icon: sleuthIcon
-        }).addTo(map);
+     //   let sleuthDropLocationMarker = L.marker(streetViewLocation, {
+      //    icon: sleuthIcon
+       // }).addTo(map);
       }
 
       map.doubleClickZoom = false;

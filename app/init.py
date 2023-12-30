@@ -3,6 +3,7 @@
 import uvicorn
 from config import *
 from core.utils import *
+from core.constants import *
 
 if __name__ == "__main__":
 
@@ -10,9 +11,13 @@ if __name__ == "__main__":
         print(f"[+] DEBUG: True, Debugging (log) enabled.")
 
     log(f"[+] Initialising Application")
+
+    if DATABASE:
+        log(f"[+] Rebuilding Database")
+        rebuild(path_db)
     
     uvicorn.run(
-        "backend.main:app",
+        "core.main:app",
         host=uvicorn_HOST,
         port=uvicorn_PORT,
         log_level=uvicorn_LOGGING,
