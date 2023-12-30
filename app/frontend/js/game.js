@@ -1,11 +1,13 @@
 // game.js
 
-import { generateNewStreetView, streetViewLocation } from './streetview.js';
+import { generateNewStreetView } from './streetview.js';
 import { runTimer, endTimer, currentTimerID} from './timer.js';
 import { correctIcon, userIcon } from './main.js';
+import { loadStreetViewAndMap } from './loadGame.js';
 
-//const generateNewStreetView = require('./streetview.js')
-//let currentTimerID = currentTimerID;
+let map;
+let streetViewLocation;
+
 var picked;
 var distanced; 
 
@@ -28,32 +30,47 @@ let popUpCorrectMarker;
 
 let line;
 
-map.on('click', function(e) {
+loadStreetViewAndMap().then((result) => {
 
-  if (marker !== undefined){
-    map.removeLayer(marker);
+  if (result) {
+    map = result.map;
+    streetViewLocation = result.streetViewLocation;
+    runTimer(15, submit);
+    startGame();
+  } else {
+    console.error('Failed to load street view and map.');
   }
-
-  userPickedLocation = e.latlng;
-
-  marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
-
-  let picked_data = {
-    data: String("picked"),
-    latitude: Number(e.latlng.lat),
-    longitude: Number(e.latlng.lng)
-  };
-
-  picked = JSON.stringify(picked_data);
-
-  let distanced_data = {
-    data: String("distanced"),
-    distance: Number(e.latlng.distanceTo(streetViewLocation))
-  };
-
-  distanced = JSON.stringify(distanced_data);
-
 });
+
+function startGame(){
+  console.log("start game now!");
+  map.on('click', function(e) {
+
+    if (marker !== undefined){
+      map.removeLayer(marker);
+    }
+  
+    userPickedLocation = e.latlng;
+  
+    marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
+  
+    let picked_data = {
+      data: String("picked"),
+      latitude: Number(e.latlng.lat),
+      longitude: Number(e.latlng.lng)
+    };
+  
+    picked = JSON.stringify(picked_data);
+  
+    let distanced_data = {
+      data: String("distanced"),
+      distance: Number(e.latlng.distanceTo(streetViewLocation))
+    };
+  
+    distanced = JSON.stringify(distanced_data);
+  
+  });
+}
 
 function post_data(send){
   const url = `${endpoint}/api/submit`;
@@ -167,8 +184,10 @@ function submit() {
 
 }
 
-function closePopup(){
-  generateNewStreetView();
+async function closePopup(){
+
+  streetViewLocation = await generateNewStreetView();
+
 
   popup.classList.remove('open-popup');
   // map.removeLayer(correct_marker);
@@ -192,7 +211,7 @@ function closePopup(){
   document.getElementById('map-guess-container').classList.remove('slide-away');
   document.title = `${roundNumber} | PerthPinpoint`
 
-  currentTimerID = runTimer(500);
+  runTimer(1000);
 
 }
 

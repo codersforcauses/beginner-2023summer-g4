@@ -6,7 +6,7 @@
     <title>PerthPinpoint</title>
 </head>
 <body>
-    <div id="landing-page">
+    <div class="landing-page">
         <h1>Welcome to the Landing Page!</h1>
 
         <h2>Select a Game Mode:</h2>
@@ -47,7 +47,19 @@
     
     <script>
         function enterMainPage() {
-            window.location.href = "/game";
+            let selectedMode = document.querySelector('input[name="gameMode"]:checked');
+
+            if (!selectedMode){
+                alert("Please select a game mode before entering the main page.");
+            }
+            localStorage.setItem("game_mode", selectedMode.value);
+
+            if (selectedMode.value === "Standard") {
+                window.location.href = "/game";
+            }
+            else {
+                window.location.href = "/streetsleuth";
+            }
         }
     </script>
 </body>

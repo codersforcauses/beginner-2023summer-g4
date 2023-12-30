@@ -6,6 +6,12 @@ let correctIcon = L.icon({
 
 });
 
+let sleuthIcon = L.icon({
+    iconUrl: '/static/assets/sleuthFlag.png',
+    iconSize: [38, 50],
+    iconAnchor: [27.26, 48],
+
+});
 
 
 let userIcon = L.icon({
@@ -15,5 +21,5 @@ let userIcon = L.icon({
 });
 
 
-export {correctIcon, userIcon};
+export {correctIcon, userIcon, sleuthIcon};
 
