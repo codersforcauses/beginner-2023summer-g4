@@ -24,6 +24,26 @@ header {
     z-index: 5;
 }
 
+.reset-sv-button {
+    position: fixed;
+    right: 23px;
+    bottom: 215px;
+    color: #B3B3B3;
+    text-align: center;
+    background-color: #222222;
+    /* width: 150px;
+    height: 50px; */
+    border-radius: 2px;
+    z-index: 100;
+    padding: 15px;
+    cursor: pointer;
+
+}
+
+.reset-sv-button:hover {
+    color: #E6E6E6;
+}
+
 
 .map-guess-container, .sv-iframe {
     position: absolute;
@@ -74,10 +94,9 @@ header {
     height: 100%;
 }
 
-.leaflet-zoom-anim
-.leaflet-zoom-animated {
-  transition-timing-function: linear;
-  transition-duration: 100ms;
+
+.leaflet-container {
+cursor: crosshair !important;
 }
 
 /* .game-button {

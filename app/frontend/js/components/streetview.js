@@ -145,6 +145,6 @@ async function generateNewStreetView() {
 //generateNewStreetView();
 
 
-export {generateNewStreetView};
+export {generateNewStreetView, updateIframeLocation};
 
 

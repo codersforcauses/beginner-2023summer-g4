@@ -116,56 +116,56 @@ function post_data(send){
         }
     
         updatePopUpMap();
-//     
-//         popup.classList.add('open-popup');
-//         roundNumber++;
-//     
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//         });
-// }
-// 
-// function generateGeometry(location){
-// 
-//     
-// 
-// }
-// 
-// function generateEndGameMap() {
-// 
-//     popUpMap = L.map('pop-up-map', {
-//       zoomDelta: 0.1,
-//       zoomSnap: 0,
-//       wheelDebounceTime: 100
-//     }).setView(streetViewLocation, 9); 
-//   
-//     popUpMap.doubleClickZoom = false;
-//   
-//     L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62',{ //style URL
-//     tileSize: 512,
-//     zoomOffset: -1,
-//     minZoom: 1,
-//     crossOrigin: true,
-//     }).addTo(popUpMap);
-//   
-//   }
-// 
-// function startGame(){
-//     map.on('click', function(e) {
-// 
-//       console.log(current_location.location);
-// 
-//     if (marker !== undefined){
-//       map.removeLayer(marker);
-//     }
-//   
-//     userPickedLocation = e.latlng;
-//   
+    
+        popup.classList.add('open-popup');
+        roundNumber++;
+    
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function generateGeometry(location){
+
+    
+
+}
+
+function generateEndGameMap() {
+
+    popUpMap = L.map('pop-up-map', {
+      zoomDelta: 0.1,
+      zoomSnap: 0,
+      wheelDebounceTime: 100
+    }).setView(streetViewLocation, 9); 
+  
+    popUpMap.doubleClickZoom = false;
+  
+    L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62',{ //style URL
+    tileSize: 512,
+    zoomOffset: -1,
+    minZoom: 1,
+    crossOrigin: true,
+    }).addTo(popUpMap);
+  
+  }
+
+function startGame(){
+    map.on('click', function(e) {
+
+      console.log(current_location.location);
+
+    if (marker !== undefined){
+      map.removeLayer(marker);
+    }
+  
+    userPickedLocation = e.latlng;
+  
     marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
   
     let picked_data = {
-      type: 'sleuth',
+      game_mode: 'sleuth',
       data: String("picked"),
       latitude: Number(e.latlng.lat),
       longitude: Number(e.latlng.lng)
@@ -174,7 +174,7 @@ function post_data(send){
     picked = JSON.stringify(picked_data);
   
     let distanced_data = {
-      type: 'sleuth',
+      game_mode: 'sleuth',
       data: String("distanced"),
       distance: Number(e.latlng.distanceTo(current_location[0].location))
     };
@@ -190,7 +190,7 @@ function submit() {
   
     if (marker === undefined){
       let distanced_data = {
-        type: 'sleuth',
+        game_mode: 'sleuth',
         data: String("distanced"),
         distance: -1
       };
@@ -240,7 +240,7 @@ function submit() {
     document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
     document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
     document.getElementById('map-guess-container').classList.remove('slide-away');
-    document.title = `${roundNumber} | PerthPinpoint`
+    //document.title = `${roundNumber} | PerthPinpoint`
   
     runTimer(1000);
   
