@@ -26,7 +26,7 @@ async function loadStreetViewAndMap() {
 
       if (isStandardGameMode) {
         map = L.map('map', {
-          zoomDelta: 0.1,
+          // zoomDelta: 0.1,
           zoomSnap: 0,
           wheelDebounceTime: 100
         }).setView([-31.997564, 115.824893], 9);
@@ -39,7 +39,7 @@ async function loadStreetViewAndMap() {
         }).addTo(map);
       } else {
         map = L.map('map', {
-          zoomDelta: 0.1,
+          // zoomDelta: 0.1,
           zoomSnap: 0,
           wheelDebounceTime: 100
         }).setView([-31.943821, 115.857471], 13);
@@ -48,9 +48,9 @@ async function loadStreetViewAndMap() {
           attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e"
         }).addTo(map);
 
-     //   let sleuthDropLocationMarker = L.marker(streetViewLocation, {
-      //    icon: sleuthIcon
-       // }).addTo(map);
+       let sleuthDropLocationMarker = L.marker(streetViewLocation, {
+         icon: sleuthIcon
+       }).addTo(map);
       }
 
       map.doubleClickZoom = false;

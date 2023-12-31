@@ -1,6 +1,6 @@
 async function getLocations(streetViewLocation) {
     const overpassUrl = "https://overpass-api.de/api/interpreter";
-    const overpassQuery = `[out:json];(node(around:50,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];node(around:50,${streetViewLocation.lat},${streetViewLocation.lng})[name]["shop"];way(around:50,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];relation(around:50,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];way(around:50,${streetViewLocation.lat},${streetViewLocation.lng})[name]["building"];);out tags geom;`;
+    const overpassQuery = `[out:json];(node(around:100,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];node(around:100,${streetViewLocation.lat},${streetViewLocation.lng})[name]["shop"];way(around:100,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];relation(around:100,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];way(around:100,${streetViewLocation.lat},${streetViewLocation.lng})[name]["building"];);out tags geom;`;
     try {
       const response = await fetch(`${overpassUrl}?data=${encodeURIComponent(overpassQuery)}`);
       const data = await response.json();

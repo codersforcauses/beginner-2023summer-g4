@@ -1,6 +1,6 @@
 // city.js
 
-import { generateNewStreetView } from './components/streetview.js';
+import { generateNewStreetView, updateIframeLocation } from './components/streetview.js';
 import { runTimer, endTimer, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
@@ -282,6 +282,13 @@ function resetValues(){
 const submit_button = document.getElementById('submit-button');
 
 const next_round_button = document.getElementById('next-round');
+
+const reset_sv_button = document.getElementById('reset-sv-button');
+
+reset_sv_button.addEventListener('click', function () {
+  updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
+}
+)
 
 next_round_button.addEventListener('click', closePopup)
 

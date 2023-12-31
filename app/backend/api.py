@@ -35,6 +35,10 @@ async def data(request: Request):
             points = city_points(data)
             response = {"score": points}
             return JSONResponse(content=response)
+    elif data["game_mode"] == "sleuth":
+        print()
+    elif data["game_mode"] == "landmark":
+        print()
         
  
     
