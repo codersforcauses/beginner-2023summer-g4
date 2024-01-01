@@ -30,6 +30,12 @@ let popUpCorrectMarker;
 
 let line;
 
+const submit_button = document.getElementById('submit-button');
+
+const next_round_button = document.getElementById('next-round');
+
+const reset_sv_button = document.getElementById('reset-sv-button');
+
 loadStreetViewAndMap().then((result) => {
 
   if (result) {
@@ -53,6 +59,8 @@ function startGame(){
     userPickedLocation = e.latlng;
   
     marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
+
+    makeSubmitButtonClickable();
   
     let round_data = {
       game_mode: "city",
@@ -65,6 +73,31 @@ function startGame(){
     // longitude: Number(e.latlng.lng)
   
   });
+}
+
+// these two functions are for the submit button
+function darken () {
+  submit_button.style.backgroundColor = 'rgb(153, 183.6, 229.5)';
+}
+
+function lighten () {
+  submit_button.style.backgroundColor = 'rgb(170, 204, 255)';
+}
+
+function makeSubmitButtonClickable(){
+
+  submit_button.style.opacity = 1;
+  submit_button.addEventListener('click', submit);
+  submit_button.addEventListener('mouseover', darken);
+  submit_button.addEventListener('mouseout', lighten);
+
+}
+
+function greyOutSubmitButton(){
+  submit_button.style.opacity = 0.7;
+  submit_button.removeEventListener('click', submit);
+  submit_button.removeEventListener('mouseover', darken);
+  submit_button.removeEventListener('mouseout', lighten);
 }
 
 function post_data(send){
@@ -156,9 +189,13 @@ function post_data(send){
 }
 
 function submit() {
+
+  greyOutSubmitButton();
+
   endTimer(currentTimerID);
 
   if (marker === undefined){
+
     let round_data = {
       game_mode: "city",
       round: roundNumber,
@@ -186,7 +223,6 @@ function submit() {
 }
 
 async function closePopup(){
-
   streetViewLocation = await generateNewStreetView();
 
 
@@ -279,20 +315,12 @@ function resetValues(){
 
 }
 
-const submit_button = document.getElementById('submit-button');
-
-const next_round_button = document.getElementById('next-round');
-
-const reset_sv_button = document.getElementById('reset-sv-button');
-
 reset_sv_button.addEventListener('click', function () {
   updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
 }
 )
 
 next_round_button.addEventListener('click', closePopup)
-
-submit_button.addEventListener('click', submit)
 
 export {submit};
 
