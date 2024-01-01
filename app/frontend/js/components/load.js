@@ -12,6 +12,8 @@ import { sleuthIcon } from './main.js';
 
 async function loadStreetViewAndMap() {
 
+  
+
   let streetViewLocation = null;
   let map = null;
   let locationsSelected = null;
