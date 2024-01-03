@@ -1,6 +1,6 @@
 import { getLocations } from "./generate.js";
 import { generateNewStreetView } from "./streetview.js";
-import { sleuthIcon } from './main.js';
+import { dropIcon } from './main.js';
 
 // async function selectedLocations(streetViewLocation) {
 //     try {
@@ -44,15 +44,19 @@ async function loadStreetViewAndMap() {
           // zoomDelta: 0.1,
           zoomSnap: 0,
           wheelDebounceTime: 100
-        }).setView([-31.943821, 115.857471], 13);
+        }).setView(streetViewLocation, 15);
 
         L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png", {
           attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e"
         }).addTo(map);
 
        let sleuthDropLocationMarker = L.marker(streetViewLocation, {
-         icon: sleuthIcon
+         icon: dropIcon
        }).addTo(map);
+
+       L.circle(streetViewLocation, {radius: 200, color: 'blue', dashArray: '5, 10', fill: false}).addTo(map);
+
+
       }
 
       map.doubleClickZoom = false;

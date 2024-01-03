@@ -20,7 +20,6 @@ async def data(request: Request):
     data = await request.json()
 
     data = json.loads(data)
-    print("test test 123")
 
     if data["game_mode"] == "city":
         
@@ -36,9 +35,9 @@ async def data(request: Request):
             response = {"score": points}
             return JSONResponse(content=response)
     elif data["game_mode"] == "sleuth":
-        print()
+        print("HANDLE SLUETH")
     elif data["game_mode"] == "landmark":
-        print()
+        print("HANDLE LANDMARK")
         
  
     
