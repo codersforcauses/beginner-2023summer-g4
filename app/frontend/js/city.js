@@ -85,7 +85,6 @@ function lighten () {
 }
 
 function makeSubmitButtonClickable(){
-
   submit_button.style.opacity = 1;
   submit_button.addEventListener('click', submit);
   submit_button.addEventListener('mouseover', darken);
@@ -165,7 +164,7 @@ function post_data(send){
         pop_up_button.style.background = '#ff0000';
       }
       else {
-        pop_up_message.innerHTML = "You did not submit a guess!"
+        pop_up_message.innerHTML = "You ran out of time!"
         popupElement.style.borderColor = '#ff0000';
         popupElement.style.background = '#ffe7e7';
         pop_up_button.style.background = '#ff0000';
@@ -322,5 +321,5 @@ reset_sv_button.addEventListener('click', function () {
 
 next_round_button.addEventListener('click', closePopup)
 
-export {submit};
+export {submit, makeSubmitButtonClickable, greyOutSubmitButton};
 
