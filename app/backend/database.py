@@ -11,9 +11,7 @@ else:
     log(f"[-] Database Not Built! (or empty)") ; log(f"[-] Please Rebuild with DATABASE = True in config!")
     sys.exit(-1)
 
-#con = sqlite3.connect(path_db) ; cursor = con.cursor()
-#con.close()
-
+#con = sqlite3.connect(path_db) ; cursor = con.cursor() ; con.close()
 '''
 note:
 please run db_connect() and db_disconnect() before/after EVERY transaction
@@ -28,13 +26,78 @@ def db_disconnect(con):
     con.commit()
     con.close()
 
-def update_game(game, usern, totalscore):
-    # make sure sanitised
-    # check if game played by user before
-    # create if new
-    # add points otherwise
-    # check for new high score
+query_leaderboard_max = None
+query_leaderboard_total = None
+
+def get_leaderboard(game_mode): # limited to city and discoveries
     return
+
+user_query_exists = '''
+SELECT * FROM users WHERE username=(?)
+'''
+# (username,)
+user_query_new = '''
+INSERT INTO users (username) VALUES (?)
+'''
+# (username,)
+game_query_exist = '''
+SELECT * FROM games WHERE user_id IN (SELECT user_id FROM users WHERE username=(?)) AND game_mode=(?)
+'''
+# (username, game_mode)
+game_query_new = '''
+INSERT INTO games (user_id, game_mode, maxpoints, totalpoints) SELECT user_id, (?), (?), (?) FROM users WHERE username=(?)
+'''
+# (game_mode, maxpoints, totalpoints, username)
+
+game_query_query = '''
+SELECT maxpoints, totalpoints FROM games WHERE user_id = (SELECT user_id FROM users WHERE username = (?))
+'''
+# (username,)
+game_query_update = '''
+UPDATE games SET maxpoints = (?), totalpoints = (?) WHERE user_id = (SELECT user_id FROM users WHERE username = (?)) AND game_mode = (?)
+'''
+# (maxpoints, totalpoints, username, gamemode)
+
+def update_game(game_mode, username, totalscore):
+    con, cursor = db_connect()
+
+    cursor.execute(user_query_exists, (username,))
+    user_exist = cursor.fetchone()
+    if user_exist is not None:
+        pass
+    else:
+        cursor.execute(user_query_new, (username,))
+    
+    cursor.execute(game_query_exist, (username, game_mode))
+    exist = cursor.fetchone()
+
+    if exist is not None:
+
+        newmax = False
+        
+        cursor.execute(game_query_query, (username,))
+        data = cursor.fetchone()
+        stored_maxpoints, stored_totalscore = data
+
+        new_totalscore = stored_totalscore + totalscore
+
+        if stored_maxpoints < totalscore:
+            new_maxpoints = totalscore
+            newmax = True
+        else:
+            new_maxpoints = stored_maxpoints
+
+        cursor.execute(game_query_update, (new_maxpoints, new_totalscore, username, game_mode)) 
+
+    else:
+        cursor.execute(game_query_new, (game_mode, totalscore, totalscore, username))
+
+    db_disconnect(con)
+
+    if newmax:
+        return {"status":"complete", "alert":"new high score"}
+    else:
+        return {"status":"complete", "alert":"no new high score"}
 
 
 #def example():
