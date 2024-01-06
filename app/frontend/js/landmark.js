@@ -44,7 +44,7 @@ loadStreetViewAndMap().then(async (result) => {
       console.log("Locations:", locations);
       current_location = locations[roundNumber-1];
       console.log("FIND: "+ current_location[0].name);
-      document.getElementById('location-round-info').innerHTML = "<strong>Your Objective<br>Find: " + current_location[0].name + '</strong>';
+      document.getElementById('location-round-info').innerHTML = "<strong>Find: " + current_location[0].name + '</strong>';
       runTimer(360, submit);
       // let map_guess = document.getElementById('map-guess-container');
       // map_guess.style.height = '95%';
@@ -372,7 +372,7 @@ function submit() {
 
     console.log("FIND: "+ current_location[0].name);
 
-    document.getElementById('location-round-info').innerHTML = "Your Objective"<br>"Find: " + current_location[0].name;
+    document.getElementById('location-round-info').innerHTML = "<strong>Find: " + current_location[0].name + '</strong>';
 
 
     runTimer(1000);
