@@ -209,3 +209,22 @@ cursor: crosshair !important;
     height: 400px;
     border-radius: 8px;
 }
+
+.location-for-round-container {
+    position: fixed;
+    top: 15%;
+    right: 10px;
+    padding: 5px 20px;
+    background-color: #AACCFF;
+    border-radius: 8px;
+    border: none;
+    z-index: 1000;
+}
+
+#location-round-info {
+    color: #222233;
+    font-size: 30px;
+    text-align: center;
+    line-height: 1.5;
+
+}
