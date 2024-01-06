@@ -220,6 +220,8 @@ function submit() {
     complete = JSON.stringify(complete_data);
     const url_complete = `${endpoint}/api/end`;
     post_data(complete, url_complete);
+
+    window.location.href = "/leaderboard";
   }
 
 }
