@@ -212,7 +212,7 @@ cursor: crosshair !important;
 
 .location-for-round-container {
     position: fixed;
-    top: 15%;
+    top: 20%;
     right: 10px;
     padding: 5px 20px;
     background-color: #AACCFF;
@@ -223,7 +223,7 @@ cursor: crosshair !important;
 
 #location-round-info {
     color: #222233;
-    font-size: 30px;
+    font-size: 17px;
     text-align: center;
     line-height: 1.5;
 
