@@ -40,11 +40,19 @@ async function loadStreetViewAndMap() {
 
   try {
 
-    const result = generateLocationsUntilLength5();
-    if (result !== null) {
-      streetViewLocation = (await result).streetViewLocation;
+    let result;
 
+    if (game_mode === "landmark"){
+      result = generateLocationsUntilLength5();
+      streetViewLocation = (await result).streetViewLocation;
       locationsSelected = (await result).locationsSelected;
+    }
+    else{
+      result = await generateNewStreetView();
+      streetViewLocation = result;
+    }
+    
+    if (result !== null) {
 
       if (isStandardGameMode) {
         map = L.map('map', {
