@@ -1,6 +1,6 @@
 // landmark.js
 
-import { updateIframeLocation } from './components/streetview.js';
+import { generateNewStreetView, updateIframeLocation } from './components/streetview.js';
 import { runTimer, endTimer, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon, dropIcon } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';

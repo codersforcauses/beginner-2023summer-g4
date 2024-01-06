@@ -20,7 +20,6 @@ async function generateLocationsUntilLength5() {
 
     if (result !== null) {
       streetViewLocation = result;
-      updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
       locationsSelected = await getLocations(streetViewLocation);
     }
   }
@@ -40,11 +39,19 @@ async function loadStreetViewAndMap() {
 
   try {
 
-    const result = generateLocationsUntilLength5();
-    if (result !== null) {
-      streetViewLocation = (await result).streetViewLocation;
+    let result;
 
+    if (game_mode === "landmark"){
+      result = generateLocationsUntilLength5();
+      streetViewLocation = (await result).streetViewLocation;
       locationsSelected = (await result).locationsSelected;
+    }
+    else{
+      streetViewLocation = await generateNewStreetView();
+    }
+
+    if (streetViewLocation !== null) {
+      updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
 
       if (isStandardGameMode) {
         map = L.map('map', {

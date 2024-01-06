@@ -178,6 +178,8 @@ function post_data(send){
 
       updatePopUpMap();
 
+      streetViewLocation = generateNewStreetView();
+
       popup.classList.add('open-popup');
       roundNumber++;
 
@@ -222,8 +224,10 @@ function submit() {
 }
 
 async function closePopup(){
-  streetViewLocation = await generateNewStreetView();
 
+  streetViewLocation = await streetViewLocation;
+
+  updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
 
   popup.classList.remove('open-popup');
   // map.removeLayer(correct_marker);
