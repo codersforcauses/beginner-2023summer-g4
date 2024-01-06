@@ -13,9 +13,13 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <script>
+        if (!localStorage.getItem('game_mode'))
+        {
+        window.location.href = '/';
+        }
         const game_mode = localStorage.getItem("game_mode");
         const isStandardGameMode = game_mode === "city";
-        console.log(game_mode);
+        // fix this later !?
     </script>
     
 
