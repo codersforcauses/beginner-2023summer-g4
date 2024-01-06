@@ -212,7 +212,7 @@ function submit() {
 
     let complete_data = {
       game_mode: "city",
-      usern: "testuser", // make actual user go here lol
+      usern: localStorage.getItem('username'),
       totalscore: Number(totalScore)
     }
     complete = JSON.stringify(complete_data);
