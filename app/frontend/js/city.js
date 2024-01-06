@@ -212,11 +212,11 @@ function submit() {
 
     let complete_data = {
       game_mode: "city",
-      distance: "complete",
+      usern: localStorage.getItem('username'),
       totalscore: Number(totalScore)
     }
     complete = JSON.stringify(complete_data);
-    post_data(complete);
+    // send data
   }
 
 }
