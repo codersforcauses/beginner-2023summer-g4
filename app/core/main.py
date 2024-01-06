@@ -34,6 +34,10 @@ templates = Jinja2Templates(directory=path_frontend)
 async def index():
     return FileResponse(f"{path_index}", media_type="text/html")
 
+@app.get("/leaderboard")
+async def leaderboard_page(request: Request):
+    return FileResponse(f"{path_frontend}/results.html", media_type="text/html")
+
 @app.get("/city")
 async def game_page(request: Request):
     return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'city'})

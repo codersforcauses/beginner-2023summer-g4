@@ -26,11 +26,26 @@ def db_disconnect(con):
     con.commit()
     con.close()
 
-query_leaderboard_max = None
-query_leaderboard_total = None
+query_leaderboard_max = '''
+SELECT g.maxpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints DESC LIMIT 10
+'''
+# (gamemode,)
 
-def get_leaderboard(game_mode): # limited to city and discoveries
-    return
+query_leaderboard_total = '''
+SELECT g.totalpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints DESC LIMIT 10
+'''
+# (game_mode, maxpoints/totalpoints)
+
+def get_leaderboard(game_mode, filter_type): # limited to city and discoveries
+    con, cursor = db_connect()
+
+    if filter_type != 'total':
+        cursor.execute(query_leaderboard_max, (game_mode,))
+    else:
+        cursor.execute(query_leaderboard_total, (game_mode,))
+    results = cursor.fetchall()
+    db_disconnect(con)
+    return results
 
 user_query_exists = '''
 SELECT * FROM users WHERE username=(?)
@@ -97,11 +112,3 @@ def update_game(game_mode, username, totalscore):
         return {"score":"complete", "alert":"new high score"}
     else:
         return {"score":"complete", "alert":"no new high score"}
-
-
-#def example():
-#    con, cursor = connect()
-#    cursor.execute("INSERT INTO users (id, usern, passwd) VALUES (?, ?, ?)", (1, "test", "test"))
-#    close(con)
-#    print("")
-

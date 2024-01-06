@@ -8,7 +8,7 @@ import json
 import re
 from fastapi.responses import JSONResponse
 
-from backend.database import update_game
+from backend.database import update_game, get_leaderboard
 
 router = APIRouter()
 
@@ -16,13 +16,33 @@ router = APIRouter()
 def example():
     return {"status": "200"} #lol
 
-@router.get("/leaderboard/discoveries")
-async def discoveries_leaderboard():
-    return
+@router.get("/leaderboard/discoveries/max")
+async def discoveries_leaderboard():  
+    leaderboard = get_leaderboard('discoveries', 'max')
+    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
+    return JSONResponse(content=response) 
 
-@router.get("/leaderboard/city")
-async def city_leaderboard():
-    return
+@router.get("/leaderboard/discoveries/total")
+async def discoveries_leaderboard():  
+    leaderboard = get_leaderboard('discoveries', 'total')
+    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
+    return JSONResponse(content=response) 
+
+@router.get("/leaderboard/city/max")
+async def discoveries_leaderboard():  
+    leaderboard = get_leaderboard('city', 'max')
+    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
+    return JSONResponse(content=response) 
+
+@router.get("/leaderboard/city/total")
+async def discoveries_leaderboard():  
+    leaderboard = get_leaderboard('city', 'total')
+    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
+    return JSONResponse(content=response) 
+'''
+NOTICE:
+DO NOT REFACTOR/MERGE THESE APIS; IF WE DYNAMICALLY SELECT LEADERBORADS VIA DYNAMIC USER INPUT - THIS MEANS WE NEED TO VALIDATE/SANITISE SUCH INPUT, THIS IS NOT DONE VIA THESE FUNCTIONS THAT INTERACT WITH THE DB
+'''
 
 @router.post("/end")
 async def complete(request: Request):
