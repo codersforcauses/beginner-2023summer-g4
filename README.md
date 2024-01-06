@@ -63,3 +63,13 @@ License: [here](/LICENSE)
 The contents of the original repository (generated via `beginner-2023S`) is located [here](/beginner-2023summer-g4.bak/).  
 This is for use of learning web technologies, namely javascript etc, etc...
 
+
+
+
+# tmp brainstorm 
+to do things
+- finish all game modes 
+- user authn / db code
+- statistics integration
+- CLEAN UP JSON DATA
+- make shit look NICE

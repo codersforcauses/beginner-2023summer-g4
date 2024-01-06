@@ -212,11 +212,11 @@ function submit() {
 
     let complete_data = {
       game_mode: "city",
-      distance: "complete",
+      usern: "testuser", // make actual user go here lol
       totalscore: Number(totalScore)
     }
     complete = JSON.stringify(complete_data);
-    post_data(complete);
+    // send data
   }
 
 }
