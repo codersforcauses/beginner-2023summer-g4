@@ -219,6 +219,7 @@ cursor: crosshair !important;
     border-radius: 8px;
     border: none;
     z-index: 1000;
+    transition: transform 0.5s ease;
 }
 
 #location-round-info {
@@ -227,4 +228,10 @@ cursor: crosshair !important;
     text-align: center;
     line-height: 1.5;
 
+}
+
+.location-for-round-container.slide-away {
+    transform: translateX(120%);
+    transition: transform 0.4s ease;
+    margin: 0;
 }

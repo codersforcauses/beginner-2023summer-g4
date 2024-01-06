@@ -266,6 +266,8 @@ function submit() {
     }
   
     document.getElementById('map-guess-container').classList.add('slide-away');
+    document.getElementById('location-for-round-container').classList.add('slide-away');
+
   
     console.log(`picked: ${picked_data} | distance: ${distanced}`);
     //post_data(picked);
@@ -366,6 +368,7 @@ function submit() {
     document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
     // document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
     document.getElementById('map-guess-container').classList.remove('slide-away');
+    document.getElementById('location-for-round-container').classList.remove('slide-away');
     //document.title = `${roundNumber} | PerthPinpoint`
 
     current_location = locations[roundNumber-1];
