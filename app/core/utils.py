@@ -22,12 +22,22 @@ def isalive(endpoint):
     else:
         log(f"[+] API Down ({r.status_code})")
 
+def validate_json(jdata): # unloaded
+    data = jdata
+    try:
+        for key, value in data.items():
+            if isinstance(value, list) or isinstance(value, dict):
+                return False
+        return True    
+    except Exception as e:
+        log(f"[-] JSON Decoding Error (validator): {e}")
+
 def sanitise_gamedata(game_mode, usern, totalscore): # regex was easy to google
 
     #game_mode
     valid_gamemodes = ["city", "discoveries", "sleuth", "landmark"]
     if game_mode not in valid_gamemodes:
-        log(f"[+] Gamemode Invalid (gamedata) Defaulting to city")
+        log(f"[-] Gamedata Sanitisation: Invalid game_mode (defaulting to \"city\")")
         game_mode = "city"
     else:
         game_mode = game_mode
@@ -38,10 +48,13 @@ def sanitise_gamedata(game_mode, usern, totalscore): # regex was easy to google
     else:
         usern = re.sub(r'[^a-zA-Z0-9._ ]', '', usern)
 
-    totalscore = float(totalscore)
-
+    try:
+        totalscore = int(totalscore)
+    except Exception as e:
+        log(f"[-] Gamedata Sanitisation: Invalid totalscore (defaulting to 0)")
+        totalscore = 0
+        
     return game_mode, usern, totalscore
-
 
 def rebuild(database: str) -> bool:
     if os.path.exists(database) and os.path.getsize(database) > 0:

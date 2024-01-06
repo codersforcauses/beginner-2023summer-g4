@@ -11,60 +11,42 @@ cors_origins = [
     ]
 
 '''
-no this data is not normalised, yes we could normalise it, no we dont care
-this is shrimplest and all thats required to function
+no this data is not normalised, no we dont care - we use nested subqueries beacuse inner joins make us sad
 go away nerds
 '''
 db_build_queries = [
-    '''
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY NOT  NULL ON CONFLICT IGNORE,
-        usern TEXT NOT NULL
-    )
-    ''',
-    '''
-    CREATE TABLE IF NOT EXISTS city (
-        uid INTEGER,
-        bestscore INTEGER,
-        totalscore INTEGER,
-        FOREIGN KEY (uid) REFERENCES users(id)
-    )
-    ''',
-    '''
-    CREATE TABLE IF NOT EXISTS discoveries (
-        uid INTEGER,
-        bestscore INTEGER,
-        totalscore INTEGER,
-        FOREIGN KEY (uid) REFERENCES users(id)
-    )
-    ''',
-    '''
-    CREATE TABLE IF NOT EXISTS sleuth (
-        uid INTEGER,
-        bestscore INTEGER,
-        totalscore INTEGER,
-        FOREIGN KEY (uid) REFERENCES users(id)
-    )
-    ''',
-    '''
-        CREATE TABLE IF NOT EXISTS landmark (
-        uid INTEGER,
-        bestscore INTEGER,
-        totalscore INTEGER,
-        FOREIGN KEY (uid) REFERENCES users(id)
-    )
-    ''',
-    '''INSERT INTO users (usern)
-    VALUES ('admin')''',
-    '''INSERT INTO city (uid, bestscore, totalscore)
-    VALUES (1, 0, 0)''',
-    '''INSERT INTO discoveries (uid, bestscore, totalscore)
-    VALUES (1, 0, 0)''',
-    '''INSERT INTO landmark (uid, bestscore, totalscore)
-    VALUES (1, 0, 0)''',
-    '''INSERT INTO sleuth (uid, bestscore, totalscore)
-    VALUES (1, 0, 0)'''
-] # admin user
+'''CREATE TABLE IF NOT EXISTS users (
+                    user_id INTEGER PRIMARY KEY NOT NULL ON CONFLICT IGNORE,
+                    username TEXT NOT NULL
+)''',
+'''CREATE TABLE IF NOT EXISTS games (
+                    user_id INTEGER,
+                    game_mode TEXT NOT NULL,
+                    maxpoints INTEGER,
+                    totalpoints INTEGER,
+                    FOREIGN KEY (user_id) REFERENCES users(user_id)
+)''',
+'''
+INSERT INTO users (user_id, username) VALUES (0, 'pinpoint_bot')
+''',
+'''
+INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('city', 0, 0, 0)
+''',
+'''
+INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('discoveries', 0, 0, 69)
+''',
+'''
+INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('slueth', 0, 0, 0)
+''',
+'''
+INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('landmark', 0, 0, 0)
+''',
+] 
+'''
+example query:
+SELECT totalpoints FROM games WHERE user_id = (SELECT user_id FROM users WHERE username = 'pinpoint_bot') AND game_mode = 'discoveries'
+should return value 69
+'''
 
 host = f"http://{uvicorn_HOST}:{uvicorn_PORT}" # ammend for * protocols later
 host_index = f"{host}/index.html"
