@@ -31,12 +31,17 @@ function checkStreetViewAvailability(lat, lng) {
 
     const location = new google.maps.LatLng(lat, lng);
 
-    var locationRequest = 
-    { 
+    var radius = (isStandardGameMode) ? 6000 : 30;
+    var sources = (isStandardGameMode) ? [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR] : [google.maps.StreetViewSource.GOOGLE];
+
+    console.log("Radius:", radius);
+    console.log("Sources:", sources);
+
+    var locationRequest = { 
         preference: "nearest", 
-        radius: 10000, 
+        radius: radius, 
         location: location, 
-        sources: (isStandardGameMode) ? [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR] : [google.maps.StreetViewSource.GOOGLE]
+        sources: sources
     };
   
     // Return a Promise that resolves with StreetViewResponse
@@ -49,17 +54,10 @@ function checkStreetViewAvailability(lat, lng) {
             const panoramaLocation = panoramaData.location.latLng;
             const panoramaLat = panoramaLocation.lat();
             const panoramaLng = panoramaLocation.lng();
-            updateIframeLocation(panoramaLat, panoramaLng);
+            //updateIframeLocation(panoramaLat, panoramaLng);
             resolve({ lat: panoramaLat, lng: panoramaLng });
           } else {
             console.log(`Street View is not available anywhere near ${lat},${lng}, retrying...`);
-            // let lat_lon_obj;
-            // if (isStandardGameMode) {
-            //     lat_lon_obj = getRandomCoordinates();
-            // } else {
-            //     lat_lon_obj = getRandomStreetSleuthCoordinates();
-            // }
-            // checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
             resolve(null);
           }
         });
@@ -76,7 +74,7 @@ function updateIframeLocation(lat, lng) {
     sv.src = `https://www.google.com/maps/embed/v1/streetview?location=${lat}%2C${lng}&key=AIzaSyDsZY2whhB9VouVJ-OJ9rNsdb19PddEqBc`;
 }
 
-function getRandomStreetSleuthCoordinates(){
+function getRandomLandmarkCoordinates(){
 
     let perthCBD = { 
         minLat: -31.963036,
@@ -132,7 +130,7 @@ async function generateNewStreetView() {
         if (isStandardGameMode) {
             lat_lon_obj = getRandomCoordinates();
         } else {
-            lat_lon_obj = getRandomStreetSleuthCoordinates();
+            lat_lon_obj = getRandomLandmarkCoordinates();
         }
         streetViewLocation = await checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
     }
@@ -145,6 +143,6 @@ async function generateNewStreetView() {
 //generateNewStreetView();
 
 
-export {generateNewStreetView};
+export {generateNewStreetView, updateIframeLocation};
 
 

@@ -1,6 +1,6 @@
 import { getLocations } from "./generate.js";
-import { generateNewStreetView } from "./streetview.js";
-import { sleuthIcon } from './main.js';
+import { generateNewStreetView, updateIframeLocation } from "./streetview.js";
+import { dropIcon } from './main.js';
 
 // async function selectedLocations(streetViewLocation) {
 //     try {
@@ -10,7 +10,28 @@ import { sleuthIcon } from './main.js';
 //     }
 // }
 
+async function generateLocationsUntilLength5() {
+  let locationsSelected = [];
+  let streetViewLocation; 
+
+  while (locationsSelected.length < 5) {
+    console.log("LESS THAN 5!");
+    const result = await generateNewStreetView();
+
+    if (result !== null) {
+      streetViewLocation = result;
+      updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
+      locationsSelected = await getLocations(streetViewLocation);
+    }
+  }
+  
+
+  return {streetViewLocation, locationsSelected};
+}
+
 async function loadStreetViewAndMap() {
+
+  
 
   let streetViewLocation = null;
   let map = null;
@@ -18,15 +39,16 @@ async function loadStreetViewAndMap() {
 
 
   try {
-    const result = await generateNewStreetView();
 
+    const result = generateLocationsUntilLength5();
     if (result !== null) {
-      streetViewLocation = result;
-      locationsSelected = getLocations(streetViewLocation);
+      streetViewLocation = (await result).streetViewLocation;
 
-      if (game_mode === 'Standard') {
+      locationsSelected = (await result).locationsSelected;
+
+      if (isStandardGameMode) {
         map = L.map('map', {
-          zoomDelta: 0.1,
+          // zoomDelta: 0.1,
           zoomSnap: 0,
           wheelDebounceTime: 100
         }).setView([-31.997564, 115.824893], 9);
@@ -39,18 +61,22 @@ async function loadStreetViewAndMap() {
         }).addTo(map);
       } else {
         map = L.map('map', {
-          zoomDelta: 0.1,
+          // zoomDelta: 0.1,
           zoomSnap: 0,
           wheelDebounceTime: 100
-        }).setView([-31.943821, 115.857471], 13);
+        }).setView(streetViewLocation, 15);
 
         L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png", {
           attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e"
         }).addTo(map);
 
-     //   let sleuthDropLocationMarker = L.marker(streetViewLocation, {
-      //    icon: sleuthIcon
-       // }).addTo(map);
+       let sleuthDropLocationMarker = L.marker(streetViewLocation, {
+         icon: dropIcon
+       }).addTo(map);
+
+       L.circle(streetViewLocation, {radius: 200, color: 'blue', dashArray: '5, 10', fill: false}).addTo(map);
+
+
       }
 
       map.doubleClickZoom = false;

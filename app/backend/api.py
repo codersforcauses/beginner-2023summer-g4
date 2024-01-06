@@ -39,30 +39,22 @@ async def rround(request: Request):
     data = await request.json()
 
     data = json.loads(data)
-    #print(data)
 
     if data["game_mode"] == "city":
         points = city_points(data)
         response = {"score": points}
         return JSONResponse(content=response)
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         else:
-            city_game_data.update({data["round"]: data})
-
             points = city_points(data)
             response = {"score": points}
             return JSONResponse(content=response)
-=======
-=======
->>>>>>> Stashed changes
+
     elif data["game_mode"] == "sleuth":
         print("HANDLE SLUETH")
     
     elif data["game_mode"] == "landmark":
         print("HANDLE LANDMARK")
->>>>>>> Stashed changes
+
         
  
     

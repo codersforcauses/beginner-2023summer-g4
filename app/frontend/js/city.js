@@ -1,6 +1,6 @@
 // city.js
 
-import { generateNewStreetView } from './components/streetview.js';
+import { generateNewStreetView, updateIframeLocation } from './components/streetview.js';
 import { runTimer, endTimer, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
@@ -30,6 +30,12 @@ let popUpCorrectMarker;
 
 let line;
 
+const submit_button = document.getElementById('submit-button');
+
+const next_round_button = document.getElementById('next-round');
+
+const reset_sv_button = document.getElementById('reset-sv-button');
+
 loadStreetViewAndMap().then((result) => {
 
   if (result) {
@@ -53,6 +59,8 @@ function startGame(){
     userPickedLocation = e.latlng;
   
     marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
+
+    makeSubmitButtonClickable();
   
     let round_data = {
       game_mode: "city",
@@ -67,6 +75,30 @@ function startGame(){
   });
 }
 
+// these two functions are for the submit button
+function darken () {
+  submit_button.style.backgroundColor = 'rgb(153, 183.6, 229.5)';
+}
+
+function lighten () {
+  submit_button.style.backgroundColor = 'rgb(170, 204, 255)';
+}
+
+function makeSubmitButtonClickable(){
+  submit_button.style.opacity = 1;
+  submit_button.addEventListener('click', submit);
+  submit_button.addEventListener('mouseover', darken);
+  submit_button.addEventListener('mouseout', lighten);
+
+}
+
+function greyOutSubmitButton(){
+  submit_button.style.opacity = 0.7;
+  submit_button.removeEventListener('click', submit);
+  submit_button.removeEventListener('mouseover', darken);
+  submit_button.removeEventListener('mouseout', lighten);
+}
+
 function post_data(send){
   const url = `${endpoint}/api/submit`;
 
@@ -77,6 +109,8 @@ function post_data(send){
     },
     body: JSON.stringify(send)
   };
+
+  console.log(send);
 
   fetch(url, picked_post)
   .then(response => {
@@ -130,7 +164,7 @@ function post_data(send){
         pop_up_button.style.background = '#ff0000';
       }
       else {
-        pop_up_message.innerHTML = "You did not submit a guess!"
+        pop_up_message.innerHTML = "You ran out of time!"
         popupElement.style.borderColor = '#ff0000';
         popupElement.style.background = '#ffe7e7';
         pop_up_button.style.background = '#ff0000';
@@ -154,12 +188,17 @@ function post_data(send){
 }
 
 function submit() {
+
+  greyOutSubmitButton();
+
   endTimer(currentTimerID);
 
   if (marker === undefined){
+
     let round_data = {
       game_mode: "city",
-      distance: Number(e.latlng.distanceTo(streetViewLocation))
+      round: roundNumber,
+      distance: -1
     }
     round = JSON.stringify(round_data);
   }
@@ -167,6 +206,7 @@ function submit() {
   document.getElementById('map-guess-container').classList.add('slide-away');
 
   post_data(round);
+
 
   if (roundNumber === 10) {
 
@@ -182,7 +222,6 @@ function submit() {
 }
 
 async function closePopup(){
-
   streetViewLocation = await generateNewStreetView();
 
 
@@ -275,13 +314,12 @@ function resetValues(){
 
 }
 
-const submit_button = document.getElementById('submit-button');
-
-const next_round_button = document.getElementById('next-round');
+reset_sv_button.addEventListener('click', function () {
+  updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
+}
+)
 
 next_round_button.addEventListener('click', closePopup)
 
-submit_button.addEventListener('click', submit)
-
-export {submit};
+export {submit, makeSubmitButtonClickable, greyOutSubmitButton};
 

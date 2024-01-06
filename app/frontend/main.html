@@ -40,6 +40,7 @@
     {% elif game_mode == 'sleuth' %}
     <script type='module' src="/static/js/sleuth.js"></script>
     {% elif game_mode == 'landmark' %}
+    <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
     <script type='module' src="/static/js/landmark.js"></script>
     {% endif %}
 
@@ -64,16 +65,27 @@
                 <p id = 'round-timer'></p>
             </div>
             <p id = 'round-no.'><strong>Round: 1</strong></p>
-            <p id = 'total-points'><strong>Points: 0</strong></p>
+            <div class="roundStatus">
+                <div id = 'total-points'><strong>Progress:</strong></div>
+                <div class="statusBox empty" id = 'loc-1'>E</div>
+                <div class="statusBox empty" id = 'loc-2'>E</div>
+                <div class="statusBox empty" id = 'loc-3'>E</div>
+                <div class="statusBox empty" id = 'loc-4'>E</div>
+                <div class="statusBox empty" id = 'loc-5'>E</div>
+            </div>
         </header>
         <div class="map-guess-container" id = 'map-guess-container'>
             <div id = "map"></div>
             <button class = "submit-button" id = "submit-button"><strong>Submit Location</strong></button>
         </div>
+        {% if game_mode == 'landmark' %}
+            <div class = "location-for-round-container" id = "location-for-round-container">
+                <p id = "location-round-info"></p>
+            </div>
+        {% endif %}
 
-        <div id = "sv">
-            <iframe class="sv-iframe" id = 'sv-iframe'></iframe>
-        </div>  
+        <iframe title = "streetview-iframe" class="sv-iframe" id = 'sv-iframe' allow="accelerometer;  gyroscope" frameborder=0 vspace=0 hspace=0 marginwidth=0 marginheight=0 scrolling="auto"></iframe>
+        <div class = "reset-sv-button" id = 'reset-sv-button'><strong>Reset<br>Street View</strong></div>
         
         <!-- Pop-up container -->
         <div class = 'score-for-a-round-popup' id = 'popup'>

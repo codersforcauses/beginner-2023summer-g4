@@ -1,7 +1,12 @@
-body {
-    margin: 0%;
-}
+body,html
+{
+    padding:0px;
+    margin:0px;
+    height:100%;
+    width:100%;
+    overflow:hidden;
 
+}
 .timer-container {
     display: flex;
     /* justify-content: flex-start; */
@@ -21,7 +26,35 @@ header {
     justify-content: space-evenly;
     color:#AACCFF;
     position: absolute;
-    z-index: 5;
+    z-index: 100;
+}
+
+.roundStatus{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+.reset-sv-button {
+    position: fixed;
+    right: 16px;
+    bottom: 215px;
+    color: #B3B3B3;
+    text-align: center;
+    background-color: #222222;
+    /* width: 150px;
+    height: 50px; */
+    border-radius: 2px;
+    z-index: 4;
+    padding: 12px;
+    cursor: pointer;
+    line-height: 1.2;
+
+}
+
+.reset-sv-button:hover {
+    color: #E6E6E6;
 }
 
 
@@ -70,14 +103,20 @@ header {
 }
 
 #sv-iframe {
-    width: 100%;
-    height: 100%;
+    /* After so much random stack overflowing, i fixed the little white bar on the right side of the iframe */
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    display: block; 
+    margin: 0 0 0 0;
 }
 
-.leaflet-zoom-anim
-.leaflet-zoom-animated {
-  transition-timing-function: linear;
-  transition-duration: 100ms;
+
+.leaflet-container {
+cursor: crosshair !important;
 }
 
 /* .game-button {
@@ -150,22 +189,49 @@ header {
 
 .submit-button {
     background-color: rgb(170, 204, 255);
-    padding: 20px;
+    padding: 18px;
     color: #222233;
     width: 100%;
     border-radius: 8px;
     border: none;
     cursor: pointer;
     font-size: 20px;
+    opacity: 0.7;
 
 }
 
-.submit-button:hover {
+/* .submit-button:hover {
     background-color:  rgb(153, 183.6, 229.5);
-}
+} */
 
 .pop-up-map {
     width: 100%;
     height: 400px;
     border-radius: 8px;
+}
+
+.location-for-round-container {
+    position: fixed;
+    top: 20%;
+    right: 10px;
+    padding: 5px 20px;
+    background-color: #AACCFF;
+    border-radius: 8px;
+    border: none;
+    z-index: 1000;
+    transition: transform 0.5s ease;
+}
+
+#location-round-info {
+    color: #222233;
+    font-size: 17px;
+    text-align: center;
+    line-height: 1.5;
+
+}
+
+.location-for-round-container.slide-away {
+    transform: translateX(120%);
+    transition: transform 0.4s ease;
+    margin: 0;
 }
