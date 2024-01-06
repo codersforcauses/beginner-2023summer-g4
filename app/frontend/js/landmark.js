@@ -11,9 +11,10 @@ let locations;
 let current_location;
 
 let popUpMap;
-let popUpUserMarker;
-let popUpCorrectMarker;
-let line;
+// let popUpUserMarker;
+// let popUpCorrectMarker;
+// let line;
+let currentLocationMapElements;
 
 let userPickedLocation;
 var picked_data;
@@ -152,29 +153,40 @@ function generateEndGameMap() {
 
 function updatePopUpMap(current_loc) {
 
+  let mapElements = [];
+
   for (const location of current_loc) {
+
+    let locationElements = {'correct-marker': null, 'user-marker': null, line: null, polygon: null};
+
     if (location.type === 'node'){
-      popUpCorrectMarker = L.marker(location.location, {icon: correctIcon}).addTo(popUpMap);
+      const popUpCorrectMarker = L.marker(location.location, {icon: correctIcon}).addTo(popUpMap);
+      locationElements['correct-marker'] = popUpCorrectMarker;
       if (userPickedLocation === undefined) {
         popUpMap.setView(location.location, 18);
       }
       else{
         let bounds = L.latLngBounds(userPickedLocation, location.location).pad(0.19);
         popUpMap.fitBounds(bounds);
-        popUpUserMarker = L.marker(userPickedLocation, {icon: userIcon}).addTo(popUpMap);
+        const popUpUserMarker = L.marker(userPickedLocation, {icon: userIcon}).addTo(popUpMap);
+        locationElements['user-marker'] = popUpUserMarker;
 
-        line = L.polyline([location.location, userPickedLocation], {
+        const line = L.polyline([location.location, userPickedLocation], {
           color: 'blue',
           dashArray: '5, 10', // Adjust the dash pattern (5 pixels dashed, 10 pixels gap)
           weight: 2, // Adjust the line weight
         }).addTo(popUpMap);
+
+        locationElements['line'] = line;
       }
     }
     else{
-      let currentLocationPolygon = generatePolygon(location);
+      const currentLocationPolygon = generatePolygon(location);
       currentLocationPolygon.addTo(popUpMap);
-      let polyCentre = currentLocationPolygon.getCenter();
-      popUpCorrectMarker = L.marker(polyCentre, {icon: correctIcon}).addTo(popUpMap);
+      locationElements['polygon'] = currentLocationPolygon;
+      const polyCentre = currentLocationPolygon.getCenter();
+      const popUpCorrectMarker = L.marker(polyCentre, {icon: correctIcon}).addTo(popUpMap);
+      locationElements['correct-marker'] = popUpCorrectMarker;
 
       if (userPickedLocation === undefined) {
         popUpMap.fitBounds(currentLocationPolygon.getBounds(), 18);
@@ -183,16 +195,22 @@ function updatePopUpMap(current_loc) {
 
         let bounds = L.latLngBounds(userPickedLocation, polyCentre).pad(0.3);
         popUpMap.fitBounds(bounds);
-        popUpUserMarker = L.marker(userPickedLocation, {icon: userIcon}).addTo(popUpMap);
+        const popUpUserMarker = L.marker(userPickedLocation, {icon: userIcon}).addTo(popUpMap);
+        locationElements['user-marker'] = popUpUserMarker;
 
-        line = L.polyline([polyCentre, userPickedLocation], {
+        const line = L.polyline([polyCentre, userPickedLocation], {
           color: 'blue',
           dashArray: '5, 10', // Adjust the dash pattern (5 pixels dashed, 10 pixels gap)
           weight: 2, // Adjust the line weight
         }).addTo(popUpMap);
+
+        locationElements['line'] = line;
       }
     }
+
+    mapElements.push(locationElements);
   }
+  return mapElements;
 }
 
 
@@ -226,7 +244,6 @@ function makeSubmitButtonClickable(){
   submit_button.addEventListener('click', submit);
   submit_button.addEventListener('mouseover', darken);
   submit_button.addEventListener('mouseout', lighten);
-
 }
 
 function greyOutSubmitButton(){
@@ -259,7 +276,7 @@ function submit() {
       generateEndGameMap();
     }
 
-    updatePopUpMap(current_location);
+    currentLocationMapElements = updatePopUpMap(current_location);
 
     popup.classList.add('open-popup');
     roundNumber++;
@@ -320,19 +337,30 @@ function submit() {
   
     popup.classList.remove('open-popup');
     // map.removeLayer(correct_marker);
-    popUpMap.removeLayer(popUpCorrectMarker)
+
+
+    for (const location of currentLocationMapElements){
+      //console.log(locLayer);
+      for (const key in location){
+        if (location[key] !== null) {
+          console.log(location[key]);
+          popUpMap.removeLayer(location[key]);
+        }
+      }
+    }
+    //popUpMap.removeLayer(popUpCorrectMarker)
     if (marker !== undefined){
       map.removeLayer(marker);
-      popUpMap.removeLayer(popUpUserMarker);
-      popUpMap.removeLayer(line);
+      //popUpMap.removeLayer(popUpUserMarker);
+      //popUpMap.removeLayer(line);
     }
   
     marker = undefined;
     // correct_marker = undefined;
-    popUpCorrectMarker = undefined;
-    popUpUserMarker = undefined;
+    //popUpCorrectMarker = undefined;
+    //popUpUserMarker = undefined;
     userPickedLocation = undefined;
-    line = undefined;
+    //line = undefined;
   
     document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
     // document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";

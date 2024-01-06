@@ -1,5 +1,5 @@
 import { getLocations } from "./generate.js";
-import { generateNewStreetView } from "./streetview.js";
+import { generateNewStreetView, updateIframeLocation } from "./streetview.js";
 import { dropIcon } from './main.js';
 
 // async function selectedLocations(streetViewLocation) {
@@ -9,6 +9,25 @@ import { dropIcon } from './main.js';
 //       console.error("Error in example:", error);
 //     }
 // }
+
+async function generateLocationsUntilLength5() {
+  let locationsSelected = [];
+  let streetViewLocation; 
+
+  while (locationsSelected.length < 5) {
+    console.log("LESS THAN 5!");
+    const result = await generateNewStreetView();
+
+    if (result !== null) {
+      streetViewLocation = result;
+      updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
+      locationsSelected = await getLocations(streetViewLocation);
+    }
+  }
+  
+
+  return {streetViewLocation, locationsSelected};
+}
 
 async function loadStreetViewAndMap() {
 
@@ -20,11 +39,12 @@ async function loadStreetViewAndMap() {
 
 
   try {
-    const result = await generateNewStreetView();
 
+    const result = generateLocationsUntilLength5();
     if (result !== null) {
-      streetViewLocation = result;
-      locationsSelected = getLocations(streetViewLocation);
+      streetViewLocation = (await result).streetViewLocation;
+
+      locationsSelected = (await result).locationsSelected;
 
       if (isStandardGameMode) {
         map = L.map('map', {

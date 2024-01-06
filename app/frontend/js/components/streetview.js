@@ -31,7 +31,7 @@ function checkStreetViewAvailability(lat, lng) {
 
     const location = new google.maps.LatLng(lat, lng);
 
-    var radius = (isStandardGameMode) ? 7000 : 40;
+    var radius = (isStandardGameMode) ? 6000 : 30;
     var sources = (isStandardGameMode) ? [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR] : [google.maps.StreetViewSource.GOOGLE];
 
     console.log("Radius:", radius);
@@ -54,7 +54,7 @@ function checkStreetViewAvailability(lat, lng) {
             const panoramaLocation = panoramaData.location.latLng;
             const panoramaLat = panoramaLocation.lat();
             const panoramaLng = panoramaLocation.lng();
-            updateIframeLocation(panoramaLat, panoramaLng);
+            //updateIframeLocation(panoramaLat, panoramaLng);
             resolve({ lat: panoramaLat, lng: panoramaLng });
           } else {
             console.log(`Street View is not available anywhere near ${lat},${lng}, retrying...`);
