@@ -20,7 +20,6 @@ async function generateLocationsUntilLength5() {
 
     if (result !== null) {
       streetViewLocation = result;
-      updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
       locationsSelected = await getLocations(streetViewLocation);
     }
   }
@@ -48,11 +47,11 @@ async function loadStreetViewAndMap() {
       locationsSelected = (await result).locationsSelected;
     }
     else{
-      result = await generateNewStreetView();
-      streetViewLocation = result;
+      streetViewLocation = await generateNewStreetView();
     }
-    
-    if (result !== null) {
+
+    if (streetViewLocation !== null) {
+      updateIframeLocation(streetViewLocation.lat, streetViewLocation.lng);
 
       if (isStandardGameMode) {
         map = L.map('map', {

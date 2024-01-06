@@ -32,7 +32,7 @@ function checkStreetViewAvailability(lat, lng) {
     const location = new google.maps.LatLng(lat, lng);
 
     var radius = (isStandardGameMode) ? 6000 : 30;
-    var sources = (isStandardGameMode) ? [google.maps.StreetViewSource.GOOGLE, google.maps.StreetViewSource.OUTDOOR] : [google.maps.StreetViewSource.GOOGLE];
+    var sources = (isStandardGameMode) ? ['google', 'outdoor'] : ['google'];
 
     console.log("Radius:", radius);
     console.log("Sources:", sources);
