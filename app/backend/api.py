@@ -27,11 +27,16 @@ async def city_leaderboard():
 @router.post("/end")
 async def complete(request: Request):
     data = await request.json()
+    data = json.loads(data)
 
     if not validate_json(data):
         log(f"[-] JSON Validation Failed!")
     
-    s_game_mode, s_usern, s_totalscore = sanitise_gamedata(data["game_mode"], data["usern"], data["totalscore"])
+    game_mode = data["game_mode"]
+    usern = data["usern"]
+    totalscore = data["totalscore"]
+
+    s_game_mode, s_usern, s_totalscore = sanitise_gamedata(game_mode, usern, totalscore)
     result = update_game(s_game_mode, s_usern, s_totalscore) 
 
     response = result
@@ -40,11 +45,11 @@ async def complete(request: Request):
 @router.post("/submit") # rename to slash round later
 async def rround(request: Request):
     data = await request.json()
-
+    data = json.loads(data)
     if not validate_json(data):
         log(f"[-] JSON Validation Failed!")
 
-    data = json.loads(data)
+    #data = json.loads(data)
 
     if data["game_mode"] == "city":
         points = city_points(data)

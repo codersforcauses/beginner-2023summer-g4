@@ -61,6 +61,8 @@ UPDATE games SET maxpoints = (?), totalpoints = (?) WHERE user_id = (SELECT user
 def update_game(game_mode, username, totalscore):
     con, cursor = db_connect()
 
+    newmax = False
+
     cursor.execute(user_query_exists, (username,))
     user_exist = cursor.fetchone()
     if user_exist is not None:
@@ -71,10 +73,7 @@ def update_game(game_mode, username, totalscore):
     cursor.execute(game_query_exist, (username, game_mode))
     exist = cursor.fetchone()
 
-    if exist is not None:
-
-        newmax = False
-        
+    if exist is not None:        
         cursor.execute(game_query_query, (username,))
         data = cursor.fetchone()
         stored_maxpoints, stored_totalscore = data
@@ -95,9 +94,9 @@ def update_game(game_mode, username, totalscore):
     db_disconnect(con)
 
     if newmax:
-        return {"status":"complete", "alert":"new high score"}
+        return {"score":"complete", "alert":"new high score"}
     else:
-        return {"status":"complete", "alert":"no new high score"}
+        return {"score":"complete", "alert":"no new high score"}
 
 
 #def example():
