@@ -2,13 +2,14 @@
 
 from fastapi import APIRouter, Body
 from fastapi import Request
-from core.utils import log, sanitise_gamedata, validate_json
-from backend.score import city_points
-import json
-import re
 from fastapi.responses import JSONResponse
 
+from core.utils import log, validate_json, sanitise_gamedata
+
+from backend.score import city_points
 from backend.database import update_game, get_leaderboard
+
+import json, re
 
 router = APIRouter()
 
@@ -66,10 +67,9 @@ async def complete(request: Request):
 async def rround(request: Request):
     data = await request.json()
     data = json.loads(data)
+
     if not validate_json(data):
         log(f"[-] JSON Validation Failed!")
-
-    #data = json.loads(data)
 
     if data["game_mode"] == "city":
         points = city_points(data)
@@ -77,10 +77,10 @@ async def rround(request: Request):
         return JSONResponse(content=response)
 
     elif data["game_mode"] == "sleuth":
-        print("HANDLE SLUETH")
+        return ; log(f"[-] Submitted to game_mode sleuth")
     
     elif data["game_mode"] == "landmark":
-        print("HANDLE LANDMARK")
+        return ; log(f"[-] Submitted to game_mode landmark")
 
         
  
