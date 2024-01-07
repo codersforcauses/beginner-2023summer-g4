@@ -41,10 +41,11 @@ These components are stored in respective directores `app/frontend` and `app/bac
 
 
 ## Dependencies & Deployment
-Perth PinPoint requires multiple dependencies, install them as such:
+Perth PinPoint requires multiple dependencies, install them as such: 
 ```
 pip install -r requirements.txt
 ```
+\*assuming you are in the directory `/`  
 
 Configuration:
 To configure Perth PinPoint, edit `app/config.py`, code comments explain options however importantly if youre not intending to develop Perth PinPoint, `DEV` should be set to `False` to run in "production" mode - this (should) be the case for any (updated) code on the main branch.
@@ -52,8 +53,9 @@ To configure Perth PinPoint, edit `app/config.py`, code comments explain options
 
 Running Perth PinPoint:
 ```sh
-git clone git@github.com:codersforcauses/beginner-2023summer-g4.git && cd beginner-2023summer-g4 && `which python3` app/init.py
+`which python3` app/init.py
 ```
+\*assuming you are in the directory `/`  
 or the respective windows equivilent
 
 Note on Deployment:
