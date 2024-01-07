@@ -51,8 +51,8 @@ To configure Perth PinPoint, edit `app/config.py`, code comments explain options
 - The host/port on which Perth PinPoint is made accesable is modifiable to suit enviroment needs (even on prod), see the config file or this is printed out via console upon running.
 
 Running Perth PinPoint:
-```py
-`which python3` app/init.py
+```sh
+git clone git@github.com:codersforcauses/beginner-2023summer-g4.git && cd beginner-2023summer-g4 && `which python3` app/init.py
 ```
 or the respective windows equivilent
 
