@@ -25,6 +25,9 @@ Perth PinPoint features 4 gamemodes, including:
 - Street Sleuth (Accuracy)
 - Local Landmark (Awareness)
 
+Leaderboard to compete with friends!
+a bunch of errors in the browser console you can ignore!
+
 ## Required APIs
 Perth PinPoint relies on multiple APIs in order to function, this includes `<apis>`. Perth PinPoint provides restricted keys for this that are free to use, however instructions on using your own API keys are below:
 `todo`
