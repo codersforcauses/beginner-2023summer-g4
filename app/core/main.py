@@ -54,7 +54,6 @@ async def street_sleuth(request: Request):
 async def street_sleuth(request: Request):
     return templates.TemplateResponse('main.html', {"request": request, 'game_mode': 'landmark'})
 
-
 @app.exception_handler(404)
 async def redirect(_, __):
     return RedirectResponse(f"{host}")

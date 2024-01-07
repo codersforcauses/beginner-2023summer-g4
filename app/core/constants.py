@@ -67,6 +67,7 @@ INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('landmark
 example query:
 SELECT totalpoints FROM games WHERE user_id = (SELECT user_id FROM users WHERE username = 'pinpoint_bot') AND game_mode = 'discoveries'
 should return value 69
+can also user a bunch of JOINS but idk man thats more brain
 '''
 
 host = f"http://{uvicorn_HOST}:{uvicorn_PORT}" # ammend for * protocols later
@@ -84,3 +85,5 @@ path_router = f"{path_backend}/router.py"
 
 path_core = f"{path_app}/core"
 path_db = f"{path_core}/pinpoint.db"
+
+# all just reused relative values, i wish python had constexpr

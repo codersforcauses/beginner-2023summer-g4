@@ -15,10 +15,7 @@ if __name__ == "__main__":
 
         log(f"[+] Initialising Application")
 
-        uvicorn_LOGGING = DEV_uvicorn_LOGGING
-        RELOAD = DEV_RELOAD
-        uvicorn_HOST = DEV_uvicorn_HOST
-        uvicorn_PORT = DEV_uvicorn_PORT
+        uvicorn_LOGGING = DEV_uvicorn_LOGGING ; RELOAD = DEV_RELOAD ; uvicorn_HOST = DEV_uvicorn_HOST ; uvicorn_PORT = DEV_uvicorn_PORT
         log(f"[+] Configured Development Options")
 
         if DEV_DATABASE:
@@ -26,7 +23,7 @@ if __name__ == "__main__":
             rebuild(path_db)
 
     if SILENT:
-        uvicorn_LOGGING = "critical"
+        uvicorn_LOGGING = "critical" # hehe not truely silent
     
     # inherit options automatically (prod config)
     RELOAD = False

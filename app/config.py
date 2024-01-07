@@ -22,7 +22,7 @@ DEV = True
 DEV_DEBUG = True ; DEV_uvicorn_LOGGING = "trace" # uvicorn.config.LOGGING_CONFIG // 'critical', 'error', 'warning', 'info', 'debug', 'trace'
 DEV_RELOAD = True
 DEV_uvicorn_HOST = "127.0.0.1" ; DEV_uvicorn_PORT = 5000
-#DEV_HEALTH = True # to add
+#DEV_HEALTH = True #todo
 DEV_DATABASE = True # rebuild database
 ##### DEV OPTIONS #####
 
