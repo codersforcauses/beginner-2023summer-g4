@@ -1,15 +1,18 @@
 # database.py
 
+from core.utils import rebuild, log
 from core.constants import path_db
 
 import os, sys
 import sqlite3
 
+# Fallback function
 if os.path.exists(path_db) and os.path.getsize(path_db) > 0:
     pass
 else:
-    log(f"[-] Database Not Built! (or empty)") ; log(f"[-] Please Rebuild with DATABASE = True in config!")
-    sys.exit(-1)
+    log(f"[-] Database Not Built! (or empty)") ; log(f"[-] Rebuilding Database! (Fallback)")
+    rebuild(path_db)
+    log(f"[+] Database Rebuilt! (Fallback)")
 
 #con = sqlite3.connect(path_db) ; cursor = con.cursor() ; con.close()
 '''

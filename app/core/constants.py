@@ -10,6 +10,27 @@ cors_origins = [
     "*",
     ]
 
+pp_banner = f"""
+ ____   ___  ____  ______  __ __      ____  ____  
+|    \ /  _]|    \|      ||  |  |    |    \|    \ 
+|  o  )  [_ |  D  )      ||  |  |    |  o  )  o  )
+|   _/    _]|    /|_|  |_||  _  |    |   _/|   _/ 
+|  | |   [_ |    \  |  |  |  |  |    |  |  |  |   
+|  | |     ||  .  \ |  |  |  |  |    |  |  |  |   
+|__| |_____||__|\_| |__|  |__|__|    |__|  |__|   
+Perth PinPoint! 
+2023/4 CodersForCauses Beginner Project by "Nef Fan Club" @ <https://github.com/codersforcauses/beginner-2023summer-g4>
+
+#####################################
+
+http://{uvicorn_HOST}:{uvicorn_PORT}
+
+#####################################
+
+DISCLAIMER:
+This project is not associated with "GeoGuessr" - Please refer to the LICENSE (located in the repository above) for licensing information.
+"""
+
 '''
 no this data is not normalised, no we dont care - we use nested subqueries beacuse inner joins make us sad
 go away nerds
