@@ -15,6 +15,20 @@
 
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
+
+
+            <script>
+                if (localStorage.getItem("username")) {
+                  document.getElementById("username").value = localStorage.getItem("username");
+                }
+                document.querySelector("form").addEventListener("submit", function(event) {
+                  event.preventDefault(); 
+                  var username = document.getElementById("username").value;
+                  localStorage.setItem("username", username);
+                });
+              </script>
+
+              
         </div>
 
 
