@@ -18,13 +18,13 @@ let currentLocationMapElements;
 
 let userPickedLocation;
 var picked_data;
-var distanced_data = { game_mode: 'landmark', data: "found_status", found: null};
+let distanced_data = { game_mode: 'landmark', data: "found_status", found: null};
 let marker;
 
-var scores = [null, null, null, null, null];
-var roundNumber = 1;
+let scores = [null, null, null, null, null];
+let roundNumber = 1;
 
-let tips = [
+const tips = [
   "Use the compass to figure out which way the roads and streets point (red is North)",
   "Click the Reset Street View button to reset the street view to the original location if you're lost",
   "The Street View may be outdated from Google, so use your knowledge of the area will help you most",
@@ -44,7 +44,8 @@ loadStreetViewAndMap().then(async (result) => {
       console.log("Locations:", locations);
       current_location = locations[roundNumber-1];
       console.log("FIND: "+ current_location[0].name);
-      document.getElementById('location-round-info').innerHTML = "<strong>Find: " + current_location[0].name + '</strong>';
+      updateLocationForRound();
+
       runTimer(360, submit);
       // let map_guess = document.getElementById('map-guess-container');
       // map_guess.style.height = '95%';
@@ -150,6 +151,30 @@ function generateEndGameMap() {
 
   setInterval(handleMapResize, 5);
   
+}
+
+function updateLocationForRound() {
+  const locationInfoElement = document.getElementById('location-round-info');
+  let innerHTMLContent = "<strong>Find: " + current_location[0].name + "</strong><br>Location Info";
+
+  if (current_location[0].shop !== null) {
+    innerHTMLContent += "<br>Shop: " + current_location[0].shop;
+  }
+
+  if (current_location[0].amenity !== null) {
+    innerHTMLContent += "<br>Amenity: " + current_location[0].amenity;
+  }
+
+  if (current_location[0].building !== null) {
+    innerHTMLContent += "<br>Building: " + current_location[0].building;
+  }
+
+  if (current_location[0].street !== null) {
+    innerHTMLContent += "<br>Street: " + current_location[0].street;
+  }
+
+  locationInfoElement.innerHTML = innerHTMLContent;
+
 }
 
 function updatePopUpMap(current_loc) {
@@ -375,7 +400,7 @@ function submit() {
 
     console.log("FIND: "+ current_location[0].name);
 
-    document.getElementById('location-round-info').innerHTML = "<strong>Find: " + current_location[0].name + '</strong>';
+    updateLocationForRound();
 
 
     runTimer(1000);

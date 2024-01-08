@@ -76,16 +76,25 @@ function updateIframeLocation(lat, lng) {
 
 function getRandomLandmarkCoordinates(){
 
-    let perthCBD = { 
+    const perthCBD = { 
         minLat: -31.963036,
          maxLat: -31.943482,
          minLng: 115.851513,
          maxLng: 115.870267,
     };
 
+    const freo = {
+        minLat: -32.061772,
+        maxLat: -32.043222,
+        minLng: 115.737333,
+        maxLng: 115.756235,
+    };
 
-    const randomLat = Math.random() * (perthCBD.maxLat - perthCBD.minLat) + perthCBD.minLat;
-    const randomLng = Math.random() * (perthCBD.maxLng - perthCBD.minLng) + perthCBD.minLng;
+    const selectedLocation = (Math.random() < 0.5) ? perthCBD : freo;
+
+
+    const randomLat = Math.random() * (selectedLocation.maxLat - selectedLocation.minLat) + selectedLocation.minLat;
+    const randomLng = Math.random() * (selectedLocation.maxLng - selectedLocation.minLng) + selectedLocation.minLng;
 
     return { lat: randomLat, lng: randomLng };
 }
