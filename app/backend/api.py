@@ -49,7 +49,7 @@ DO NOT REFACTOR/MERGE THESE APIS; IF WE DYNAMICALLY SELECT LEADERBORADS VIA DYNA
 async def complete(request: Request):
     data = await request.json()
     data = json.loads(data)
-    log(data)
+    
     if not validate_json(data):
         log(f"[-] JSON Validation Failed!")
     
