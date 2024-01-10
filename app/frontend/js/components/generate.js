@@ -17,7 +17,7 @@ const hard =  [
   "tertiary"
 ];
 
-const highwayRegex = `^(${easy.join("||")})$`;
+/*const highwayRegex = `^(${easy.join("||")})$`;*/
 
 const overpassUrl = "https://overpass-api.de/api/interpreter";
 

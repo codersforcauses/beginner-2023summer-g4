@@ -32,28 +32,40 @@
         </div>
 
 
-        <h2>Select a Game Mode:</h2>
-
         <!-- Game mode options -->
         <div class="game-mode-options">
+            <h2>Select a Game Mode:</h2>
             <label class="game-mode-option">
                 <input type="radio" name="gameMode" value="city"> Classic City
                 <!-- Additional information or description for the option can be added here -->
+                <img src="/static/assets/classiccity.png" alt="Classic City">
+                <div class="dropdown-content">
+                    <p>You will be dropped in a random location within Perth. You are free to explore the location as much as you wish. Your goal is to guess the original location before the timer runs out!</p>
+                </div>
             </label>
 
             <label class="game-mode-option">
                 <input type="radio" name="gameMode" value="discoveries"> Divs Discoveries
                 <!-- Additional information or description for the option can be added here -->
+                <div class="dropdown-content">
+                    <p>Divs special mode.</p>
+                </div>        
             </label>
 
             <label class="game-mode-option">
                 <input type="radio" name="gameMode" value="sleuth"> Streeth Sleuth
                 <!-- Additional information or description for the option can be added here -->
+                <div class="dropdown-content">
+                    <p>Street sleuth description</p>
+                </div>  
             </label>
 
             <label class="game-mode-option">
                 <input type="radio" name="gameMode" value="landmark"> Local Landmark
                 <!-- Additional information or description for the option can be added here -->
+                <div class="dropdown-content">
+                    <p>You will be dropped in a random prominent location in Perth, this may be the CBD, Fremantle, etc. This time you know where you have been dropped and will be asked to find 5 different locations within an area by pin pointing them. The catch is, the map contains no labels! Use the street imagery to help you.</p>
+                </div>  
             </label>
         </div>
         <p>

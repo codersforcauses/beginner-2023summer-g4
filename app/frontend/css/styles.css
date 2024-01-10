@@ -230,8 +230,65 @@ cursor: crosshair !important;
 
 }
 
+.landing-page {
+    background-color: white;
+}
+
 .location-for-round-container.slide-away {
     transform: translateX(120%);
     transition: transform 0.4s ease;
     margin: 0;
+}
+
+.game-mode-options {
+    text-align: center;
+}
+
+.game-mode-option {
+    padding: 50px;
+    margin: 100px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: large;
+}
+
+.game-mode-option img {
+    display: block;
+    margin: 10px auto 10px;
+}
+
+.game-mode-option:hover {
+    background-color: #f5f5f5;
+}
+
+.game-mode-option .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.game-mode-option:hover .dropdown-content {
+    display: block;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
