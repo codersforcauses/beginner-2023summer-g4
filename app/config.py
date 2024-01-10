@@ -10,7 +10,7 @@ SILENT = False ; BANNER = True
 
 ##### PROD OPTIONS #####
 uvicorn_LOGGING = "error"
-uvicorn_HOST = "127.0.0.1"
+uvicorn_HOST = "0.0.0.0"
 uvicorn_PORT = 5000
 ##### PROD OPTIONS #####
 
