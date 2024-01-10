@@ -100,7 +100,7 @@ function greyOutSubmitButton(){
 }
 
 function post_data(send, endpoint){
-  const url = `${endpoint}/api/submit`;
+  //const url = `${endpoint}/api/submit`;
 
   const picked_post = {
     method: 'POST',
@@ -182,21 +182,6 @@ function post_data(send, endpoint){
 
       popup.classList.add('open-popup');
 
-      // to do: display final score on /leaderboard
-      if (roundNumber === 10) {
-
-        let complete_data = {
-          game_mode: "city",
-          usern: localStorage.getItem('username'),
-          totalscore: Number(totalScore)
-        }
-        complete = JSON.stringify(complete_data);
-        const url_complete = `${endpoint}/api/end`;
-        post_data(complete, url_complete);
-    
-        window.location.href = "/leaderboard";
-      }
-
       roundNumber++;
 
   })
@@ -224,6 +209,20 @@ function submit() {
   document.getElementById('map-guess-container').classList.add('slide-away');
   const url_submit = `${endpoint}/api/submit`;
   post_data(round, url_submit);
+
+        // to do: display final score on /leaderboard
+  if (roundNumber === 10) {
+    let complete_data = {
+    game_mode: "city",
+            usern: localStorage.getItem('username'),
+            totalscore: Number(totalScore)
+          }
+          complete = JSON.stringify(complete_data);
+          const url_complete = `${endpoint}/api/end`;
+          post_data(complete, url_complete);
+      
+          window.location.href = "/leaderboard";
+    }
 
 }
 
