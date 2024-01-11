@@ -1,6 +1,8 @@
 # init.py
 
-import uvicorn
+import uvicorn ; import logging
+from uvicorn.config import LOGGING_CONFIG
+
 from config import *
 from core.utils import *
 from core.constants import *
@@ -15,7 +17,7 @@ if __name__ == "__main__":
 
         log(f"[+] Initialising Application")
 
-        uvicorn_LOGGING = DEV_uvicorn_LOGGING ; RELOAD = DEV_RELOAD ; uvicorn_HOST = DEV_uvicorn_HOST ; uvicorn_PORT = DEV_uvicorn_PORT
+        uvicorn_LOGGING = DEV_uvicorn_LOGGING ; RELOAD = DEV_RELOAD ; uvicorn_HOST = DEV_uvicorn_HOST ; uvicorn_PORT = DEV_uvicorn_PORT ; uvicorn_WORKERS = DEV_WORKERS ; uvicorn_ACCESSLOG = DEV_ACCESSLOG
         log(f"[+] Configured Development Options")
 
         if DEV_DATABASE:
@@ -30,13 +32,18 @@ if __name__ == "__main__":
 
     if BANNER:
         print(f"{pp_banner}")
-
+    
+    # why is this not done by default
+    LOGGING_CONFIG["formatters"]["default"]["fmt"] = "%(asctime)s [%(name)s] %(levelprefix)s %(message)s"
+    
     uvicorn.run(
         "core.main:app",
         host=uvicorn_HOST,
         port=uvicorn_PORT,
         log_level=uvicorn_LOGGING,
-        reload=RELOAD
+        reload=RELOAD,
+        workers=uvicorn_WORKERS,
+        log_config=LOGGING_CONFIG
         )
 
 '''
