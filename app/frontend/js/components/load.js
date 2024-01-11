@@ -32,10 +32,11 @@ async function loadStreetViewAndMap() {
     if (game_mode === "landmark"){
       result = generateLandmarksUntilLength5();
       streetViewLocation = (await result).streetViewLocation;
-      locationsSelected = result.locationsSelected;
+      locationsSelected = (await result).locationsSelected;
     }
-
-    streetViewLocation = await generateNewStreetView();
+    else {
+      streetViewLocation = await generateNewStreetView();
+    }
 
     if (game_mode === "streetsleuth"){
       locationsSelected = await getRoadsAndStreets();

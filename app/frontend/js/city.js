@@ -4,6 +4,7 @@ import { generateNewStreetView, updateIframeLocation } from './components/street
 import { runTimer, endTimer, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
+import { makeSubmitButtonClickable, greyOutSubmitButton } from './components/submit-button.js';
 
 let map;
 let streetViewLocation;
@@ -29,8 +30,6 @@ let popUpUserMarker;
 let popUpCorrectMarker;
 
 let line;
-
-const submit_button = document.getElementById('submit-button');
 
 const next_round_button = document.getElementById('next-round');
 
@@ -60,7 +59,7 @@ function startGame(){
   
     marker = L.marker(e.latlng, {icon: userIcon}).addTo(map);
 
-    makeSubmitButtonClickable();
+    makeSubmitButtonClickable(submit);
   
     let round_data = {
       game_mode: "city",
@@ -75,29 +74,6 @@ function startGame(){
   });
 }
 
-// these two functions are for the submit button
-function darken () {
-  submit_button.style.backgroundColor = 'rgb(153, 183.6, 229.5)';
-}
-
-function lighten () {
-  submit_button.style.backgroundColor = 'rgb(170, 204, 255)';
-}
-
-function makeSubmitButtonClickable(){
-  submit_button.style.opacity = 1;
-  submit_button.addEventListener('click', submit);
-  submit_button.addEventListener('mouseover', darken);
-  submit_button.addEventListener('mouseout', lighten);
-
-}
-
-function greyOutSubmitButton(){
-  submit_button.style.opacity = 0.7;
-  submit_button.removeEventListener('click', submit);
-  submit_button.removeEventListener('mouseover', darken);
-  submit_button.removeEventListener('mouseout', lighten);
-}
 
 function post_data(send, endpoint){
   const url = `${endpoint}/api/submit`;
@@ -207,7 +183,7 @@ function post_data(send, endpoint){
 
 function submit() {
 
-  greyOutSubmitButton();
+  greyOutSubmitButton(submit);
 
   endTimer(currentTimerID);
 
@@ -329,5 +305,5 @@ reset_sv_button.addEventListener('click', function () {
 
 next_round_button.addEventListener('click', closePopup)
 
-export {submit, makeSubmitButtonClickable, greyOutSubmitButton};
+//export {submit, SubmitButtonClickable, greyOutSubmitButton};
 
