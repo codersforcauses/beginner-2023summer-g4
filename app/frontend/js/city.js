@@ -97,6 +97,18 @@ function post_data(send, endpoint){
   })
   .then(data => {
 
+    if (data.hasOwnProperty('alert')) {
+        let alert = data['alert'];
+        console.log(alert);
+
+        if (alert === "new high score") {
+          sessionStorage.setItem("newhighscore", 'true');
+        }
+        else if (alert === "no new high score") {
+          sessionStorage.setItem("newhighscore", 'false');
+        }
+      }
+
       let score = data['score'];
 
       totalScore += ((score == -1) ? 0 : score);
