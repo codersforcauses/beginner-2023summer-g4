@@ -82,6 +82,10 @@
             <p><strong>Click the start button to begin playing!</strong></p>
             <button id= "game-button" onclick= "enterMainPage()"><strong>Start Game</strong></button>
         </div>
+
+        <br><br><br><br><br>
+        <h4>NOTE: if you cant see the buttons or UI elements, you made need to <br>zoom in/out of your browser with [ctr]+[+] or [-], this has been <br>primarily tested on chrome</h4>
+
     </div>
     
     <script>
@@ -99,12 +103,15 @@
                 window.location.href = "/city";
             }
             else if (selectedMode.value == "discoveries"){
-                window.location.href = "/discoveries";
+                alert("we havent made this gamemode yet :)");
+                window.location.href = "/"; // /discoveries
             }
             else if (selectedMode.value == "sleuth"){
+                alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/sleuth";
             }
             else if (selectedMode.value == "landmark"){
+                alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/landmark";
             }
             else {

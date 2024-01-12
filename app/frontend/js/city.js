@@ -152,6 +152,20 @@ function post_data(send, endpoint){
         generateEndGameMap();
       }
 
+      if (roundNumber === 10) {
+        let complete_data = {
+        game_mode: "city",
+                usern: localStorage.getItem('username'),
+                totalscore: Number(totalScore)
+              }
+              complete = JSON.stringify(complete_data);
+              const url_complete = `/api/end`;
+              post_data(complete, url_complete);
+          
+              sessionStorage.setItem("lastscore", totalScore);
+              window.location.href = "/leaderboard";
+        }
+
       updatePopUpMap();
 
       streetViewLocation = generateNewStreetView();
@@ -183,22 +197,8 @@ function submit() {
   }
 
   document.getElementById('map-guess-container').classList.add('slide-away');
-  const url_submit = `${endpoint}/api/submit`;
+  const url_submit = `/api/submit`;
   post_data(round, url_submit);
-
-        // to do: display final score on /leaderboard
-  if (roundNumber === 10) {
-    let complete_data = {
-    game_mode: "city",
-            usern: localStorage.getItem('username'),
-            totalscore: Number(totalScore)
-          }
-          complete = JSON.stringify(complete_data);
-          const url_complete = `${endpoint}/api/end`;
-          post_data(complete, url_complete);
-      
-          window.location.href = "/leaderboard";
-    }
 
 }
 

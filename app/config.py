@@ -11,7 +11,7 @@ SILENT = False ; BANNER = True
 ##### PROD OPTIONS #####
 uvicorn_LOGGING = "error"
 uvicorn_HOST = "0.0.0.0"
-uvicorn_PORT = 5000
+uvicorn_PORT = 8080
 uvicorn_WORKERS = 4
 uvicorn_ACCESSLOG = True
 ##### PROD OPTIONS #####
