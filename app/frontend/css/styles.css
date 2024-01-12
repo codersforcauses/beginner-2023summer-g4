@@ -9,7 +9,6 @@ body,html
 }
 .timer-container {
     display: flex;
-    /* justify-content: flex-start; */
     align-items: center;
     gap: 9px;
 }
@@ -18,13 +17,13 @@ body,html
 header { 
     display: flex;
     top: 0;
-    background-color: #222233;
+    background-color: #00171F;
     height: 50px;
     padding: 15px 5px;
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
-    color:#AACCFF;
+    color:#0096ff;
     position: absolute;
     z-index: 100;
 }
@@ -190,7 +189,7 @@ cursor: crosshair !important;
 .submit-button {
     background-color: rgb(170, 204, 255);
     padding: 18px;
-    color: #222233;
+    color: #00171F;
     width: 100%;
     border-radius: 8px;
     border: none;
@@ -215,7 +214,7 @@ cursor: crosshair !important;
     top: 20%;
     right: 10px;
     padding: 5px 20px;
-    background-color: #AACCFF;
+    background-color: #0096ff;
     border-radius: 8px;
     border: none;
     z-index: 1000;
@@ -223,15 +222,11 @@ cursor: crosshair !important;
 }
 
 #location-round-info {
-    color: #222233;
+    color: #00171F;
     font-size: 17px;
     text-align: center;
     line-height: 1.5;
 
-}
-
-.landing-page {
-    background-color: white;
 }
 
 .location-for-round-container.slide-away {
@@ -240,55 +235,93 @@ cursor: crosshair !important;
     margin: 0;
 }
 
-.game-mode-options {
+
+/* Landing Page CSS */
+
+.login-container {
+    margin-top: 80px;
     text-align: center;
-}
-
-.game-mode-option {
-    padding: 50px;
-    margin: 100px;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-size: large;
-}
-
-.game-mode-option img {
-    display: block;
-    margin: 10px auto 10px;
-}
-
-.game-mode-option:hover {
+    width: 100%;
+    padding: 20px;
     background-color: #f5f5f5;
 }
 
-.game-mode-option .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+.landing-page {
+    background: linear-gradient(to bottom, #0096ff, #18ff8b);
+    height: 100%;
+}
+
+.game-modes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game-mode-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.game-mode-title {
+    padding:15px;
+    font-size: 20px;
+}
+
+.game-mode-option {
+    width: 20%;
+    min-height: 230px;
+    margin: 10px;
+    cursor: pointer;
     box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #00171F;
+    color:white;
     overflow: hidden;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.game-mode-option:hover .dropdown-content {
-    display: block;
-    animation: slideIn 0.3s ease-in-out;
+.game-mode-option input {
+    display: none;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.game-mode-option input:checked + div,
+.game-mode-option input:hover + div {
+    background-color: #18ff8b;
+    transition: background-color 0.5s ease;
+}
+
+.game-mode-option div {
+    transition: background-color 0.5s ease;
+    padding: 10px;
+}
+
+.game-mode-desc {
+    flex-grow: 1;
+    overflow: hidden;
+    background-color: #E6E6E6;
+    color: black;
+    padding: 10px;
+}
+
+.start-button-container {
+    text-align: center;
+    font-size: 20px;
+}
+
+#game-button {
+    background-color: #00171F;
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+#game-button:hover {
+    background-color: #0096ff;
 }

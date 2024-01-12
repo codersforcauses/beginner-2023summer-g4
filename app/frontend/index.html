@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     <title>PerthPinpoint</title>
 </head>
 <body>
     <div class="landing-page">
-        <h1>Welcome to the Landing Page!</h1>
-
+        <header>
+            <h1 class = 'landing-title'>PerthPinpoint</h1>
+        </header>
         <div class = 'login-container'>
             <h2>Enter a username</h2>
 
@@ -33,56 +35,53 @@
 
 
         <!-- Game mode options -->
-        <div class="game-mode-options">
-            <h2>Select a Game Mode:</h2>
-            <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="city"> Classic City
-                <!-- Additional information or description for the option can be added here -->
-                <img src="/static/assets/classiccity.png" alt="Classic City">
-                <div class="dropdown-content">
-                    <p>You will be dropped in a random location within Perth. You are free to explore the location as much as you wish. Your goal is to guess the original location before the timer runs out!</p>
-                </div>
-            </label>
+        <div class="game-modes">
+            <div class="game-mode-title">
+                <h2 >Select a Game Mode</h2>
+            </div>
+            <div class="game-mode-options">
+                <label class="game-mode-option">
+                    <input type="radio" name="gameMode" value="city"> 
+                    <div class="game-mode-label"><strong>Classic City</strong></div>
+                    <!-- Additional information or description for the option can be added here -->
+                    <div class="game-mode-desc">
+                        <p>You will be dropped in a random location within Perth. You are free to explore the location as much as you wish. Your goal is to guess the original location before the timer runs out!</p>
+                    </div>
+                </label>
 
-            <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="discoveries"> Divs Discoveries
-                <!-- Additional information or description for the option can be added here -->
-                <div class="dropdown-content">
-                    <p>Divs special mode.</p>
-                </div>        
-            </label>
+                <label class="game-mode-option">
+                    <input type="radio" name="gameMode" value="discoveries">
+                    <div class="game-mode-label"><strong>Divs Discoveries</strong></div>
+                    <!-- Additional information or description for the option can be added here -->
+                    <div class="game-mode-desc">
+                        <p>Divs special mode.</p>
+                    </div>        
+                </label>
 
-            <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="sleuth"> Streeth Sleuth
-                <!-- Additional information or description for the option can be added here -->
-                <div class="dropdown-content">
-                    <p>Street sleuth description</p>
-                </div>  
-            </label>
+                <label class="game-mode-option">
+                    <input type="radio" name="gameMode" value="sleuth">
+                    <div class="game-mode-label"><strong>Streeth Sleuth</strong></div>
+                    <!-- Additional information or description for the option can be added here -->
+                    <div class="game-mode-desc">
+                        <p>Street sleuth description</p>
+                    </div>  
+                </label>
 
-            <label class="game-mode-option">
-                <input type="radio" name="gameMode" value="landmark"> Local Landmark
-                <!-- Additional information or description for the option can be added here -->
-                <div class="dropdown-content">
-                    <p>You will be dropped in a random prominent location in Perth, this may be the CBD, Fremantle, etc. This time you know where you have been dropped and will be asked to find 5 different locations within an area by pin pointing them. The catch is, the map contains no labels! Use the street imagery to help you.</p>
-                </div>  
-            </label>
+                <label class="game-mode-option">
+                    <input type="radio" name="gameMode" value="landmark">
+                    <div class="game-mode-label"><strong>Local Landmark</strong></div>
+                    <!-- Additional information or description for the option can be added here -->
+                    <div class="game-mode-desc">
+                        <p>You will be dropped in a random prominent location in Perth, this may be the CBD, Fremantle, etc. This time you know where you have been dropped and will be asked to find 5 different locations within an area by pin pointing them. The catch is, the map contains no labels! Use the street imagery to help you.</p>
+                    </div>  
+                </label>
+            </div>
         </div>
-        <p>
-            <strong>Standard: </strong>
-            This game mode will depend on the difficulty level but the premise is the same.
-            You wil be dropped in a location in perth, you are free to roam the location as much as is possible, but you must make a guess as to where in Perth you are within the 
-            given time frame. The closer to the correct location, the higher the points. The game will take the inital drop point as the location you must guess.
-            <br>
-            <br>
-            <strong>Local Landmark: </strong>
-            This game mode works a little different to the standard game mode. You will be dropped in a random location in a prominent Perth area, this might be the perth CBD,  Fremantle
-            or similar. This time you will know where you have been dropped with a green flag. You will be promted with 5 different locations within that area, you must select on the map where these locations are then pinpoint them. The catch is, the map 
-            will contain no labels so you must relay on the layout of the area and the street view imagery to help you. All this within a time frame of course.
-
-        </p>
-        <p>Click the button below to enter the main playing page.</p>
-        <button id= "game-button" onclick= "enterMainPage()">Enter Main Page</button>
+        
+        <div class="start-button-container">
+            <p><strong>Click the start button to begin playing!</strong></p>
+            <button id= "game-button" onclick= "enterMainPage()"><strong>Start Game</strong></button>
+        </div>
     </div>
     
     <script>
