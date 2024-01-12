@@ -93,8 +93,14 @@
             const username = document.getElementById('username').value;
             const selectedMode = document.querySelector('input[name="gameMode"]:checked');
 
+            if (!username){
+                alert("Please enter a username!");
+                window.location.href = "/";
+            }
+
             if (!selectedMode){
                 alert("Please select a game mode before entering the main page.");
+                window.location.href = "/";
             }
             localStorage.setItem("game_mode", selectedMode.value);
             localStorage.setItem("username", username);

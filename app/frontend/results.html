@@ -21,7 +21,12 @@
             <p id="lastscoreshow"></p>
 
 <script>
-    document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');            
+    document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');  
+
+    if (sessionStorage.getItem('lastscore') === 'true') {
+        alert("Congrats: New High Score!");
+    }  
+
 </script>
 
 <script>
