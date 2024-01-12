@@ -4,6 +4,7 @@ import { generateNewStreetView, updateIframeLocation } from './components/street
 import { runTimer, endTimer, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon, dropIcon } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
+import { makeSubmitButtonClickable, greyOutSubmitButton } from './components/submit-button.js';
 
 let map;
 let streetViewLocation;
@@ -40,7 +41,7 @@ loadStreetViewAndMap().then(async (result) => {
     if (result) {
       map = result.map;
       streetViewLocation = result.streetViewLocation;
-      locations = await result.locationsSelected;
+      locations = result.locationsSelected;
       console.log("Locations:", locations);
       current_location = locations[roundNumber-1];
       console.log("FIND: "+ current_location[0].name);
@@ -59,7 +60,7 @@ loadStreetViewAndMap().then(async (result) => {
 
 function startGame(){
     map.on('click', function(e) {
-      makeSubmitButtonClickable();
+      makeSubmitButtonClickable(submit);
 
     if (marker !== undefined){
       map.removeLayer(marker);
@@ -256,33 +257,11 @@ function checkIfLocationIsFound(locations){
   }
   return false;
 }
-
-function darken () {
-  submit_button.style.backgroundColor = 'rgb(153, 183.6, 229.5)';
-}
-
-function lighten () {
-  submit_button.style.backgroundColor = 'rgb(170, 204, 255)';
-}
-
-function makeSubmitButtonClickable(){
-  submit_button.style.opacity = 1;
-  submit_button.addEventListener('click', submit);
-  submit_button.addEventListener('mouseover', darken);
-  submit_button.addEventListener('mouseout', lighten);
-}
-
-function greyOutSubmitButton(){
-  submit_button.style.opacity = 0.7;
-  submit_button.removeEventListener('click', submit);
-  submit_button.removeEventListener('mouseover', darken);
-  submit_button.removeEventListener('mouseout', lighten);
-}
   
 function submit() {
     let distanced = JSON.stringify(distanced_data);
 
-    greyOutSubmitButton();
+    greyOutSubmitButton(submit);
     endTimer(currentTimerID);
   
     if (roundNumber === 5) {
@@ -356,7 +335,7 @@ function submit() {
 
   function closePopup(){
 
-    makeSubmitButtonClickable();
+    greyOutSubmitButton(submit);
 
     // let sleuthDropLocationMarker = L.marker(streetViewLocation, {
     //   icon: sleuthIcon
