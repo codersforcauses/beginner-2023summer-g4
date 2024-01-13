@@ -15,6 +15,27 @@ async function generateLandmarksUntilLength5() {
       locationsSelected = await getLocations(streetViewLocation);
     }
   }
+
+  console.log("Locations:", locationsSelected);
+  
+  return {streetViewLocation, locationsSelected};
+}
+
+async function generateRoadsUntilLength5() {
+  let locationsSelected = [];
+  let streetViewLocation; 
+
+  while (locationsSelected.length < 5) {
+    console.log("LESS THAN 5!");
+    const result = await generateNewStreetView();
+
+    if (result !== null) {
+      streetViewLocation = result;
+      locationsSelected = await getRoadsAndStreets(streetViewLocation);
+    }
+  }
+
+  console.log("Roads:", locationsSelected);
   
   return {streetViewLocation, locationsSelected};
 }
@@ -27,20 +48,22 @@ async function loadStreetViewAndMap() {
 
   try {
 
-    let result;
+    if (game_mode === "landmark" || game_mode === "sleuth"){
+      let result;
 
-    if (game_mode === "landmark"){
-      result = generateLandmarksUntilLength5();
+      if (game_mode === "landmark"){
+        result = generateLandmarksUntilLength5();
+      }
+      else if (game_mode == "sleuth"){
+        result = generateRoadsUntilLength5();
+      }
+
       streetViewLocation = (await result).streetViewLocation;
       locationsSelected = (await result).locationsSelected;
+
     }
     else {
       streetViewLocation = await generateNewStreetView();
-    }
-
-    if (game_mode === "streetsleuth"){
-      locationsSelected = await getRoadsAndStreets();
-
     }
 
     if (streetViewLocation !== null) {
@@ -64,17 +87,25 @@ async function loadStreetViewAndMap() {
           // zoomDelta: 0.1,
           zoomSnap: 0,
           wheelDebounceTime: 100
-        }).setView(streetViewLocation, 16);
+        }).setView(streetViewLocation, (game_mode === "landmark") ? 16 : 12.5);
 
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png", {
-          attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e"
-        }).addTo(map);
+        if (game_mode === "landmark"){
+          L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}@2x.png", {
+            attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+          }).addTo(map);
+        }
+        else if (game_mode === "sleuth"){
+          L.tileLayer("https://api.maptiler.com/maps/satellite/{z}/{x}/{y}@2x.jpg?key=yKxYycTR24wt9spqlP62", {
+          tileSize: 512,
+          zoomOffset: -1,
+          }).addTo(map);
+        }
 
        let sleuthDropLocationMarker = L.marker(streetViewLocation, {
          icon: dropIcon
        }).addTo(map);
 
-       L.circle(streetViewLocation, {radius: 150, color: 'blue', dashArray: '5, 10', fill: false}).addTo(map);
+       L.circle(streetViewLocation, {radius: (game_mode === "landmark") ? 150 : 2750, color: (game_mode === "landmark") ? 'blue' : '#00eeff', dashArray: '5, 10', fill: false}).addTo(map);
 
 
       }
