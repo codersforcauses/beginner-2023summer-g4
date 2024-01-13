@@ -5,6 +5,7 @@ body,html
     height:100%;
     width:100%;
     overflow:hidden;
+    background-color: #1D2E44;
 }
 
 .timer-container {
@@ -17,13 +18,13 @@ body,html
 header { 
     display: flex;
     top: 0;
-    background-color: #ffffff;
+    background-color: #20314A;
     height: 50px;
     padding: 15px 5px;
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
-    color:#09B4F7;
+    color: white;
     position: absolute;
     z-index: 100;
 }
@@ -243,25 +244,28 @@ cursor: crosshair !important;
 }
 
 .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 80px;
     text-align: center;
     width: 100%;
+    height:350px;
     padding: 20px;
     background-color: none;
     padding-bottom: 40px;
     position: relative;
     z-index: 1;
     color: white;
-    font-size: 26px;
 }
 
 .login-bar h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
+    font-size: xxx-large;
+    margin-bottom: 35px;
 }
 
 .login-bar input {
-    width: 20%;
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -276,14 +280,15 @@ cursor: crosshair !important;
 }
 
 .landing-image {
-    opacity: 1;
     position: absolute;
+    opacity: 1;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     z-index: -2;
     width:100%;
+    transform: translateY(-13%);
 }
 
 .game-modes {
@@ -291,36 +296,37 @@ cursor: crosshair !important;
     flex-direction: column;
     align-items: center;
     z-index: 1;
+    margin-bottom: 200px;
 
 }
 .game-mode-options {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    gap: 6px;
     align-items: center;
-    background: linear-gradient(to bottom, #09B4F7, #0088ff);
     border-radius: 10px;
-    width: 90%;
+    width: 95%;
     height: 350px;
     z-index: 1;
 }
 
 .game-mode-title {
     padding:15px;
-    font-size: 20px;
+    font-size: xx-large;
     z-index: 1;
     color: white;
 }
 
 .game-mode-option {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 470px;
     /* min-height: 230px; */
     margin: 10px;
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 10px;
-    background-color: #00171F;
+    background-color: #FF5B00;
     color:white;
     overflow: hidden;
     text-align: center;
@@ -331,6 +337,8 @@ cursor: crosshair !important;
 
 .game-mode-option input {
     display: none;
+    height:20%;
+    z-index: 1;
 }
 
 .game-mode-option input:checked + div,
@@ -341,7 +349,8 @@ cursor: crosshair !important;
 
 .game-mode-option div {
     transition: background-color 0.5s ease;
-    padding: 10px;
+    padding: 27px;
+    font-size: 30px;
 }
 
 .game-mode-desc {
@@ -349,13 +358,13 @@ cursor: crosshair !important;
     overflow: hidden;
     background-color: #E6E6E6;
     color: black;
-    padding: 10px;
 }
 
 .start-button-container {
+    display: block;
+    justify-content: center;
     text-align: center;
     font-size: 20px;
-    position: relative;
     z-index: 1000;
 }
 
