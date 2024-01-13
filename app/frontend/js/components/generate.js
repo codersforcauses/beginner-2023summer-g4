@@ -1,5 +1,5 @@
 // This function generates 5 locations, based on the street view location.
-// In some cases more than one franchise is located within the 150 radius, so we need to ensure
+// In some cases more than one franchise is located within the 200 radius, so we need to ensure
 // that the player gets it correct if they choose either one of the correct locations.
 // This is why a location is stored as an array as there may be more than one.
 
@@ -28,7 +28,7 @@ const overpassUrl = "https://overpass-api.de/api/interpreter";
 
 
 async function getLocations(streetViewLocation) {
-    const overpassQuery = `[out:json];(node(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];node(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["shop"];way(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];relation(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];way(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["building"];);out tags geom;`;
+    const overpassQuery = `[out:json];(node(around:200,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];node(around:200,${streetViewLocation.lat},${streetViewLocation.lng})[name]["shop"];way(around:200,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];relation(around:200,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];way(around:200,${streetViewLocation.lat},${streetViewLocation.lng})[name]["building"];);out tags geom;`;
     console.log(overpassQuery);
     try {
       const response = await fetch(`${overpassUrl}?data=${encodeURIComponent(overpassQuery)}`);

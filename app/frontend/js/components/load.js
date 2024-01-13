@@ -105,7 +105,7 @@ async function loadStreetViewAndMap() {
          icon: dropIcon
        }).addTo(map);
 
-       L.circle(streetViewLocation, {radius: (game_mode === "landmark") ? 150 : 2750, color: (game_mode === "landmark") ? 'blue' : '#00eeff', dashArray: '5, 10', fill: false}).addTo(map);
+       L.circle(streetViewLocation, {radius: (game_mode === "landmark") ? 200 : 2750, color: (game_mode === "landmark") ? 'blue' : '#00eeff', dashArray: '5, 10', fill: false}).addTo(map);
 
 
       }
