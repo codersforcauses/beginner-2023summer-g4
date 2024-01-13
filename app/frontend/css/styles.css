@@ -5,8 +5,8 @@ body,html
     height:100%;
     width:100%;
     overflow:hidden;
-
 }
+
 .timer-container {
     display: flex;
     align-items: center;
@@ -17,13 +17,13 @@ body,html
 header { 
     display: flex;
     top: 0;
-    background-color: #00171F;
+    background-color: #ffffff;
     height: 50px;
     padding: 15px 5px;
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
-    color:#0096ff;
+    color:#09B4F7;
     position: absolute;
     z-index: 100;
 }
@@ -214,7 +214,7 @@ cursor: crosshair !important;
     top: 20%;
     right: 10px;
     padding: 5px 20px;
-    background-color: #0096ff;
+    background-color: #09B4F7;
     border-radius: 8px;
     border: none;
     z-index: 1000;
@@ -238,34 +238,77 @@ cursor: crosshair !important;
 
 /* Landing Page CSS */
 
+.landing-page {
+    background-color: #1D2E44;
+}
+
 .login-container {
     margin-top: 80px;
     text-align: center;
     width: 100%;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: none;
+    padding-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: 26px;
 }
 
-.landing-page {
-    background: linear-gradient(to bottom, #0096ff, #18ff8b);
-    height: 100%;
+.login-bar h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.login-bar input {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Optional: Style the input on focus */
+.login-bar input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.landing-image {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+    width:100%;
 }
 
 .game-modes {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 1;
 }
 .game-mode-options {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    background: linear-gradient(to bottom, #09B4F7, #0088ff);
+    border-radius: 10px;
+    width: 95%;
+    height: 350px;
+    z-index: 1;
 }
 
 .game-mode-title {
     padding:15px;
     font-size: 20px;
+    z-index: 1;
+    color: white;
 }
 
 .game-mode-option {
@@ -281,6 +324,7 @@ cursor: crosshair !important;
     text-align: center;
     display: flex;
     flex-direction: column;
+    z-index: 1;
 }
 
 .game-mode-option input {
@@ -289,7 +333,7 @@ cursor: crosshair !important;
 
 .game-mode-option input:checked + div,
 .game-mode-option input:hover + div {
-    background-color: #18ff8b;
+    background-color: #d909f4;
     transition: background-color 0.5s ease;
 }
 
@@ -309,6 +353,8 @@ cursor: crosshair !important;
 .start-button-container {
     text-align: center;
     font-size: 20px;
+    position: relative;
+    z-index: 1000;
 }
 
 #game-button {
@@ -323,5 +369,5 @@ cursor: crosshair !important;
 }
 
 #game-button:hover {
-    background-color: #0096ff;
+    background-color: #d909f4;
 }
