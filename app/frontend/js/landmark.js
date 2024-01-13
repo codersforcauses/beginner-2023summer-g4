@@ -140,7 +140,7 @@ function generateEndGameMap() {
   L.circle(streetViewLocation, {radius: 200, color: 'blue', dashArray: '5, 10', fill: false}).addTo(popUpMap);
 
 
-  popUpmap.doubleClickZoom = false;
+  popUpMap.doubleClickZoom = false;
 
   // Function to handle map resizing
   function handleMapResize() {
