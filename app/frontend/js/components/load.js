@@ -82,6 +82,15 @@ async function loadStreetViewAndMap() {
           minZoom: 1,
           crossOrigin: true,
         }).addTo(map);
+
+        const boundsRotnest = [[-32.030745, 115.442019], [-31.989988, 115.561232]];
+        const boundsCity = [[-32.676015, 115.665061], [-31.636557, 116.082104]];
+
+
+        // create an orange rectangle
+        L.rectangle(boundsCity, {color: "blue", weight: 2, opacity: 0.4, fill: false, dashArray: '5, 10' }).addTo(map);
+        L.rectangle(boundsRotnest, {color: "blue", weight: 2, opacity: 0.4, fill: false, dashArray: '5, 10' }).addTo(map);
+
       } else {
         map = L.map('map', {
           // zoomDelta: 0.1,
