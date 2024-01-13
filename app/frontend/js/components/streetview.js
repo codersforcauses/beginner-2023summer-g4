@@ -31,8 +31,8 @@ function checkStreetViewAvailability(lat, lng) {
 
     const location = new google.maps.LatLng(lat, lng);
 
-    var radius = (isStandardGameMode) ? 6000 : 30;
-    var sources = (isStandardGameMode) ? ['google', 'outdoor'] : ['google'];
+    var radius = (game_mode === "city" || game_mode === "sleuth") ? 6000 : 30;
+    var sources = (game_mode === "city") ? ['google', 'outdoor'] : ['google'];
 
     console.log("Radius:", radius);
     console.log("Sources:", sources);
@@ -136,7 +136,7 @@ async function generateNewStreetView() {
     let streetViewLocation = null;
     while (streetViewLocation === null) {
         let lat_lon_obj;
-        if (isStandardGameMode) {
+        if (game_mode === "city" || game_mode === "sleuth") {
             lat_lon_obj = getRandomCoordinates();
         } else {
             lat_lon_obj = getRandomLandmarkCoordinates();

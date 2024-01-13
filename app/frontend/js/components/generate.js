@@ -110,31 +110,43 @@ function shuffleArray(array) {
   }
 }
 
-async function getRoadsAndStreets(){
+async function getRoadsAndStreets(streetViewLocation){
 
-  const overpassQuery = `way(around:2000, -31.960717, 115.857390)[highway~"${highwayRegex}"][name];out tags geom;`
+  const overpassQuery = `[out:json];way(around:2750, ${streetViewLocation.lat},${streetViewLocation.lng})[highway~"${highwayRegex}"][name];out tags geom;`
 
+  console.log(overpassQuery);
   try {
     const response = await fetch(`${overpassUrl}?data=${encodeURIComponent(overpassQuery)}`);
     const data = await response.json();
 
+    //console.log("DATA:" , data.element);
+
     const roads = [];
+    const uniqueLocs = new Set();
 
     for (const road_data of data.elements) {
+
       const road_name = road_data.tags.name;
+
+      if(uniqueLocs.has(road_name)) continue;
+
+      uniqueLocs.add(road_name);
 
       const road = {
         name: road_name,
-        geom: road_data.geometry,
+        geom: [road_data.geometry.map(obj => [obj.lat, obj.lon])],
       }
 
       for (const other_road_data of data.elements) {
         const other_road_name = other_road_data.tags.name;
         if (other_road_name === road_name && road_data.id !== other_road_data.id) {
-          road.geom.concat(other_road_data.geometry);
+          console.log("FOUND SAME NAME");
+          road.geom.push(other_road_data.geometry.map(obj => [obj.lat, obj.lon]));
         }
       }
       roads.push(road);
+
+      if (roads.length === 5){break;}
     }
 
     return roads;

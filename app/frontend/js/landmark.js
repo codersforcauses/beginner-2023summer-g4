@@ -2,7 +2,7 @@
 
 import { generateNewStreetView, updateIframeLocation } from './components/streetview.js';
 import { runTimer, endTimer, currentTimerID} from './components/timer.js';
-import { correctIcon, userIcon, dropIcon } from './components/main.js';
+import { correctIcon, userIcon, dropIcon, tips } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
 import { makeSubmitButtonClickable, greyOutSubmitButton } from './components/submit-button.js';
 
@@ -25,15 +25,8 @@ let marker;
 let scores = [null, null, null, null, null];
 let roundNumber = 1;
 
-const tips = [
-  "Use the compass to figure out which way the roads and streets point (red is North)",
-  "Click the Reset Street View button to reset the street view to the original location if you're lost",
-  "The Street View may be outdated from Google, so use your knowledge of the area will help you most",
-  "Pay attention to street signs, shop names, and any written information that can reveal the location",
-  "Explore busy intersections or areas with high foot traffic, popular spots are likely to be nearby",
-]
+//const submit_button = document.getElementById('submit-button');
 
-const submit_button = document.getElementById('submit-button');
 const reset_sv_button = document.getElementById('reset-sv-button');
 
 loadStreetViewAndMap().then(async (result) => {
@@ -42,7 +35,6 @@ loadStreetViewAndMap().then(async (result) => {
       map = result.map;
       streetViewLocation = result.streetViewLocation;
       locations = result.locationsSelected;
-      console.log("Locations:", locations);
       current_location = locations[roundNumber-1];
       console.log("FIND: "+ current_location[0].name);
       updateLocationForRound();
@@ -124,6 +116,11 @@ function generatePolygon(location){
   return L.polygon(geom, {color: 'red'});
 }
 
+function locationPrettyFormat(location_string) {
+  const loc = location_string.replaceAll('_', ' ');
+  return loc.charAt(0).toUpperCase() + loc.slice(1);
+}
+
 function generateEndGameMap() {
 
   popUpMap = L.map('pop-up-map', {
@@ -143,7 +140,7 @@ function generateEndGameMap() {
   L.circle(streetViewLocation, {radius: 200, color: 'blue', dashArray: '5, 10', fill: false}).addTo(popUpMap);
 
 
-  map.doubleClickZoom = false;
+  popUpmap.doubleClickZoom = false;
 
   // Function to handle map resizing
   function handleMapResize() {
@@ -159,15 +156,15 @@ function updateLocationForRound() {
   let innerHTMLContent = "<strong>Find: " + current_location[0].name + "</strong><br>Location Info";
 
   if (current_location[0].shop !== null) {
-    innerHTMLContent += "<br>Shop: " + current_location[0].shop;
+    innerHTMLContent += "<br>Shop: " + locationPrettyFormat(current_location[0].shop);
   }
 
   if (current_location[0].amenity !== null) {
-    innerHTMLContent += "<br>Amenity: " + current_location[0].amenity;
+    innerHTMLContent += "<br>Amenity: " + locationPrettyFormat(current_location[0].amenity);
   }
 
-  if (current_location[0].building !== null) {
-    innerHTMLContent += "<br>Building: " + current_location[0].building;
+  if (current_location[0].building !== null && current_location[0].building !== 'yes') {
+    innerHTMLContent += "<br>Building: " + locationPrettyFormat(current_location[0].building);
   }
 
   if (current_location[0].street !== null) {
@@ -336,11 +333,6 @@ function submit() {
   function closePopup(){
 
     greyOutSubmitButton(submit);
-
-    // let sleuthDropLocationMarker = L.marker(streetViewLocation, {
-    //   icon: sleuthIcon
-    // }).addTo(map);
-  
   
     popup.classList.remove('open-popup');
     // map.removeLayer(correct_marker);
