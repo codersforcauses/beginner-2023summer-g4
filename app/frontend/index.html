@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
+    
     <title>PerthPinpoint</title>
 </head>
 <body style="overflow: auto; overflow-x: hidden;">
     <div class="landing-page">
         <header>
             <h1 class = 'landing-title'>PerthPinpoint</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/tutorial">Tutorial</a>
+                <a href="/leaderboard">Leaderboard</a>
+            </nav>
         </header>
         <div class = 'login-container'>
             <img class="landing-image" src ="/static/assets/perth-cbd-night-opac-full.png">
             <div class = 'login-bar'>
-                <h2>Enter a username</h2>
-                <input type="text" id="username" name="username" required placeholder="Enter a username...">
+                <h2>Enter a Username</h2>
+                <input type="text" id="username" name="username" required placeholder="Enter a Username...">
             </div>
 
             <script>
@@ -80,7 +90,7 @@
             </div>
             
             <div class="start-button-container">
-                <p><strong>Click the start button to begin playing!</strong></p>
+                <p style = "color: white;"><strong>Click the start button to begin playing!</strong></p>
                 <button id= "game-button" onclick= "enterMainPage()"><strong>Start Game</strong></button>
             </div>
         </div>
@@ -96,11 +106,13 @@
             if (!username){
                 alert("Please enter a username!");
                 window.location.href = "/";
+                return;
             }
 
             if (!selectedMode){
                 alert("Please select a game mode before entering the main page.");
                 window.location.href = "/";
+                return;
             }
             localStorage.setItem("game_mode", selectedMode.value);
             localStorage.setItem("username", username);

@@ -29,6 +29,31 @@ header {
     z-index: 100;
 }
 
+
+header h1 {
+    margin-right: auto;
+    margin-left: 100px;
+}
+
+.round-info-header{
+    display: flex;
+    margin-right: 100px;
+    gap: 350px;
+    align-items: center;
+}
+
+header nav {
+    display: flex;
+    margin-right: 100px;
+    gap: 150px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    /* margin-right: 100px; */
+}
+
 .roundStatus{
     display: flex;
     flex-direction: row;
@@ -269,7 +294,7 @@ cursor: crosshair !important;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     box-sizing: border-box;
 }
 
@@ -299,17 +324,16 @@ cursor: crosshair !important;
 }
 
 .game-modes-submit {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .game-mode-options {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    gap: 6px;
     align-items: center;
     border-radius: 10px;
-    width: 95%;
+    width: 100%;
     z-index: 1;
 }
 
@@ -321,7 +345,7 @@ cursor: crosshair !important;
 }
 
 .game-mode-option {
-    width: 400px;
+    width: 380px;
     height: 470px;
     /* min-height: 230px; */
     margin: 10px;

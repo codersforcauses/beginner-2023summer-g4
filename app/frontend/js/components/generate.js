@@ -112,7 +112,7 @@ function shuffleArray(array) {
 
 async function getRoadsAndStreets(streetViewLocation){
 
-  const overpassQuery = `[out:json];way(around:2750, ${streetViewLocation.lat},${streetViewLocation.lng})[highway~"${highwayRegex}"][name];out tags geom;`
+  const overpassQuery = `[out:json];way(around:2250, ${streetViewLocation.lat},${streetViewLocation.lng})[highway~"${highwayRegex}"][name];out tags geom;`
 
   console.log(overpassQuery);
   try {
@@ -140,13 +140,12 @@ async function getRoadsAndStreets(streetViewLocation){
       for (const other_road_data of data.elements) {
         const other_road_name = other_road_data.tags.name;
         if (other_road_name === road_name && road_data.id !== other_road_data.id) {
-          console.log("FOUND SAME NAME");
           road.geom.push(other_road_data.geometry.map(obj => [obj.lat, obj.lon]));
         }
       }
       roads.push(road);
 
-      if (roads.length === 5){break;}
+      if (roads.length === 6){break;}
     }
 
     return roads;

@@ -21,12 +21,12 @@ async function generateLandmarksUntilLength5() {
   return {streetViewLocation, locationsSelected};
 }
 
-async function generateRoadsUntilLength5() {
+async function generateRoadsUntilLength6() {
   let locationsSelected = [];
   let streetViewLocation; 
 
-  while (locationsSelected.length < 5) {
-    console.log("LESS THAN 5!");
+  while (locationsSelected.length < 6) {
+    console.log("LESS THAN 6!");
     const result = await generateNewStreetView();
 
     if (result !== null) {
@@ -36,8 +36,11 @@ async function generateRoadsUntilLength5() {
   }
 
   console.log("Roads:", locationsSelected);
+
+  const referenceLoc = locationsSelected[5];
+  locationsSelected = locationsSelected.slice(0, 5);
   
-  return {streetViewLocation, locationsSelected};
+  return {streetViewLocation, locationsSelected, referenceLoc};
 }
 
 async function loadStreetViewAndMap() { 
@@ -45,6 +48,7 @@ async function loadStreetViewAndMap() {
   let streetViewLocation = null;
   let map = null;
   let locationsSelected = null;
+  const referenceLoc = null;
 
   try {
 
@@ -55,11 +59,12 @@ async function loadStreetViewAndMap() {
         result = generateLandmarksUntilLength5();
       }
       else if (game_mode == "sleuth"){
-        result = generateRoadsUntilLength5();
+        result = generateRoadsUntilLength6();
       }
 
       streetViewLocation = (await result).streetViewLocation;
       locationsSelected = (await result).locationsSelected;
+      referenceLoc = (await result).referenceLoc;
 
     }
     else {
@@ -114,8 +119,11 @@ async function loadStreetViewAndMap() {
          icon: dropIcon
        }).addTo(map);
 
-       L.circle(streetViewLocation, {radius: (game_mode === "landmark") ? 200 : 2750, color: (game_mode === "landmark") ? 'blue' : '#00eeff', dashArray: '5, 10', fill: false}).addTo(map);
+       L.circle(streetViewLocation, {radius: (game_mode === "landmark") ? 200 : 2250, color: (game_mode === "landmark") ? 'blue' : '#00eeff', dashArray: '5, 10', fill: false}).addTo(map);
 
+       if (game_mode === "sleuth") {
+        L.polyline(referenceLoc.geom, {color: 'green', weight: 7}).addTo(map);
+       }
 
       }
 

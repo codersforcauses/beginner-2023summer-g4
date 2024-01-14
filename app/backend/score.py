@@ -1,7 +1,7 @@
 # score.py
 
 def city_points(data):
-    scale_factor = 46000 # need to play around with this
+    scale_factor = 45000 # need to play around with this
     distance = data["distance"]
     if distance < 0:
         return -1
