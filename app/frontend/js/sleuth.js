@@ -166,9 +166,24 @@ function updatePopUpMap(current_loc) {
 }
 
 
-function checkIfLocationIsFound(locations){
-  return false;
+function checkIfLocationIsFound(locations) {
+  const roadPolyLine = generatePolyLine(locations);
+  console.log(roadPolyLine);
+  console.log(userPickedLocation);
+  console.log(map);
+
+  // Make sure L.GeometryUtil is defined before calling closest
+  if (L.GeometryUtil) {
+      const closestPoint = L.GeometryUtil.closest(map, roadPolyLine, userPickedLocation);
+      const distance = closestPoint.distanceTo(userPickedLocation);
+      console.log(distance);
+      return distance < 25; // 30m tolerance
+  } else {
+      console.error('L.GeometryUtil is not defined. Make sure the library is loaded.');
+      return false;
+  }
 }
+
   
 function submit() {
     let distanced = JSON.stringify(distanced_data);

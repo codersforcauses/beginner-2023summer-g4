@@ -38,6 +38,7 @@
     {% elif game_mode == 'discoveries' %}
     <script type='module' src="/static/js/discoveries.js"></script>
     {% elif game_mode == 'sleuth' %}
+    <script src="/static/js/components/leaflet.geometryutil.js"></script>
     <script type='module' src="/static/js/sleuth.js"></script>
     {% elif game_mode == 'landmark' %}
     <script src="https://cdn.rawgit.com/hayeswise/Leaflet.PointInPolygon/v1.0.0/wise-leaflet-pip.js"></script>
@@ -60,18 +61,20 @@
     <div id="content">
         <header>
             <h1 class = 'title'>PerthPinpoint</h1>
-            <div class = 'timer-container'>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#aaccff" d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
-                <p id = 'round-timer'></p>
-            </div>
-            <p id = 'round-no.'><strong>Round: 1</strong></p>
-            <div class="roundStatus">
-                <div id = 'total-points'><strong>Progress:</strong></div>
-                <div class="statusBox empty" id = 'loc-1'>E</div>
-                <div class="statusBox empty" id = 'loc-2'>E</div>
-                <div class="statusBox empty" id = 'loc-3'>E</div>
-                <div class="statusBox empty" id = 'loc-4'>E</div>
-                <div class="statusBox empty" id = 'loc-5'>E</div>
+            <div class = 'round-info-header'>
+                <div class = 'timer-container'>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#aaccff" d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+                    <p id = 'round-timer'></p>
+                </div>
+                <p id = 'round-no.'><strong>Round: 1</strong></p>
+                <div class="roundStatus">
+                    <div id = 'total-points'><strong>Progress:</strong></div>
+                    <div class="statusBox empty" id = 'loc-1'>E</div>
+                    <div class="statusBox empty" id = 'loc-2'>E</div>
+                    <div class="statusBox empty" id = 'loc-3'>E</div>
+                    <div class="statusBox empty" id = 'loc-4'>E</div>
+                    <div class="statusBox empty" id = 'loc-5'>E</div>
+                </div>
             </div>
         </header>
         <div class="map-guess-container" id = 'map-guess-container'>
