@@ -135,11 +135,6 @@ function post_data(send, endpoint){
         popupElement.style.borderColor = '#b3ff00';
         popupElement.style.background = '#f3ffd6';
         pop_up_button.style.background = '#b3ff00';
-      // } else if (score >= 300) {
-      //   pop_up_message.innerHTML = 'That was a decent guess'
-      //   popupElement.style.borderColor = '#d6ff00';
-      //   popupElement.style.background = '#f3ffd6';
-      //   pop_up_button.style.background = '#d6ff00';
       } else if (score >= 200) {
         pop_up_message.innerHTML = 'That guess was ok'
         popupElement.style.borderColor = '#ffbf00';
@@ -237,10 +232,23 @@ async function closePopup(){
   userPickedLocation = undefined;
   line = undefined;
 
-  document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
-  document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
-  document.getElementById('map-guess-container').classList.remove('slide-away');
-  document.title = `${roundNumber} | PerthPinpoint`
+  const roundNoElements = document.getElementsByClassName('round-no.');
+  for (let i = 0; i < roundNoElements.length; i++) {
+    roundNoElements[i].innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
+  }
+
+  const totalPointsElements = document.getElementsByClassName('total-points');
+  for (let i = 0; i < totalPointsElements.length; i++) {
+    totalPointsElements[i].innerHTML = "<strong>Points: " +  totalScore +"</strong>";
+  }
+
+  let map_guess_container = document.getElementById('map-guess-container')
+  if (window.innerWidth < 700) {
+    map_guess_container.style.display = '';
+  }
+  map_guess_container.classList.remove('slide-away');
+
+  document.title = `${roundNumber} | Classic City`
 
   runTimer(1000);
 
