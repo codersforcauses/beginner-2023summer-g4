@@ -1,7 +1,7 @@
 let currentTimerID;
 
 function countdown(timeInSeconds) {
-    var timer = document.getElementById('round-timer');
+    const timers = document.getElementsByClassName('round-timer');
 
     // Calculate minutes and seconds
     let minutes = Math.floor(timeInSeconds / 60);
@@ -11,8 +11,11 @@ function countdown(timeInSeconds) {
     let formattedMinutes = String(minutes).padStart(2, '0');
     let formattedSeconds = String(seconds).padStart(2, '0');
 
-    // Update the timer element
-    timer.innerHTML = `<strong>${formattedMinutes}:${formattedSeconds}</strong>`;
+    for (let timer of timers) {
+        // Update the timer element
+        timer.innerHTML = `<strong>${formattedMinutes}:${formattedSeconds}</strong>`;
+    }
+
 }
 
 

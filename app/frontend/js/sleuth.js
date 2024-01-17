@@ -10,6 +10,7 @@ let map;
 let streetViewLocation;
 let locations;
 let current_location;
+let referenceLoc;
 
 let popUpMap;
 let currentLocationMapElements;
@@ -31,6 +32,7 @@ loadStreetViewAndMap().then(async (result) => {
       streetViewLocation = result.streetViewLocation;
       locations = result.locationsSelected;
       current_location = locations[roundNumber-1];
+      referenceLoc = result.referenceLoc;
       updateLocationForRound();
 
       runTimer(360, submit);
@@ -196,7 +198,12 @@ function submit() {
       // send json to backend, to add to db
     }
   
-    document.getElementById('map-guess-container').classList.add('slide-away');
+    let map_guess_container = document.getElementById('map-guess-container')
+    if (window.innerWidth < 700) {
+      map_guess_container.style.display = '';
+    }
+    map_guess_container.classList.remove('slide-away');
+
     document.getElementById('location-for-round-container').classList.add('slide-away');
 
   
@@ -262,7 +269,7 @@ function submit() {
 
   function updateLocationForRound() {
     const locationInfoElement = document.getElementById('location-round-info');
-    let innerHTMLContent = "Find: " + current_location.name;
+    let innerHTMLContent = "Find: " + current_location.name + "<br>" + referenceLoc.name + " is shown as a reference road in green"
     locationInfoElement.innerHTML = innerHTMLContent;
   
   }

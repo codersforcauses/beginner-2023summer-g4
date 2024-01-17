@@ -309,7 +309,7 @@ function submit() {
         pop_up_button.style.background = '#4DC25E';
         } 
         else if (distanced_data.found === false) {
-        pop_up_message.innerHTML = 'You were too far!!'
+        pop_up_message.innerHTML = 'You did not find the right location!'
         popupElement.style.borderColor = '#ff0000';
         popupElement.style.background = '#ffe7e7';
         pop_up_button.style.background = '#ff0000';
@@ -322,7 +322,7 @@ function submit() {
         }
 
         if (!distanced_data.found) {
-          pop_up_score.innerHTML = tips[getRandomInt(tips.length-1)];
+          pop_up_score.textContent = tips[getRandomInt(tips.length-1)];
         }
         else if (distanced_data.found === null){
           pop_up_score.innerHTML = 'Check the map to see where the location was';
@@ -337,6 +337,19 @@ function submit() {
     popup.classList.remove('open-popup');
     // map.removeLayer(correct_marker);
 
+    //const num = roundNumber - 1;
+
+    const elem_id = "loc-" + (roundNumber - 1);
+    const elem = document.getElementById(elem_id);
+
+    if (distanced_data.found){
+      elem.innerHTML = 'F';
+    }
+    else {
+
+      elem.innerHTML = 'N';
+
+    }
 
     for (const location of currentLocationMapElements){
       //console.log(locLayer);
@@ -361,9 +374,18 @@ function submit() {
     userPickedLocation = undefined;
     //line = undefined;
   
-    document.getElementById('round-no.').innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
+    const roundNoElements = document.getElementsByClassName('round-no.');
+    for (let i = 0; i < roundNoElements.length; i++) {
+      roundNoElements[i].innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
+    }
     // document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
-    document.getElementById('map-guess-container').classList.remove('slide-away');
+
+    let map_guess_container = document.getElementById('map-guess-container')
+    if (window.innerWidth < 700) {
+      map_guess_container.style.display = '';
+    }
+    map_guess_container.classList.remove('slide-away');
+
     document.getElementById('location-for-round-container').classList.remove('slide-away');
     //document.title = `${roundNumber} | PerthPinpoint`
 

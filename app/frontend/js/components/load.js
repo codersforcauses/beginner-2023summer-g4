@@ -48,7 +48,10 @@ async function loadStreetViewAndMap() {
   let streetViewLocation = null;
   let map = null;
   let locationsSelected = null;
-  const referenceLoc = null;
+  let referenceLoc = null;
+
+  const boundsRotnest = [[-32.030745, 115.442019], [-31.989988, 115.561232]];
+  const boundsCity = [[-32.676015, 115.665061], [-31.636557, 116.082104]];
 
   try {
 
@@ -88,11 +91,8 @@ async function loadStreetViewAndMap() {
           crossOrigin: true,
         }).addTo(map);
 
-        const boundsRotnest = [[-32.030745, 115.442019], [-31.989988, 115.561232]];
-        const boundsCity = [[-32.676015, 115.665061], [-31.636557, 116.082104]];
 
-
-        // create an orange rectangle
+        // create a rectangle boundary
         L.rectangle(boundsCity, {color: "blue", weight: 2, opacity: 0.4, fill: false, dashArray: '5, 10' }).addTo(map);
         L.rectangle(boundsRotnest, {color: "blue", weight: 2, opacity: 0.4, fill: false, dashArray: '5, 10' }).addTo(map);
 
@@ -113,6 +113,9 @@ async function loadStreetViewAndMap() {
           tileSize: 512,
           zoomOffset: -1,
           }).addTo(map);
+          L.rectangle(boundsCity, {color: "pink", weight: 2, opacity: 0.5, fill: false, dashArray: '5, 10' }).addTo(map);
+          L.rectangle(boundsRotnest, {color: "pink", weight: 2, opacity: 0.5, fill: false, dashArray: '5, 10' }).addTo(map);
+          L.polyline(referenceLoc.geom, {color: '#37DB5E', weight: 7}).addTo(map);
         }
 
        let sleuthDropLocationMarker = L.marker(streetViewLocation, {
@@ -120,10 +123,6 @@ async function loadStreetViewAndMap() {
        }).addTo(map);
 
        L.circle(streetViewLocation, {radius: (game_mode === "landmark") ? 200 : 2250, color: (game_mode === "landmark") ? 'blue' : '#00eeff', dashArray: '5, 10', fill: false}).addTo(map);
-
-       if (game_mode === "sleuth") {
-        L.polyline(referenceLoc.geom, {color: 'green', weight: 7}).addTo(map);
-       }
 
       }
 
@@ -142,7 +141,10 @@ async function loadStreetViewAndMap() {
     console.error('Error:', error);
   }
 
-  return {map, streetViewLocation, locationsSelected};
+
+
+
+  return {map, streetViewLocation, locationsSelected, referenceLoc};
 }
 
   export {loadStreetViewAndMap};

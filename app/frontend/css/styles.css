@@ -19,14 +19,130 @@ header {
     display: flex;
     top: 0;
     background-color: #20314A;
-    height: 50px;
-    padding: 15px 5px;
+    /* dont ask me how/why 81.54 works */
+    min-height: 81.54px; 
     width: 100%;
+    left: 0;
+    right: 0;
     align-items: center;
     justify-content: space-evenly;
     color: white;
-    position: absolute;
+    position: fixed;
     z-index: 100;
+}
+
+.round-number-points-small {
+    display: none;
+}
+
+.map-guess-container{
+    position: absolute;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    bottom: 15px;
+    left: 15px; 
+    z-index: 5;
+    width: 350px;
+    height: 300px;
+    transform: translateX(0);
+    transition: transform 0.5s ease, width 0.3s, height 0.3s;
+}
+
+.open-map-guess-container-button {
+    bottom: 15px;
+    left: 15px;
+    z-index: 9999;
+    display: none;
+}
+
+
+.map-guess-container:hover{
+    width: 70%;
+    height: calc(100% - (50px + 60px));
+    /* margin-left: 12px;
+    bottom: 0; */
+    bottom: 15px;
+}
+
+.close-map-button {
+
+    display: none;
+
+}
+
+
+
+@media only screen and (max-width: 1360px) {
+
+    header .round-info-header{
+        display: flex;
+        margin-right: 150px;
+        gap: 200px;
+        align-items: center;
+        transition: gap 0.3s ease;
+    }
+
+    .map-guess-container {
+        display: flex;
+    }
+
+}
+
+@media only screen and (max-width: 1160px) {
+
+    header .round-info-header{
+        display: flex;
+        margin-right: 150px;
+        gap: 150px;
+        align-items: center;
+        transition: gap 0.3s ease;
+    }
+
+    .map-guess-container {
+        display: flex;
+    }
+
+}
+
+@media only screen and (max-width: 1060px) {
+    header .round-info-header{
+        display: flex;
+        margin-right: 150px;
+        gap: 125px;
+        align-items: center;
+        transition: gap 0.3s ease;
+    }
+
+    .map-guess-container {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+
+    .map-guess-container {
+        width: 260px;
+        height: 250px;
+        display: flex;
+    }
+
+    header h1{
+        display: none;
+    }
+    
+    header .round-info-header{
+        display: flex;
+        width: 100%;
+        margin-right: 0;
+        gap: 0;
+        justify-content: space-around;
+        align-items: center;
+        transition: gap 0.3s ease;
+        position: relative;
+    }
+
 }
 
 
@@ -37,15 +153,16 @@ header h1 {
 
 .round-info-header{
     display: flex;
-    margin-right: 100px;
-    gap: 350px;
+    margin-right: 150px;
+    gap: 300px;
     align-items: center;
+    transition: gap 0.3s ease;
 }
 
 header nav {
     display: flex;
     margin-right: 100px;
-    gap: 150px;
+    gap: 140px;
 }
 
 header nav a {
@@ -87,34 +204,9 @@ header nav a {
     position: absolute;
 }
 
-.map-guess-container{
-    position: absolute;
-    display: flex;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-    bottom: 15px;
-    left: 5px; 
-    z-index: 5;
-    width: 28%;
-    height: 40%;
-    margin-left: 12px;
-    transform: translateX(0);
-    transition: transform 0.5s ease, width 0.3s, height 0.3s;
-
-}
-
-.map-guess-container:hover{
-    width: 58.8%;
-    height: 84%;
-    /* margin-left: 12px;
-    bottom: 0; */
-    bottom: 15px;
-}
-
 .map-guess-container.slide-away {
     transform: translateX(-120%);
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
     margin: 0;
     /* padding: 0; */
 }
@@ -123,7 +215,7 @@ header nav a {
     position: relative;
     z-index: 5;
     width: 100%;
-    height: 80%;
+    height: 100%;
     border-radius: 8px;
 }
 
@@ -137,6 +229,11 @@ header nav a {
     overflow: hidden;
     display: block; 
     margin: 0 0 0 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
 
@@ -166,7 +263,7 @@ cursor: crosshair !important;
     color: black;
     border: 3px solid #4DC25E;
     visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
+    transition: transform 0.3s, top 0.3s;
     z-index: 10;
 }
 
@@ -174,6 +271,7 @@ cursor: crosshair !important;
     width: 60%;
     background: white;
     border-radius: 8px;
+    margin-top: 40.77px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -184,7 +282,6 @@ cursor: crosshair !important;
     border: 3px solid #4DC25E;
     visibility: visible;
     pointer-events: auto;
-    margin-top: 50px;
 }
 
 .score-for-a-round-popup h2 {
@@ -194,8 +291,8 @@ cursor: crosshair !important;
     margin-bottom: 32px;
 }
 .score-for-a-round-popup p {
-    font-size: 30px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 545;
     margin: 30px 0px 10px;
     margin-bottom: 32px;
 }
@@ -237,13 +334,13 @@ cursor: crosshair !important;
 
 .location-for-round-container {
     position: fixed;
-    top: 20%;
-    right: 10px;
+    top: 97px;
+    right: 16px;
     padding: 5px 20px;
     background-color: #09B4F7;
     border-radius: 8px;
     border: none;
-    z-index: 1000;
+    z-index: 3;
     transition: transform 0.5s ease;
 }
 
@@ -257,7 +354,7 @@ cursor: crosshair !important;
 
 .location-for-round-container.slide-away {
     transform: translateX(120%);
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
     margin: 0;
 }
 
@@ -407,4 +504,79 @@ cursor: crosshair !important;
 
 #game-button:hover {
     background-color: #d909f4;
+}
+
+@media only screen and (max-width: 700px) {
+
+    .map-guess-container {
+        display: none;
+        width: calc(100% - (30px));
+        height: calc(100% - (50px + 60px));
+        bottom: 15px;
+        
+    }
+
+    .map-guess-container:hover{
+        width: calc(100% - (30px));
+        height: calc(100% - (50px + 60px));
+        bottom: 15px;
+        display: none;
+    }
+
+    .open-map-guess-container-button {
+        position: fixed;
+        bottom: 100px;
+        left: 50px;
+        z-index: 4;
+        display: inline;
+        width: 80px; 
+        height: auto;
+        cursor: pointer;
+    }
+
+    .close-map-button {
+        z-index: 5;
+        width: 40px;
+        height: auto;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        opacity: 0.8;
+        display: inline;
+    }
+
+    header h1{
+        display: none;
+    }
+    
+    header .round-info-header{
+        display: flex;
+        width: 100%;
+        margin-right: 0;
+        gap: 0;
+        justify-content: space-around;
+        align-items: center;
+        transition: gap 0.3s ease;
+        position: relative;
+    }
+
+    .score-for-a-round-popup.open-popup {
+        width: calc(100% - (65px));
+        background: white;
+        border-radius: 0px;
+        position: absolute;
+        top: 81.54px; 
+        left: 50%;
+        transform: translateX(-50%) scale(1);
+        bottom: 0;
+        text-align: center;
+        padding: 0 30px 30px;
+        color: black;
+        border: 3px solid #4DC25E;
+        visibility: visible;
+        pointer-events: auto;
+        margin-top: 0;
+    }
+
+    
 }
