@@ -260,6 +260,18 @@ function submit() {
 
     greyOutSubmitButton(submit);
     endTimer(currentTimerID);
+
+    const elem_id = "loc-" + (roundNumber);
+    const elem = document.getElementById(elem_id);
+
+    if (distanced_data.found){
+      elem.src = '/static/assets/green.png';
+    }
+    else {
+
+      elem.src = '/static/assets/red.png';
+
+    }
   
     if (roundNumber === 5) {
       // handle end game stuff
@@ -303,22 +315,22 @@ function submit() {
 
 
         if (distanced_data.found) {
-        pop_up_message.innerHTML = 'Nice! You found the exact location'
-        popupElement.style.borderColor = '#4DC25E';
-        popupElement.style.background = '#e1ffe6';
-        pop_up_button.style.background = '#4DC25E';
+          pop_up_message.innerHTML = 'Nice! You found the exact location'
+          popupElement.style.borderColor = '#4DC25E';
+          popupElement.style.background = '#e1ffe6';
+          pop_up_button.style.background = '#4DC25E';
         } 
         else if (distanced_data.found === false) {
-        pop_up_message.innerHTML = 'You did not find the right location!'
-        popupElement.style.borderColor = '#ff0000';
-        popupElement.style.background = '#ffe7e7';
-        pop_up_button.style.background = '#ff0000';
+          pop_up_message.innerHTML = 'You did not find the right location!'
+          popupElement.style.borderColor = '#ff0000';
+          popupElement.style.background = '#ffe7e7';
+          pop_up_button.style.background = '#ff0000';
         }
         else {
-        pop_up_message.innerHTML = "You ran out of time!"
-        popupElement.style.borderColor = '#ff0000';
-        popupElement.style.background = '#ffe7e7';
-        pop_up_button.style.background = '#ff0000';
+          pop_up_message.innerHTML = "You ran out of time!"
+          popupElement.style.borderColor = '#ff0000';
+          popupElement.style.background = '#ffe7e7';
+          pop_up_button.style.background = '#ff0000';
         }
 
         if (!distanced_data.found) {
@@ -327,32 +339,28 @@ function submit() {
         else if (distanced_data.found === null){
           pop_up_score.innerHTML = 'Check the map to see where the location was';
         }
+
+        if (roundNumber === 5) {
+          document.getElementById('next-round').innerHTML = 'Go to the home page';
+        }
     
   }
 
   function closePopup(){
 
+    if (roundNumber === 6) {
+
+      window.location.href = '/';
+
+    }
+
+
+
     greyOutSubmitButton(submit);
   
     popup.classList.remove('open-popup');
-    // map.removeLayer(correct_marker);
-
-    //const num = roundNumber - 1;
-
-    const elem_id = "loc-" + (roundNumber - 1);
-    const elem = document.getElementById(elem_id);
-
-    if (distanced_data.found){
-      elem.innerHTML = 'F';
-    }
-    else {
-
-      elem.innerHTML = 'N';
-
-    }
 
     for (const location of currentLocationMapElements){
-      //console.log(locLayer);
       for (const key in location){
         if (location[key] !== null) {
           console.log(location[key]);
@@ -360,25 +368,18 @@ function submit() {
         }
       }
     }
-    //popUpMap.removeLayer(popUpCorrectMarker)
+
     if (marker !== undefined){
       map.removeLayer(marker);
-      //popUpMap.removeLayer(popUpUserMarker);
-      //popUpMap.removeLayer(line);
     }
   
     marker = undefined;
-    // correct_marker = undefined;
-    //popUpCorrectMarker = undefined;
-    //popUpUserMarker = undefined;
     userPickedLocation = undefined;
-    //line = undefined;
   
     const roundNoElements = document.getElementsByClassName('round-no.');
     for (let i = 0; i < roundNoElements.length; i++) {
       roundNoElements[i].innerHTML = "<strong>Round: " +  roundNumber +"</strong>";
     }
-    // document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
 
     let map_guess_container = document.getElementById('map-guess-container')
     if (window.innerWidth < 700) {
@@ -387,7 +388,6 @@ function submit() {
     map_guess_container.classList.remove('slide-away');
 
     document.getElementById('location-for-round-container').classList.remove('slide-away');
-    //document.title = `${roundNumber} | PerthPinpoint`
 
     current_location = locations[roundNumber-1];
 

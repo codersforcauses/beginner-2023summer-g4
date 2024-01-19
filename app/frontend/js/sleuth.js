@@ -277,6 +277,18 @@ function submit() {
   function closePopup(){
 
     greyOutSubmitButton(submit);
+
+    const elem_id = "loc-" + (roundNumber - 1);
+    const elem = document.getElementById(elem_id);
+
+    if (distanced_data.found){
+      elem.src = '/static/assets/green.png';
+    }
+    else {
+
+      elem.src = '/static/assets/red.png';
+
+    }
   
     popup.classList.remove('open-popup');
     // map.removeLayer(correct_marker);
