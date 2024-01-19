@@ -1,4 +1,6 @@
 let currentTimerID;
+let startTime;
+
 
 function countdown(timeInSeconds) {
     const timers = document.getElementsByClassName('round-timer');
@@ -20,6 +22,7 @@ function countdown(timeInSeconds) {
 
 
 function runTimer(time, submit_func) {
+    startTime = Date.now();
 
     currentTimerID = setInterval(function () {
         countdown(time);
@@ -33,6 +36,9 @@ function runTimer(time, submit_func) {
 
 function endTimer(timerID){
     clearInterval(timerID);
+    const endTime = Date.now();
+    const elapsedTimeInSeconds = (endTime - startTime)/1000;
+    return elapsedTimeInSeconds;
 }
 
 export {runTimer, endTimer, currentTimerID};

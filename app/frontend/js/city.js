@@ -9,8 +9,8 @@ import { makeSubmitButtonClickable, greyOutSubmitButton } from './components/sub
 let map;
 let streetViewLocation;
 
-var round;
-var complete;
+let round_data;
+let complete;
 
 var totalScore = 0;
 var roundNumber = 1;
@@ -40,7 +40,7 @@ loadStreetViewAndMap().then((result) => {
   if (result) {
     map = result.map;
     streetViewLocation = result.streetViewLocation;
-    runTimer(15, submit);
+    runTimer(360, submit);
     startGame();
   } else {
     console.error('Failed to load street view and map.');
@@ -61,12 +61,12 @@ function startGame(){
 
     makeSubmitButtonClickable(submit);
   
-    let round_data = {
+    round_data = {
       game_mode: "city",
       round: Number(roundNumber),  // TO DO: add elapsed time
       distance: Number(e.latlng.distanceTo(streetViewLocation))
     }
-    round = JSON.stringify(round_data);
+    //round = JSON.stringify(round_data);
 
     // latitude: Number(e.latlng.lat)
     // longitude: Number(e.latlng.lng)
@@ -109,9 +109,14 @@ function post_data(send, endpoint){
         }
       }
 
-      let score = data['score'];
+      const score = data['score'];
+      const multiplier = data['multiplier'];
 
-      totalScore += ((score == -1) ? 0 : score);
+      console.log(data);
+
+
+      totalScore += Math.round(((score == -1) ? 0 : score) * multiplier);
+
 
       let popup = document.getElementById('popup');
 
@@ -126,7 +131,7 @@ function post_data(send, endpoint){
 
 
       if (score >= 500) {
-        pop_up_message.innerHTML = 'That is close to the exact location, Perfect Score!'
+        pop_up_message.innerHTML = 'Perfect Score!'
         popupElement.style.borderColor = '#4DC25E';
         popupElement.style.background = '#e1ffe6';
         pop_up_button.style.background = '#4DC25E';
@@ -153,31 +158,38 @@ function post_data(send, endpoint){
         pop_up_button.style.background = '#ff0000';
       }
       
-      pop_up_score.innerHTML = 'You got ' + ((score == -1) ? 0 : score) + ' points';
+      pop_up_score.innerHTML = 'You got ' + (Math.round(((score == -1) ? 0 : score) * multiplier)) + ' points';
+
+      if (multiplier > 1.4) {
+        pop_up_score.innerHTML += '<br>That was a fast guess! Points were multiplied by ' + multiplier + 'x';
+      } 
+      else if (multiplier === 1.3) {
+          pop_up_score.innerHTML += '<br>You guessed pretty fast! Points were multiplied by ' + multiplier + 'x';
+      } 
+      else if (multiplier === 1.2) {
+          pop_up_score.innerHTML += '<br>Good job! Your points were multiplied by ' + multiplier + 'x for a reasonably quick guess.';
+      } 
+      else if (multiplier === 1.1) {
+          pop_up_score.innerHTML += '<br>You gained a slight bonus with a ' + multiplier + 'x multiplier for your guess speed.';
+      } 
 
       if (roundNumber === 1){
         generateEndGameMap();
       }
 
       if (roundNumber === 10) {
-        let complete_data = {
-        game_mode: "city",
-                usern: localStorage.getItem('username'),
-                totalscore: Number(totalScore)
-              }
-              complete = JSON.stringify(complete_data);
-              const url_complete = `/api/end`;
-              post_data(complete, url_complete);
-          
-              sessionStorage.setItem("lastscore", totalScore);
-              window.location.href = "/leaderboard";
-        }
+
+        document.getElementById('next-round').innerHTML = 'Go to the leaderboard';
+
+      }
 
       updatePopUpMap();
 
       streetViewLocation = generateNewStreetView();
 
       popup.classList.add('open-popup');
+
+
 
       roundNumber++;
 
@@ -191,25 +203,52 @@ function submit() {
 
   greyOutSubmitButton(submit);
 
-  endTimer(currentTimerID);
+  const elapsedTime = endTimer(currentTimerID);
 
   if (marker === undefined){
 
-    let round_data = {
+    round_data = {
       game_mode: "city",
       round: roundNumber,
-      distance: -1
+      distance: -1,
+      elapsedTime: null
     }
-    round = JSON.stringify(round_data);
+  }
+  else {
+
+    round_data = {
+      game_mode: "city",
+      round: roundNumber,
+      distance: Number(userPickedLocation.distanceTo(streetViewLocation)),
+      elapsedTime: elapsedTime
+    }
   }
 
+  const round = JSON.stringify(round_data);
+
   document.getElementById('map-guess-container').classList.add('slide-away');
+
   const url_submit = `/api/submit`;
   post_data(round, url_submit);
 
 }
 
 async function closePopup(){
+
+  if (roundNumber === 11) {
+    let complete_data = {
+    game_mode: "city",
+            usern: localStorage.getItem('username'),
+            totalscore: Number(totalScore)
+          }
+          complete = JSON.stringify(complete_data);
+          const url_complete = `/api/end`;
+          post_data(complete, url_complete);
+      
+          sessionStorage.setItem("lastscore", totalScore);
+          window.location.href = "/leaderboard";
+    return;
+  }
 
   streetViewLocation = await streetViewLocation;
 
@@ -250,7 +289,7 @@ async function closePopup(){
 
   document.title = `${roundNumber} | Classic City`
 
-  runTimer(1000);
+  runTimer(360);
 
 }
 

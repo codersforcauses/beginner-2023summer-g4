@@ -70,19 +70,19 @@
                     {% if game_mode == 'city' or game_mode == 'discoveries' %}
                         <div class = 'total-points'><strong>Points: 0</strong></div>
                     {% else %}
-                        <div class = 'total-points'><strong>Progress:</strong></div>
+                        <div class = 'total-points'><strong>Progress: </strong></div>
                     {% endif %}
                     {% if game_mode == 'sleuth' or game_mode == "landmark"%}
-                        <div class="statusBox empty" id = 'loc-1'>E</div>
-                        <div class="statusBox empty" id = 'loc-2'>E</div>
-                        <div class="statusBox empty" id = 'loc-3'>E</div>
-                        <div class="statusBox empty" id = 'loc-4'>E</div>
-                        <div class="statusBox empty" id = 'loc-5'>E</div>
+                        <img class="statusBox empty" id = 'loc-1' src = '/static/assets/grey.png' alt = 'grey' style = 'width: 16px;height: auto;'>
+                        <img class="statusBox empty" id = 'loc-2' src = '/static/assets/grey.png' alt = 'grey' style = 'width: 16px;height: auto;'>
+                        <img class="statusBox empty" id = 'loc-3' src = '/static/assets/grey.png' alt = 'grey' style = 'width: 16px;height: auto;'>
+                        <img class="statusBox empty" id = 'loc-4' src = '/static/assets/grey.png' alt = 'grey' style = 'width: 16px;height: auto;'>
+                        <img class="statusBox empty" id = 'loc-5' src = '/static/assets/grey.png' alt = 'grey' style = 'width: 16px;height: auto;'>
                     {% endif %}
                 </div>
             </div>
         </header>
-        <img class = 'open-map-guess-container-button' id = 'map-icon-button' src = '/static/assets/map-icon.png' alt = 'Map-image-button'></button>
+        <img class = 'open-map-guess-container-button' id = 'map-icon-button' src = '/static/assets/map-icon.png' alt = 'Map-image-button'>
         <div class="map-guess-container" id = 'map-guess-container'>
             <div id = "map"></div>
             <img class = 'close-map-button' id = 'close-map-button' src = '/static/assets/close-button.png' alt = 'Close map'></img>

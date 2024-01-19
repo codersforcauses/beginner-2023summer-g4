@@ -72,8 +72,8 @@ async def rround(request: Request):
         log(f"[-] JSON Validation Failed!")
 
     if data["game_mode"] == "city":
-        points = city_points(data)
-        response = {"score": points}
+        points, multiplier = city_points(data)
+        response = {"score": points, "multiplier": multiplier}
         return JSONResponse(content=response)
 
     elif data["game_mode"] == "sleuth":
