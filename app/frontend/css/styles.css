@@ -18,7 +18,7 @@ body,html
 header { 
     display: flex;
     top: 0;
-    background-color: #FFE330;
+    background-color: white;
     /* dont ask me how/why 81.54 works */
     min-height: 81.54px; 
     width: 100%;
@@ -29,6 +29,10 @@ header {
     color: black;
     position: fixed;
     z-index: 100;
+}
+
+.landing-page {
+    color: black;
 }
 
 .round-number-points-small {
@@ -361,43 +365,60 @@ cursor: crosshair !important;
 
 /* Landing Page CSS */
 
-.landing-page {
-    background-color: #1D2E44;
-}
 
 .login-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 80px;
     text-align: center;
-    /* width: 100%; */
-    height:350px;
+    height:450px;
     padding: 20px;
     background-color: none;
     padding-bottom: 40px;
     position: relative;
     z-index: 1;
-    color: white;
+    background-color: #FDE112;
+}
+
+
+@keyframes flash {
+    0% { background-color: black; }
+    50% { background-color: transparent; }
+    100% { background-color: black; }
+}
+
+.login-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-bar h2 {
-    font-size: xxx-large;
+    font-size: 70px;
     margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-bar .flashing-line {
+    width: 2px;
+    height: 50px; /* Adjust the height as needed */
+    background-color: black;
+    margin: 0 10px; /* Adjust the margin as needed */
+    animation: flash 1s infinite; /* Adjust the animation duration as needed */
 }
 
 .login-bar input {
-    width: 100%;
+    width: 80%;
+    left: 0;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    border-bottom: 3px solid black;
 }
 
 /* Optional: Style the input on focus */
 .login-bar input:focus {
-    border-color: #007BFF;
     outline: none;
 }
 
@@ -406,11 +427,8 @@ cursor: crosshair !important;
     opacity: 1;
     top: 0;
     right: 0;
-    bottom: 0;
-    left: 0;
     z-index: -2;
-    width:100%;
-    transform: translateY(-13%);
+    height:450px;
 }
 
 .game-modes {
@@ -421,7 +439,11 @@ cursor: crosshair !important;
 }
 
 .game-modes-submit {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
+}
+
+.leaderboard-box {
+    margin-bottom: 50px;
 }
 
 .game-mode-options {
@@ -438,7 +460,6 @@ cursor: crosshair !important;
     padding:15px;
     font-size: xx-large;
     z-index: 1;
-    color: white;
 }
 
 .game-mode-option {
@@ -449,7 +470,7 @@ cursor: crosshair !important;
     cursor: pointer;
     box-sizing: border-box;
     border-radius: 10px;
-    background-color: #7161EF;
+    background-color: black;
     color:white;
     overflow: hidden;
     text-align: center;
@@ -466,7 +487,7 @@ cursor: crosshair !important;
 
 .game-mode-option input:checked + div,
 .game-mode-option input:hover + div {
-    background-color: #957FEF;
+    background-color: #283EB4;
     transition: background-color 0.5s ease;
 }
 
@@ -503,7 +524,7 @@ cursor: crosshair !important;
 }
 
 #game-button:hover {
-    background-color: #d909f4;
+    background-color: #283EB4;
 }
 
 @media only screen and (max-width: 700px) {
@@ -590,6 +611,7 @@ cursor: crosshair !important;
     .score-for-a-round-popup.open-popup.pop-up-multiplier {
         display: none;
     }
+}
+
 
     
-}
