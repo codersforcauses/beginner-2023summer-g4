@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,131 +9,109 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap"
+        rel="stylesheet">
+
     <title>PerthPinpoint</title>
 </head>
+
 <body style="overflow: auto; overflow-x: hidden;">
     <div class="landing-page">
 
         <header>
-            <h1 class = 'landing-title'>PerthPinpoint</h1>
+            <h1 class='landing-title'>PerthPinpoint</h1>
             <nav>
                 <a href="/">Home</a>
                 <a href="/tutorial">Tutorial</a>
                 <a href="/leaderboard">Leaderboard</a>
             </nav>
         </header>
+
+        <div class='game-over-container'>
+            <h2 class="game-over-text">Game Over!</h2>
         
-        <div class = 'login-container'>
-            <h2>Game Over!</h2>
-
-            <p>Your Score: <b id="scorevalue"></b></p>
-            <p id="lastscoreshow"></p>
-
-<script>
-    document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');  
-
-    if (sessionStorage.getItem('lastscore') === 'true') {
-        alert("Congrats: New High Score!");
-    }  
-
-</script>
-
-<script>
-    // this is purely awful and i dont care ok (it will be refactored later to be not braindead)
-    function gettopplayer(){
-        const selectedMode = document.querySelector('input[name="gameMode"]:checked');
-        if (selectedMode.value === "city") {
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-        }
-        else if (selectedMode.value == "discoveries"){
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-            }
-        else if (selectedMode.value == "sleuth"){
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-            }
-        else if (selectedMode.value == "landmark"){
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-            }
-    }
-</script>
-
-        </div>
-
-        <!-- Game mode options -->
-        <div class="game-modes">
-            <div class="game-mode-title">
-                <h2 >Leaderboard(s)</h2>
+            <div class="score-value-text">
+                <p>Your Score: <b id="scorevalue"></b></p>
+                <p id="lastscoreshow"></p>
             </div>
-            <div class="game-mode-options">
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="city"> 
-                    <div class="game-mode-label"><strong>City MAX</strong></div>
-                    <div class="game-mode-desc">
-                        <ul id="city_max"></ul>
-                    </div>
-                </label>
-
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="discoveries">
-                    <div class="game-mode-label"><strong>City TOTAL</strong></div>
-                    <div class="game-mode-desc">
-                        <ul id="city_total"></ul>
-                    </div>        
-                </label>
-
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="sleuth">
-                    <div class="game-mode-label"><strong>Discovery MAX</strong></div>
-                    <!-- Additional information or description for the option can be added here -->
-                    <div class="game-mode-desc">
-                        <ul id="discoveries_max"></ul>
-                    </div>  
-                </label>
-
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="landmark">
-                    <div class="game-mode-label"><strong>Discovery TOTAL</strong></div>
-                    <!-- Additional information or description for the option can be added here -->
-                    <div class="game-mode-desc">
-                        <ul id="discoveries_total"></ul>
-                    </div>  
-                </label>
-            </div>
-        </div>
-
-        <script>
-        // awful scoreboard parsing tmp
-        function parseboard(endpoint, listId) {
-            fetch(endpoint)
-              .then(response => response.json())
-              .then(data => {
-                const jsonList = document.getElementById(listId);
-                for (const key in data) {
-                  if (data.hasOwnProperty(key)) {
-                    const swappedValue = [data[key][1], data[key][0]]; // swaperedoedod
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${key}: ${swappedValue[0]} - ${swappedValue[1]}`; 
-                    jsonList.appendChild(listItem);
-                  }
+        
+            <script>
+                document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');
+        
+                if (sessionStorage.getItem('lastscore') === 'true') {
+                    alert("Congrats: New High Score!");
                 }
-              })
-              .catch(error => {
-                console.error('Error fetching JSON:', error);
-              });
-          }
-        
-          parseboard('/api/leaderboard/city/max', 'city_max');
-          parseboard('/api/leaderboard/city/total', 'city_total');
-          parseboard('/api/leaderboard/discoveries/max', 'discoveries_max');
-          parseboard('/api/leaderboard/discoveries/total', 'discoveries_total');
-        </script>
-         
-        <div class="start-button-container">
-            <p><strong>Thank you for Playing PerthPinPoint!</strong></p>
-            <a href="/"><button id= "game-button" ><strong>Return Home</strong></button></a>
+            </script>
+        </div>
+
+            <script>
+                // this is purely awful and i dont care ok (it will be refactored later to be not braindead)
+                function gettopplayer() {
+                    const selectedMode = document.querySelector('input[name="gameMode"]:checked');
+                    if (selectedMode.value === "city") {
+                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
+                    }
+                    else if (selectedMode.value == "discoveries") {
+                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
+                    }
+                    else if (selectedMode.value == "sleuth") {
+                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
+                    }
+                    else if (selectedMode.value == "landmark") {
+                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
+                    }
+                }
+            </script>
+
+        </div>
+        <div class="leaderboard-box">
+            <!-- Game mode options -->
+            <div class="game-modes">
+                <div class="game-mode-title">
+                    <h2>Leaderboard(s)</h2>
+                </div>
+                <div class="game-mode-options">
+                    <label class="game-mode-option">
+                        <input onclick=gettopplayer() type="radio" name="gameMode" value="city">
+                        <div class="game-mode-label"><strong>City MAX</strong></div>
+                        <div class="game-mode-desc">
+                            <ul id="city_max"></ul>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+            <script>
+                // awful scoreboard parsing tmp
+                function parseboard(endpoint, listId) {
+                    fetch(endpoint)
+                        .then(response => response.json())
+                        .then(data => {
+                            const jsonList = document.getElementById(listId);
+                            for (const key in data) {
+                                if (data.hasOwnProperty(key)) {
+                                    const swappedValue = [data[key][1], data[key][0]]; // swaperedoedod
+                                    const listItem = document.createElement('li');
+                                    listItem.textContent = `${key}: ${swappedValue[0]} - ${swappedValue[1]}`;
+                                    jsonList.appendChild(listItem);
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching JSON:', error);
+                        });
+                }
+
+                parseboard('/api/leaderboard/city/max', 'city_max');
+            </script>
+
+            <div class="start-button-container">
+                <p style="color: white;"><strong>Thank you for Playing PerthPinPoint!</strong></p>
+                <a href="/"><button id="game-button"><strong>Return Home</strong></button></a>
+            </div>
         </div>
     </div>
 </body>
+
 </html>
