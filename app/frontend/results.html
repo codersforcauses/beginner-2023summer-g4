@@ -15,8 +15,51 @@
 
     <title>PerthPinpoint</title>
 </head>
+    <style>
 
-<body style="overflow: auto; overflow-x: hidden;">
+        .leaderboard-container h2 {
+            font-size: 64px;
+            width: 320px;
+            flex-grow: 1;
+        }
+
+        .leaderboard-container {
+            margin-top: 80px;
+            top: 300px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            /* border: 1px solid #ddd;  */
+            border-radius: 10px; /* Optional: Add rounded corners */
+        }
+
+        .leaderboard-elements {
+            flex-grow: 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .leaderboard-header,
+        .leaderboard-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 5px;
+            padding: 8px;
+            background-color: #f5f5f5; /* Optional: Add a background color */
+            border: 1px solid #ddd; /* Optional: Add a border for visual separation */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            justify-items: center; /* Center content horizontally */
+        }
+
+        /* Optional: Style the header differently */
+        .leaderboard-header {
+            font-weight: bold;
+            background-color: #ddd;
+        }
+    </style>
+<body style="overflow: auto; overflow-x: hidden; padding: 0 50px; box-sizing: border-box;">
     <div class="landing-page">
 
         <header>
@@ -28,13 +71,9 @@
             </nav>
         </header>
 
-        <div class='game-over-container'>
+        <!-- <div class='game-over-container'>
             <h2 class="game-over-text">Game Over!</h2>
         
-            <div class="score-value-text">
-                <p>Your Score: <b id="scorevalue"></b></p>
-                <p id="lastscoreshow"></p>
-            </div>
         
             <script>
                 document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');
@@ -43,7 +82,7 @@
                     alert("Congrats: New High Score!");
                 }
             </script>
-        </div>
+        </div> -->
 
             <script>
                 // this is purely awful and i dont care ok (it will be refactored later to be not braindead)
@@ -64,24 +103,77 @@
                 }
             </script>
 
-        </div>
-        <div class="leaderboard-box">
-            <!-- Game mode options -->
-            <div class="game-modes">
-                <div class="game-mode-title">
-                    <h2>Leaderboard(s)</h2>
-                </div>
-                <div class="game-mode-options">
-                    <label class="game-mode-option">
-                        <input onclick=gettopplayer() type="radio" name="gameMode" value="city">
-                        <div class="game-mode-label"><strong>City MAX</strong></div>
-                        <div class="game-mode-desc">
-                            <ul id="city_max"></ul>
-                        </div>
-                    </label>
+            <div class = 'leaderboard-container'>
+                <h2  >Leaderboard!</h2>
+                <div class = 'leaderboard-elements'>
+                    <div class="leaderboard-header">
+                        <div>Position</div>
+                        <div>Username</div>
+                        <div>Score</div>
+                    </div>
 
+                    <div class="leaderboard-item">
+                        <div>1</div>
+                        <div>JohnDoe</div>
+                        <div>1000</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>2</div>
+                        <div>JaneSmith</div>
+                        <div>950</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>1</div>
+                        <div>JohnDoe</div>
+                        <div>1000</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>2</div>
+                        <div>JaneSmith</div>
+                        <div>950</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>1</div>
+                        <div>JohnDoe</div>
+                        <div>1000</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>2</div>
+                        <div>JaneSmith</div>
+                        <div>950</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>1</div>
+                        <div>JohnDoe</div>
+                        <div>1000</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>2</div>
+                        <div>JaneSmith</div>
+                        <div>950</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>1</div>
+                        <div>JohnDoe</div>
+                        <div>1000</div>
+                    </div>
+
+                    <div class="leaderboard-item">
+                        <div>2</div>
+                        <div>JaneSmith</div>
+                        <div>950</div>
+                    </div>
                 </div>
             </div>
+        
             <script>
                 // awful scoreboard parsing tmp
                 function parseboard(endpoint, listId) {

@@ -22,12 +22,16 @@
                 <a href="/leaderboard">Leaderboard</a>
             </nav>
         </header>
+
         <div class = 'login-container'>
-            <img class="landing-image" src ="/static/assets/perth-cbd-yellow.png">
             <div class = 'login-bar'>
                 <h2>Enter a username</h2>
+                <p>To play PerthPinpoint enter a username that you would like to play with. This username will appear on the leaderboard
+                    if you get a top score
+                </p>
                 <input type="text" id="username" name="username" required placeholder="Enter a Username...">
             </div>
+            <img class="landing-image" src ="/static/assets/perth-image.jpg">
 
             <script>
                 if (localStorage.getItem("username")) {
@@ -38,9 +42,7 @@
                   var username = document.getElementById("username").value;
                   localStorage.setItem("username", username);
                 });
-              </script>
-
-              
+            </script>
         </div>
 
 
