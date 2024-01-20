@@ -12,23 +12,132 @@
     
     <title>PerthPinpoint</title>
 </head>
-<body style="overflow: auto; overflow-x: hidden;">
-    <div class="landing-page">
 
-        <header>
-            <h1 class = 'landing-title'>PerthPinpoint</h1>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/tutorial">Tutorial</a>
-                <a href="/leaderboard">Leaderboard</a>
-            </nav>
-        </header>
-        
-        <div class = 'login-container'>
-            <h2>Game Over!</h2>
+<style>
 
-            <p>Your Score: <b id="scorevalue"></b></p>
-            <p id="lastscoreshow"></p>
+    .leaderboard-container h2 {
+        font-size: 64px;
+        width: 320px;
+        flex-grow: 1;
+    }
+
+    .leaderboard-container {
+        margin-top: 80px;
+        top: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+        /* border: 1px solid #ddd;  */
+        border-radius: 10px; /* Optional: Add rounded corners */
+    }
+
+    .leaderboard-elements {
+        flex-grow: 2;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .leaderboard-header,
+    .leaderboard-item {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 5px;
+        padding: 8px;
+        background-color: #f5f5f5; /* Optional: Add a background color */
+        border: 1px solid #ddd; /* Optional: Add a border for visual separation */
+        border-radius: 5px; /* Optional: Add rounded corners */
+        justify-items: center; /* Center content horizontally */
+    }
+
+    /* Optional: Style the header differently */
+    .leaderboard-header {
+        font-weight: bold;
+        background-color: #ddd;
+    }
+</style>
+<body style="overflow: auto; overflow-x: hidden; padding: 0 50px; box-sizing: border-box;">
+    <header>
+        <h1 class = 'landing-title'>PerthPinpoint</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/tutorial">Tutorial</a>
+            <a href="/leaderboard">Leaderboard</a>
+        </nav>
+    </header>
+
+
+    <div class = 'leaderboard-container'>
+        <h2  >Leaderboard!</h2>
+        <div class = 'leaderboard-elements'>
+            <div class="leaderboard-header">
+                <div>Position</div>
+                <div>Username</div>
+                <div>Score</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>1</div>
+                <div>JohnDoe</div>
+                <div>1000</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>2</div>
+                <div>JaneSmith</div>
+                <div>950</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>1</div>
+                <div>JohnDoe</div>
+                <div>1000</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>2</div>
+                <div>JaneSmith</div>
+                <div>950</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>1</div>
+                <div>JohnDoe</div>
+                <div>1000</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>2</div>
+                <div>JaneSmith</div>
+                <div>950</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>1</div>
+                <div>JohnDoe</div>
+                <div>1000</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>2</div>
+                <div>JaneSmith</div>
+                <div>950</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>1</div>
+                <div>JohnDoe</div>
+                <div>1000</div>
+            </div>
+
+            <div class="leaderboard-item">
+                <div>2</div>
+                <div>JaneSmith</div>
+                <div>950</div>
+            </div>
+        </div>
+    </div>
 
 <script>
     document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');  
@@ -46,61 +155,15 @@
         if (selectedMode.value === "city") {
             alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
         }
-        else if (selectedMode.value == "discoveries"){
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-            }
-        else if (selectedMode.value == "sleuth"){
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-            }
-        else if (selectedMode.value == "landmark"){
-            alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-            }
     }
 </script>
 
-        </div>
 
-        <!-- Game mode options -->
-        <div class="game-modes">
-            <div class="game-mode-title">
-                <h2 >Leaderboard(s)</h2>
-            </div>
-            <div class="game-mode-options">
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="city"> 
-                    <div class="game-mode-label"><strong>City MAX</strong></div>
-                    <div class="game-mode-desc">
-                        <ul id="city_max"></ul>
-                    </div>
-                </label>
 
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="discoveries">
-                    <div class="game-mode-label"><strong>City TOTAL</strong></div>
-                    <div class="game-mode-desc">
-                        <ul id="city_total"></ul>
-                    </div>        
-                </label>
 
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="sleuth">
-                    <div class="game-mode-label"><strong>Discovery MAX</strong></div>
-                    <!-- Additional information or description for the option can be added here -->
-                    <div class="game-mode-desc">
-                        <ul id="discoveries_max"></ul>
-                    </div>  
-                </label>
 
-                <label class="game-mode-option">
-                    <input onclick=gettopplayer() type="radio" name="gameMode" value="landmark">
-                    <div class="game-mode-label"><strong>Discovery TOTAL</strong></div>
-                    <!-- Additional information or description for the option can be added here -->
-                    <div class="game-mode-desc">
-                        <ul id="discoveries_total"></ul>
-                    </div>  
-                </label>
-            </div>
-        </div>
+
+        
 
         <script>
         // awful scoreboard parsing tmp
@@ -124,9 +187,8 @@
           }
         
           parseboard('/api/leaderboard/city/max', 'city_max');
-          parseboard('/api/leaderboard/city/total', 'city_total');
-          parseboard('/api/leaderboard/discoveries/max', 'discoveries_max');
-          parseboard('/api/leaderboard/discoveries/total', 'discoveries_total');
+        //   parseboard('/api/leaderboard/discoveries/max', 'discoveries_max');
+        //   parseboard('/api/leaderboard/discoveries/total', 'discoveries_total');
         </script>
          
         <div class="start-button-container">
