@@ -22,12 +22,16 @@
                 <a href="/leaderboard">Leaderboard</a>
             </nav>
         </header>
+
         <div class = 'login-container'>
-            <img class="landing-image" src ="/static/assets/perth-cbd-night-opac-full.png">
             <div class = 'login-bar'>
-                <h2>Enter a Username</h2>
+                <h2>Enter a username</h2>
+                <p>To play PerthPinpoint enter a username that you would like to play with. This username will appear on the leaderboard
+                    if you get a top score
+                </p>
                 <input type="text" id="username" name="username" required placeholder="Enter a Username...">
             </div>
+            <img class="landing-image" src ="/static/assets/perth-image.jpg">
 
             <script>
                 if (localStorage.getItem("username")) {
@@ -38,9 +42,7 @@
                   var username = document.getElementById("username").value;
                   localStorage.setItem("username", username);
                 });
-              </script>
-
-              
+            </script>
         </div>
 
 
@@ -56,17 +58,7 @@
                         <div class="game-mode-label"><strong>Classic City</strong></div>
                         <!-- Additional information or description for the option can be added here -->
                         <div class="game-mode-desc" style="font-size: 24px;">
-                            <p></p>
                         </div>
-                    </label>
-
-                    <label class="game-mode-option">
-                        <input type="radio" name="gameMode" value="discoveries">
-                        <div class="game-mode-label"><strong>Divs Discoveries</strong></div>
-                        <!-- Additional information or description for the option can be added here -->
-                        <div class="game-mode-desc" style="font-size: 24px;">
-                            <p></p>
-                        </div>        
                     </label>
 
                     <label class="game-mode-option">
@@ -74,7 +66,6 @@
                         <div class="game-mode-label"><strong>Streeth Sleuth</strong></div>
                         <!-- Additional information or description for the option can be added here -->
                         <div class="game-mode-desc" style="font-size: 24px;">
-                            <p></p>
                         </div>  
                     </label>
 
@@ -83,7 +74,6 @@
                         <div class="game-mode-label"><strong>Local Landmark</strong></div>
                         <!-- Additional information or description for the option can be added here -->
                         <div class="game-mode-desc" style="font-size: 24px;">
-                            <p></p>
                         </div>  
                     </label>
                 </div>
