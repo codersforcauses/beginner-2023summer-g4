@@ -29,15 +29,13 @@ header {
     color: black;
     position: fixed;
     z-index: 100;
+    font-weight: 410;
 }
 
 .landing-page {
     color: black;
 }
 
-.round-number-points-small {
-    display: none;
-}
 
 .map-guess-container{
     position: absolute;
@@ -167,6 +165,10 @@ header nav {
     display: flex;
     margin-right: 100px;
     gap: 140px;
+}
+
+header nav a:hover {
+    text-decoration: underline; /* Underline the text on hover */
 }
 
 header nav a {
@@ -384,14 +386,15 @@ cursor: crosshair !important;
 }
 
 .login-bar {
-    padding: 0 65px;
+    padding: 20px 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .login-bar h2 {
-    font-size: 60px;
-    margin-bottom: 35px;
-    display: flex;
-    flex-direction: column;
+    font-size: 50px;
+    margin: 0;
 }
 
 .login-bar p {
@@ -449,19 +452,19 @@ cursor: crosshair !important;
 }
 
 .game-mode-title {
-    padding:15px;
-    font-size: xx-large;
+    padding: 15px;
+    font-size: 30px;
     z-index: 1;
 }
 
 .game-mode-option {
-    width: 380px;
-    height: 470px;
+    width: 300px;
+    height: 440px;
     /* min-height: 230px; */
     margin: 10px;
     cursor: pointer;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: black;
     color:white;
     overflow: hidden;
