@@ -18,7 +18,7 @@ body,html
 header { 
     display: flex;
     top: 0;
-    background-color: #FDE112;
+    background-color: white;
     /* dont ask me how/why 81.54 works */
     min-height: 81.54px; 
     width: 100%;
@@ -30,6 +30,7 @@ header {
     position: fixed;
     z-index: 100;
     font-weight: 410;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .landing-page {
@@ -446,7 +447,6 @@ cursor: crosshair !important;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    border-radius: 10px;
     width: 100%;
     z-index: 1;
 }
@@ -464,7 +464,6 @@ cursor: crosshair !important;
     margin: 10px;
     cursor: pointer;
     box-sizing: border-box;
-    border-radius: 8px;
     background-color: black;
     color:white;
     overflow: hidden;
@@ -475,8 +474,7 @@ cursor: crosshair !important;
 }
 
 .game-mode-option input {
-    display: none;
-    height:20%;
+    /* display: none; */
     z-index: 1;
 }
 
@@ -490,13 +488,6 @@ cursor: crosshair !important;
     transition: background-color 0.5s ease;
     padding: 27px;
     font-size: 30px;
-}
-
-.game-mode-desc {
-    flex-grow: 1;
-    overflow: hidden;
-    background-color: #E6E6E6;
-    color: black;
 }
 
 .start-button-container {
