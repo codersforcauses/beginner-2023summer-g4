@@ -105,88 +105,34 @@
 
             <div class = 'leaderboard-container'>
                 <h2  >Leaderboard!</h2>
-                <div class = 'leaderboard-elements'>
+                <div class = 'leaderboard-elements' id = 'leaderboard-elements'>
                     <div class="leaderboard-header">
                         <div>Position</div>
                         <div>Username</div>
                         <div>Score</div>
                     </div>
-
-                    <div class="leaderboard-item">
-                        <div>1</div>
-                        <div>JohnDoe</div>
-                        <div>1000</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>2</div>
-                        <div>JaneSmith</div>
-                        <div>950</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>1</div>
-                        <div>JohnDoe</div>
-                        <div>1000</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>2</div>
-                        <div>JaneSmith</div>
-                        <div>950</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>1</div>
-                        <div>JohnDoe</div>
-                        <div>1000</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>2</div>
-                        <div>JaneSmith</div>
-                        <div>950</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>1</div>
-                        <div>JohnDoe</div>
-                        <div>1000</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>2</div>
-                        <div>JaneSmith</div>
-                        <div>950</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>1</div>
-                        <div>JohnDoe</div>
-                        <div>1000</div>
-                    </div>
-
-                    <div class="leaderboard-item">
-                        <div>2</div>
-                        <div>JaneSmith</div>
-                        <div>950</div>
-                    </div>
                 </div>
             </div>
         
             <script>
-                // awful scoreboard parsing tmp
-                function parseboard(endpoint, listId) {
+                function parseboard(endpoint) {
+                    const leaderboard = document.getElementById('leaderboard-elements');
+
                     fetch(endpoint)
                         .then(response => response.json())
                         .then(data => {
-                            const jsonList = document.getElementById(listId);
                             for (const key in data) {
                                 if (data.hasOwnProperty(key)) {
-                                    const swappedValue = [data[key][1], data[key][0]]; // swaperedoedod
-                                    const listItem = document.createElement('li');
-                                    listItem.textContent = `${key}: ${swappedValue[0]} - ${swappedValue[1]}`;
-                                    jsonList.appendChild(listItem);
+                                    const listItem = document.createElement('div');
+                                    listItem.classList.add('leaderboard-item');
+
+                                    listItem.innerHTML = `
+                                        <div>${key}</div>
+                                        <div>${data[key][1]}</div>
+                                        <div>${data[key][0]}</div>
+                                    `;
+
+                                    leaderboard.appendChild(listItem);
                                 }
                             }
                         })
@@ -195,11 +141,12 @@
                         });
                 }
 
-                parseboard('/api/leaderboard/city/max', 'city_max');
+                parseboard('/api/leaderboard/city/max');
+
             </script>
 
             <div class="start-button-container">
-                <p style="color: white;"><strong>Thank you for Playing PerthPinPoint!</strong></p>
+                <p style="color: black;"><strong>Thank you for Playing PerthPinPoint!</strong></p>
                 <a href="/"><button id="game-button"><strong>Return Home</strong></button></a>
             </div>
         </div>

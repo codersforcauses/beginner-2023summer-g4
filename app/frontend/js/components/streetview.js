@@ -31,7 +31,7 @@ function checkStreetViewAvailability(lat, lng) {
 
     const location = new google.maps.LatLng(lat, lng);
 
-    var radius = (game_mode === "city" || game_mode === "sleuth") ? 6000 : 30;
+    var radius = (game_mode === "city" || game_mode === "sleuth") ? 4000 : 20;
     var sources = (game_mode === "city") ? ['google', 'outdoor'] : ['google'];
 
     console.log("Radius:", radius);
