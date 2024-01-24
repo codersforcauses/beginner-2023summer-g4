@@ -71,38 +71,6 @@
             </nav>
         </header>
 
-        <!-- <div class='game-over-container'>
-            <h2 class="game-over-text">Game Over!</h2>
-        
-        
-            <script>
-                document.getElementById('scorevalue').textContent = sessionStorage.getItem('lastscore');
-        
-                if (sessionStorage.getItem('lastscore') === 'true') {
-                    alert("Congrats: New High Score!");
-                }
-            </script>
-        </div> -->
-
-            <script>
-                // this is purely awful and i dont care ok (it will be refactored later to be not braindead)
-                function gettopplayer() {
-                    const selectedMode = document.querySelector('input[name="gameMode"]:checked');
-                    if (selectedMode.value === "city") {
-                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-                    }
-                    else if (selectedMode.value == "discoveries") {
-                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-                    }
-                    else if (selectedMode.value == "sleuth") {
-                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-                    }
-                    else if (selectedMode.value == "landmark") {
-                        alert("Current First Place: " + document.getElementById('city_max').firstElementChild.textContent);
-                    }
-                }
-            </script>
-
             <div class = 'leaderboard-container'>
                 <h2  >Leaderboard!</h2>
                 <div class = 'leaderboard-elements' id = 'leaderboard-elements'>
@@ -124,6 +92,7 @@
                             for (const key in data) {
                                 if (data.hasOwnProperty(key)) {
                                     const listItem = document.createElement('div');
+
                                     listItem.classList.add('leaderboard-item');
 
                                     listItem.innerHTML = `
@@ -142,7 +111,6 @@
                 }
 
                 parseboard('/api/leaderboard/city/max');
-
             </script>
 
             <div class="start-button-container">

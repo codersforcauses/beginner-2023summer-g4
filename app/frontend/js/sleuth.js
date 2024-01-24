@@ -192,18 +192,25 @@ function submit() {
 
     greyOutSubmitButton(submit);
     endTimer(currentTimerID);
+
+    const elem_id = "loc-" + (roundNumber);
+    const elem = document.getElementById(elem_id);
+
+    if (distanced_data.found){
+      elem.src = '/static/assets/green.png';
+    }
+    else {
+
+      elem.src = '/static/assets/red.png';
+
+    }
   
     if (roundNumber === 5) {
       // handle end game stuff
       // send json to backend, to add to db
     }
-  
-    let map_guess_container = document.getElementById('map-guess-container')
-    if (window.innerWidth < 700) {
-      map_guess_container.style.display = '';
-    }
-    map_guess_container.classList.remove('slide-away');
 
+    document.getElementById('map-guess-container').classList.add('slide-away');
     document.getElementById('location-for-round-container').classList.add('slide-away');
 
   
@@ -264,6 +271,10 @@ function submit() {
         else if (distanced_data.found === null){
           pop_up_score.innerHTML = 'Check the map to see where the location was';
         }
+
+        if (roundNumber === 5) {
+          document.getElementById('next-round').innerHTML = 'Go to the home page';
+        }
     
   }
 
@@ -275,6 +286,12 @@ function submit() {
   }
 
   function closePopup(){
+
+    if (roundNumber === 6) {
+
+      window.location.href = '/';
+
+    }
 
     greyOutSubmitButton(submit);
 
@@ -314,6 +331,12 @@ function submit() {
     document.getElementById('map-guess-container').classList.remove('slide-away');
     document.getElementById('location-for-round-container').classList.remove('slide-away');
     //document.title = `${roundNumber} | PerthPinpoint`
+
+    let map_guess_container = document.getElementById('map-guess-container')
+    if (window.innerWidth < 700) {
+      map_guess_container.style.display = '';
+    }
+    map_guess_container.classList.remove('slide-away');
 
     current_location = locations[roundNumber-1];
 

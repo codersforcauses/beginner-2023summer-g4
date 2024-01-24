@@ -152,7 +152,18 @@ header {
 header h1 {
     margin-right: auto;
     margin-left: 100px;
+    text-decoration: none;
+    cursor: pointer;
 }
+
+header a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+header a:visited {
+    color: black; /* Set the same color for visited links */
+  }
 
 .round-info-header{
     display: flex;
@@ -393,14 +404,18 @@ cursor: crosshair !important;
     justify-content: center;
 }
 
-.login-bar h2 {
-    font-size: 50px;
+.login-bar.sub-heading {
     margin: 0;
 }
 
 .login-bar p {
     line-height: 1.8;
     margin-bottom: 35px;
+}
+
+.sub-heading {
+    font-size: 2.9rem;
+    font-weight: 700;
 }
 
 
@@ -426,6 +441,9 @@ cursor: crosshair !important;
     height: auto;
 }
 
+input[type="radio"] {
+    display: none;
+}
 
 .game-modes {
     display: flex;
@@ -436,6 +454,9 @@ cursor: crosshair !important;
 
 .game-modes-submit {
     margin-bottom: 50px;
+    background-color: #F0EBE3;
+    padding: 0 65px;
+
 }
 
 .leaderboard-box {
@@ -453,24 +474,24 @@ cursor: crosshair !important;
 
 .game-mode-title {
     padding: 15px;
-    font-size: 30px;
     z-index: 1;
 }
 
 .game-mode-option {
     width: 300px;
-    height: 440px;
+    /* height: 440px; */
     /* min-height: 230px; */
     margin: 10px;
     cursor: pointer;
     box-sizing: border-box;
-    background-color: black;
-    color:white;
+    background-color: #FDE112;
+    color:black;
     overflow: hidden;
     text-align: center;
     display: flex;
     flex-direction: column;
     z-index: 1;
+    border-radius: 7px;
 }
 
 .game-mode-option input {
@@ -486,8 +507,8 @@ cursor: crosshair !important;
 
 .game-mode-option div {
     transition: background-color 0.5s ease;
-    padding: 27px;
-    font-size: 30px;
+    padding: 20px;
+    font-size: 25px;
 }
 
 .start-button-container {
