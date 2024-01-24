@@ -17,7 +17,7 @@ uvicorn_ACCESSLOG = True
 ##### PROD OPTIONS #####
 
 # Development
-DEV = True
+DEV = False
 # WARNING: Please check the DEV_uvicorn_HOST/PORT, this is not reflected in the {pp_banner}!
 
 ##### DEV OPTIONS #####
