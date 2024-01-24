@@ -17,7 +17,9 @@ if __name__ == "__main__":
 
         log(f"[+] Initialising Application")
 
-        uvicorn_LOGGING = DEV_uvicorn_LOGGING ; RELOAD = DEV_RELOAD ; uvicorn_HOST = DEV_uvicorn_HOST ; uvicorn_PORT = DEV_uvicorn_PORT ; uvicorn_WORKERS = DEV_WORKERS ; uvicorn_ACCESSLOG = DEV_ACCESSLOG
+        uvicorn_LOGGING = DEV_uvicorn_LOGGING ; uvicorn_HOST = DEV_uvicorn_HOST ; uvicorn_PORT = DEV_uvicorn_PORT ; uvicorn_WORKERS = DEV_WORKERS ; uvicorn_ACCESSLOG = DEV_ACCESSLOG
+        # RELOAD = DEV_RELOAD
+        
         log(f"[+] Configured Development Options")
 
         if DEV_DATABASE:
@@ -41,7 +43,6 @@ if __name__ == "__main__":
         host=uvicorn_HOST,
         port=uvicorn_PORT,
         log_level=uvicorn_LOGGING,
-        reload=RELOAD,
         workers=uvicorn_WORKERS,
         log_config=LOGGING_CONFIG
         )
