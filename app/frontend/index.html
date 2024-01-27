@@ -49,31 +49,49 @@
         <!-- Game mode options -->
         <div class= "game-modes-submit">
             <div class="game-modes">
-                <div class="game-mode-title sub-heading heading">Select a Game Mode</div>
-                <p>
-                    Select a game mode to play.<br> Each game mode has a different objective and different rules.
-                    Visit the <a href="/tutorial">tutorial page</a> to learn more about each game mode.
-                </p>
+                <div class="game-mode-title sub-heading heading" style = 'color: black;'>Select a Game Mode</div>
+                    <p style = 'color: black; text-align: center; line-height: 1.8;'>
+                        Select a game mode to play.<br> Each game mode has a different objective and different rules.
+                        Visit the <a href="/tutorial">tutorial page</a> to learn more about each game mode.
+                    </p>
                 <div class="game-mode-options">
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="city">
                         <img src="/static/assets/bell_tower.png" alt="Classic City Image">
-                        <div class="game-mode-label heading">Classic City</div>
-                        <button class = 'game-submit' onclick= "enterMainPage('city')">Play Now</button>
+                        <div class = 'game-card-info-text'>
+                            <div class="game-mode-label heading">Classic City</div>
+                            <p class = 'game-mode-card-description' style = ''>
+                                The classic game mode. Find the location of the city you are playing in. 
+                                The closer you are to the location, the more points you get.
+                            </p>
+                            <button class = 'game-submit' onclick= "enterMainPage('city')">Play Now</button>
+                        </div>
                     </label>
 
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="sleuth">
                         <img src="/static/assets/kwinana-freeway-stock-image.webp" alt="Street Sleuth Image">
-                        <div class="game-mode-label heading">Streeth Sleuth</div>
-                        <button class = 'game-submit' onclick= "enterMainPage('sleuth')">Play Now</button>
+                        <div class = 'game-card-info-text'>
+                            <div class="game-mode-label heading">Streeth Sleuth</div>
+                            <p class = 'game-mode-card-description' style = ''>
+                                Find the location of the street you are playing in. 
+                                The closer you are to the location, the more points you get.
+                            </p>
+                            <button class = 'game-submit' onclick= "enterMainPage('sleuth')">Play Now</button>
+                        </div>
                     </label>
 
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="landmark">
                         <img src="/static/assets/cactus.jpg" alt="Local Landmark Image">
-                        <div class="game-mode-label heading">Local Landmark</div>
-                        <button class = 'game-submit' onclick= "enterMainPage('landmark')">Play Now</button>
+                        <div class = 'game-card-info-text'>
+                            <div class="game-mode-label heading">Local Landmark</div>
+                            <p class = 'game-mode-card-description' style = ''>
+                                Find the location of the landmark you are playing in. 
+                                The closer you are to the location, the more points you get.
+                            </p>
+                            <button class = 'game-submit' onclick= "enterMainPage('landmark')">Play Now</button>
+                        </div>
                     </label>
                 </div>
             </div>

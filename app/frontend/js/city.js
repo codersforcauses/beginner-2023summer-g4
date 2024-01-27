@@ -160,16 +160,16 @@ function post_data(send, endpoint){
       
       pop_up_score.innerHTML = 'You got ' + (Math.round(((score == -1) ? 0 : score) * multiplier)) + ' points';
 
-      if (multiplier > 1.4) {
+      if (multiplier >= 1.4) {
         pop_up_score.innerHTML += '<br>That was a fast guess! Points were multiplied by ' + multiplier + 'x';
       } 
-      else if (multiplier === 1.3) {
+      else if (multiplier >= 1.3) {
           pop_up_score.innerHTML += '<br>You guessed pretty fast! Points were multiplied by ' + multiplier + 'x';
       } 
-      else if (multiplier === 1.2) {
+      else if (multiplier >= 1.2) {
           pop_up_score.innerHTML += '<br>Good job! Your points were multiplied by ' + multiplier + 'x for a reasonably quick guess.';
       } 
-      else if (multiplier === 1.1) {
+      else if (multiplier >= 1.1) {
           pop_up_score.innerHTML += '<br>You gained a slight bonus with a ' + multiplier + 'x multiplier for your guess speed.';
       } 
 
