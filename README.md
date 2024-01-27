@@ -58,8 +58,13 @@ Running Perth PinPoint:
 \*assuming you are in the directory `/`  
 or the respective windows equivilent
 
-Note on Deployment:
-Perth PinPoint is not designed for concurrent users, deploying this on an environment in which multiple users can access and attempt to play the game at once will break (feel free to try it tho) - PPP is designed for a single local instance and to be played "arcade style"
+Deploying with Docker:
+A Dockerfile exists, note this is configured for production deployment:
+
+```
+docker build -t pinpoint .
+docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 127.0.0.1:80:8080 pinpoint
+```
 
 ## Demo
 todo
