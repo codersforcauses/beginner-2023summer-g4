@@ -35,7 +35,7 @@ SELECT g.maxpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_i
 # (gamemode,)
 
 query_leaderboard_all = '''
-SELECT g.maxpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints
+SELECT g.maxpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints DESC
 '''
 # (gamemode,)
 
