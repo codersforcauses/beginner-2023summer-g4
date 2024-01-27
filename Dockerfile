@@ -1,4 +1,5 @@
 FROM python:3.8
+CMD ["git", "pull", "https://github.com/codersforcauses/beginner-2023summer-g4.git"]
 WORKDIR "/pinpoint"
 COPY requirements.txt .
 RUN pip install -r requirements.txt
