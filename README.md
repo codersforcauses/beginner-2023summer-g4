@@ -63,7 +63,7 @@ A Dockerfile exists, note this is configured for production deployment:
 
 ```
 docker build -t pinpoint .
-docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 127.0.0.1:80:8080 pinpoint
+docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 127.0.0.1:80:8080 --name "pinpoint" pinpoint
 ```
 
 ## Demo
