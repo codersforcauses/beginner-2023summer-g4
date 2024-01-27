@@ -47,8 +47,8 @@ header {
     bottom: 15px;
     left: 15px; 
     z-index: 5;
-    width: 350px;
-    height: 300px;
+    width: 305px;
+    height: 260px;
     transform: translateX(0);
     transition: transform 0.5s ease, width 0.3s, height 0.3s;
 }
@@ -62,7 +62,7 @@ header {
 
 
 .map-guess-container:hover{
-    width: 70%;
+    width: 75%;
     height: calc(100% - (50px + 60px));
     /* margin-left: 12px;
     bottom: 0; */
@@ -126,8 +126,8 @@ header {
 @media only screen and (max-width: 1000px) {
 
     .map-guess-container {
-        width: 260px;
-        height: 250px;
+        width: 240px;
+        height: 220px;
         display: flex;
     }
 
@@ -308,8 +308,8 @@ cursor: crosshair !important;
     margin-bottom: 32px; */
 }
 .score-for-a-round-popup p {
-    font-size: 24px;
-    font-weight: 545;
+    font-size: 21px;
+    font-weight: 540;
     /* margin: 30px 0px 10px;
     margin-bottom: 32px; */
 }
@@ -407,7 +407,7 @@ cursor: crosshair !important;
 }
 
 .sub-heading {
-    font-size: 2.9rem;
+    font-size: 3rem;
     font-weight: 500;
 }
 
@@ -415,7 +415,7 @@ cursor: crosshair !important;
 
 .login-bar input {
     width: 95%;
-    padding: 10px;
+    padding: 13px;
     font-size: 16px;
     border: none;
     background-color: white;
@@ -466,6 +466,7 @@ input[type="radio"] {
     align-items: center;
     width: 100%;
     z-index: 1;
+    margin-bottom: 65px;
 }
 
 .game-mode-title {
@@ -478,7 +479,7 @@ input[type="radio"] {
     height: 100%;
     object-fit: inherit;
     position: relative;
-    filter: brightness(0.6);
+    filter: brightness(0.5);
 }
 
 
@@ -502,7 +503,7 @@ input[type="radio"] {
 }
 
 .game-mode-option:hover img{
-    filter: brightness(0.8);
+    filter: brightness(0.7);
     transition: filter 0.5s ease;
 }
 
@@ -513,6 +514,8 @@ input[type="radio"] {
 .game-submit:hover {
     color: black;
     background-color: white;
+    border: 11px solid white;
+
 
 }
 
@@ -525,6 +528,14 @@ input[type="radio"] {
     /* display: none; */
     z-index: 1;
 }
+
+.game-mode-option:hover .game-mode-card-description {
+    display: block;
+}
+
+/* .game-card-info-text {
+    position: absolute;
+} */
 
 .game-submit {
     display: none;
@@ -539,6 +550,18 @@ input[type="radio"] {
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
+    transition: border 0.2s ease;
+}
+
+.game-mode-card-description {
+    display: none;
+    position: absolute;
+    bottom: 185px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    color: white;
+    line-height: 1.8;
+    width: 80%; 
 }
 
 .game-mode-label {
