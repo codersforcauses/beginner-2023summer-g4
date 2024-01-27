@@ -29,23 +29,28 @@ def db_disconnect(con):
     con.commit()
     con.close()
 
-query_leaderboard_max = '''
+query_leaderboard_top = '''
 SELECT g.maxpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints DESC LIMIT 10
 '''
 # (gamemode,)
 
-query_leaderboard_total = '''
-SELECT g.totalpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints DESC LIMIT 10
+query_leaderboard_all = '''
+SELECT g.maxpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints
 '''
+# (gamemode,)
+
+#query_leaderboard_total = '''
+#SELECT g.totalpoints, u.username FROM games g JOIN users u ON g.user_id = u.user_id WHERE g.game_mode = (?) ORDER BY g.maxpoints DESC LIMIT 10
+#'''
 # (game_mode, maxpoints/totalpoints)
 
 def get_leaderboard(game_mode, filter_type): # limited to city and discoveries
     con, cursor = db_connect()
 
-    if filter_type != 'total':
-        cursor.execute(query_leaderboard_max, (game_mode,))
+    if filter_type != 'all':
+        cursor.execute(query_leaderboard_top, (game_mode,))
     else:
-        cursor.execute(query_leaderboard_total, (game_mode,))
+        cursor.execute(query_leaderboard_all, (game_mode,))
     results = cursor.fetchall()
     db_disconnect(con)
     return results

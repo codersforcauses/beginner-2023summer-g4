@@ -17,27 +17,15 @@ router = APIRouter()
 def example():
     return {"status": "200"} #lol
 
-@router.get("/leaderboard/discoveries/max")
+@router.get("/top")
 async def discoveries_leaderboard():  
-    leaderboard = get_leaderboard('discoveries', 'max')
+    leaderboard = get_leaderboard('city', 'top')
     response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
     return JSONResponse(content=response) 
 
-@router.get("/leaderboard/discoveries/total")
+@router.get("/all")
 async def discoveries_leaderboard():  
-    leaderboard = get_leaderboard('discoveries', 'total')
-    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
-    return JSONResponse(content=response) 
-
-@router.get("/leaderboard/city/max")
-async def discoveries_leaderboard():  
-    leaderboard = get_leaderboard('city', 'max')
-    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
-    return JSONResponse(content=response) 
-
-@router.get("/leaderboard/city/total")
-async def discoveries_leaderboard():  
-    leaderboard = get_leaderboard('city', 'total')
+    leaderboard = get_leaderboard('city', 'all')
     response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
     return JSONResponse(content=response) 
 '''
