@@ -52,17 +52,8 @@ INSERT INTO users (user_id, username) VALUES (0, 'pinpoint_bot')
 ''',
 '''
 INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('city', 0, 0, 0)
-''',
-'''
-INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('discoveries', 0, 0, 69)
-''',
-'''
-INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('slueth', 0, 0, 0)
-''',
-'''
-INSERT INTO games (game_mode, user_id, maxpoints, totalpoints) VALUES ('landmark', 0, 0, 0)
-''',
-] 
+''']
+ 
 '''
 example query:
 SELECT totalpoints FROM games WHERE user_id = (SELECT user_id FROM users WHERE username = 'pinpoint_bot') AND game_mode = 'discoveries'
