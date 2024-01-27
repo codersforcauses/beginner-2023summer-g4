@@ -437,6 +437,9 @@ cursor: crosshair !important;
     flex-grow: 1;
     width: 60%;
     height: auto;
+    margin-right: 2%;
+    margin-top: 2%;
+    border-radius: 30px;
 }
 
 input[type="radio"] {
