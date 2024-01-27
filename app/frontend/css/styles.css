@@ -383,21 +383,15 @@ cursor: crosshair !important;
 .login-container {
     display: flex;
     justify-content: center;
-    /* gap: 25px; */
+    gap: 25px;
     margin-top: 80px;
     z-index: 1;
-    width: 100%;
-}
-
-
-@keyframes flash {
-    0% { background-color: black; }
-    50% { background-color: transparent; }
-    100% { background-color: black; }
+    margin-left: 65px;
+    margin-right: 65px;
 }
 
 .login-bar {
-    padding: 20px 65px;
+    /* padding: 20px 0; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -434,10 +428,8 @@ cursor: crosshair !important;
 }
 
 .landing-image {
-    flex-grow: 1;
     width: 60%;
     height: auto;
-    margin-right: 2%;
     margin-top: 2%;
     border-radius: 30px;
 }
@@ -451,12 +443,16 @@ input[type="radio"] {
     flex-direction: column;
     align-items: center;
     z-index: 1;
+    background-color: white;
+    color: gradient;
+    border-radius: 30px;
+    margin-top: 65px;
+    margin-right: 65px;
+    margin-left: 65px;
 }
 
 .game-modes-submit {
     margin-bottom: 50px;
-    padding: 0 65px;
-
 }
 
 .leaderboard-box {
