@@ -5,7 +5,8 @@ body,html
     height:100%;
     width:100%;
     overflow: hidden;
-    background-color: white;
+    background: linear-gradient(to bottom, #5177FF, #00bbff);
+    color: white;
 }
 
 .timer-container {
@@ -36,11 +37,6 @@ header {
     font-weight: 410;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
-.landing-page {
-    color: black;
-}
-
 
 .map-guess-container{
     position: absolute;
@@ -390,7 +386,6 @@ cursor: crosshair !important;
     /* gap: 25px; */
     margin-top: 80px;
     z-index: 1;
-    background-color: #FDE112;
     width: 100%;
 }
 
@@ -430,8 +425,7 @@ cursor: crosshair !important;
     font-size: 16px;
     border: none;
     background-color: white;
-    border-radius: 8px;
-    border: 3px solid black;
+    border-radius: 20px;
 }
 
 /* Optional: Style the input on focus */
@@ -458,7 +452,6 @@ input[type="radio"] {
 
 .game-modes-submit {
     margin-bottom: 50px;
-    background-color: #F0EBE3;
     padding: 0 65px;
 
 }
