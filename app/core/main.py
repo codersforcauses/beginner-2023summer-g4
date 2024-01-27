@@ -60,8 +60,8 @@ async def street_sleuth(request: Request):
 
 @app.exception_handler(404)
 async def redirect(_, __):
-    return RedirectResponse(f"{host}")
+    return RedirectResponse(f"/")
 
 @app.exception_handler(404)
 async def redirect(_, __):
-    return RedirectResponse(f"{host}")
+    return RedirectResponse(f"/")
