@@ -57,27 +57,25 @@
                 <div class="game-mode-options">
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="city">
-                        <img src="/static/assets/streets.png" alt="Classic City Image">
-                        <div class="game-mode-label heading"><strong>Classic City</strong></div>
+                        <img src="/static/assets/bell_tower.png" alt="Classic City Image">
+                        <div class="game-mode-label heading">Classic City</div>
+                        <button class = 'game-submit' onclick= "enterMainPage('city')">Play Now</button>
                     </label>
 
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="sleuth">
                         <img src="/static/assets/kwinana-freeway-stock-image.webp" alt="Street Sleuth Image">
                         <div class="game-mode-label heading">Streeth Sleuth</div>
+                        <button class = 'game-submit' onclick= "enterMainPage('sleuth')">Play Now</button>
                     </label>
 
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="landmark">
                         <img src="/static/assets/cactus.jpg" alt="Local Landmark Image">
-                        <div class="game-mode-label heading"><strong>Local Landmark</strong></div>
+                        <div class="game-mode-label heading">Local Landmark</div>
+                        <button class = 'game-submit' onclick= "enterMainPage('landmark')">Play Now</button>
                     </label>
                 </div>
-            </div>
-            
-            <div class="start-button-container">
-                <p style = "color: black;"><strong>Click the start button to begin playing!</strong></p>
-                <button id= "game-button" class = 'heading' onclick= "enterMainPage()"><strong>Start Game</strong></button>
             </div>
         </div>
 
@@ -85,9 +83,8 @@
     </div>
     
     <script>
-        function enterMainPage() {
+        function enterMainPage(selectedMode) {
             const username = document.getElementById('username').value;
-            const selectedMode = document.querySelector('input[name="gameMode"]:checked');
 
             if (!username){
                 //alert("Please enter a username!");
@@ -103,29 +100,23 @@
                 return;
             }
 
-            if (!selectedMode){
-                alert("Please select a game mode before entering the main page.");
-                //window.location.href = "/";
-                return;
-            }
-
             document.querySelector(".login-bar input").style.border = "3px solid red";
 
-            localStorage.setItem("game_mode", selectedMode.value);
+            localStorage.setItem("game_mode", selectedMode);
             localStorage.setItem("username", username);
 
-            if (selectedMode.value === "city") {
+            if (selectedMode === "city") {
                 window.location.href = "/city";
             }
-            else if (selectedMode.value == "discoveries"){
+            else if (selectedMode == "discoveries"){
                 alert("we havent made this gamemode yet :)");
                 window.location.href = "/"; // /discoveries
             }
-            else if (selectedMode.value == "sleuth"){
+            else if (selectedMode == "sleuth"){
                 alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/sleuth";
             }
-            else if (selectedMode.value == "landmark"){
+            else if (selectedMode == "landmark"){
                 alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/landmark";
             }
