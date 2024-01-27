@@ -470,7 +470,7 @@ input[type="radio"] {
 }
 
 .game-mode-title {
-    padding: 15px;
+    padding-top: 20px;
     z-index: 1;
 }
 
@@ -479,14 +479,14 @@ input[type="radio"] {
     height: 100%;
     object-fit: inherit;
     position: relative;
-    filter: brightness(0.5);
+    filter: brightness(0.46);
 }
 
 
 .game-mode-option {
     object-fit: cover;
-    width: 380px;
-    height: 540px;
+    width: 350px;
+    height: 470px;
     /* min-height: 230px; */
     margin: 10px;
     cursor: pointer;
@@ -499,11 +499,12 @@ input[type="radio"] {
     z-index: 1;
     border-radius: 8px;
     position: relative;
+    overflow: hidden;
     transition: transform 0.5s ease, width 0.3s, height 0.3s;
 }
 
 .game-mode-option:hover img{
-    filter: brightness(0.7);
+    filter: brightness(0.6);
     transition: filter 0.5s ease;
 }
 
