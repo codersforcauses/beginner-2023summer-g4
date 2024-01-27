@@ -153,27 +153,33 @@ function generateEndGameMap() {
 
 function updateLocationForRound() {
   const locationInfoElement = document.getElementById('location-round-info');
-  let innerHTMLContent = "<strong>Find: " + current_location[0].name + "</strong><br>Location Info";
+  let innerHTMLContent = "<strong>Find: " + current_location[0].name + "</strong>";
+
+  let locationInfo = "";
 
   if (current_location[0].shop !== null) {
-    innerHTMLContent += "<br>Shop: " + locationPrettyFormat(current_location[0].shop);
+    locationInfo += "<br>Shop: " + locationPrettyFormat(current_location[0].shop);
   }
 
   if (current_location[0].amenity !== null) {
-    innerHTMLContent += "<br>Amenity: " + locationPrettyFormat(current_location[0].amenity);
+    locationInfo += "<br>Amenity: " + locationPrettyFormat(current_location[0].amenity);
   }
 
   if (current_location[0].building !== null && current_location[0].building !== 'yes') {
-    innerHTMLContent += "<br>Building: " + locationPrettyFormat(current_location[0].building);
+    locationInfo += "<br>Building: " + locationPrettyFormat(current_location[0].building);
   }
 
   if (current_location[0].street !== null) {
-    innerHTMLContent += "<br>Street: " + current_location[0].street;
+    locationInfo += "<br>Street: " + current_location[0].street;
+  }
+
+  if (locationInfo !== "") {
+    innerHTMLContent += "<br>" + "Location Info" + locationInfo;
   }
 
   locationInfoElement.innerHTML = innerHTMLContent;
-
 }
+
 
 function updatePopUpMap(current_loc) {
 

@@ -30,15 +30,16 @@ const overpassUrl = "https://overpass-api.de/api/interpreter";
 async function getLocations(streetViewLocation) {
   const overpassQuery = `[out:json];
     (
-        node(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];
+        node(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"]["amenity"!="parking"]["amenity"!="atm"];
         node(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["shop"];
         node(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["tourism"];
-        way(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];
+        way(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"]["amenity"!="parking"]["amenity"!="atm"];
         way(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["tourism"];
-        relation(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"];
+        relation(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["amenity"]["amenity"!="parking"]["amenity"!="atm"];
         way(around:150,${streetViewLocation.lat},${streetViewLocation.lng})[name]["building"];
     );
     out tags geom;`;
+
     console.log(overpassQuery);
     try {
       const response = await fetch(`${overpassUrl}?data=${encodeURIComponent(overpassQuery)}`);

@@ -8,14 +8,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Roboto&display=swap" rel="stylesheet">
     
     <title>PerthPinpoint</title>
 </head>
 <body style="overflow: auto; overflow-x: hidden;">
     <div class="landing-page">
         <header>
-            <h1 class = 'landing-title'><a href="/">PerthPinpoint</a></h1>
+            <h1 class = 'landing-title heading' style = 'margin-top: 0; margin-bottom: 0;'><a href="/">PerthPinpoint</a></h1>
             <nav>
                 <a href="/">Home</a>
                 <a href="/tutorial">Tutorial</a>
@@ -25,7 +25,7 @@
 
         <div class = 'login-container'>
             <div class = 'login-bar'>
-                <div class = 'sub-heading'>Enter a username</div>
+                <div class = 'sub-heading heading'>Enter a username</div>
                 <p>To play PerthPinpoint enter a username that you would like to play with. This username will appear on the leaderboard
                     if you get a top score
                 </p>
@@ -37,11 +37,11 @@
                 if (localStorage.getItem("username")) {
                   document.getElementById("username").value = localStorage.getItem("username");
                 }
-                document.querySelector("form").addEventListener("submit", function(event) {
-                  event.preventDefault(); 
-                  var username = document.getElementById("username").value;
-                  localStorage.setItem("username", username);
-                });
+                // document.querySelector("form").addEventListener("submit", function(event) {
+                //   event.preventDefault(); 
+                //   var username = document.getElementById("username").value;
+                //   localStorage.setItem("username", username);
+                // });
             </script>
         </div>
 
@@ -49,7 +49,7 @@
         <!-- Game mode options -->
         <div class= "game-modes-submit">
             <div class="game-modes">
-                <div class="game-mode-title sub-heading">Select a Game Mode</div>
+                <div class="game-mode-title sub-heading heading">Select a Game Mode</div>
                 <p>
                     Select a game mode to play.<br> Each game mode has a different objective and different rules.
                     Visit the <a href="/tutorial">tutorial page</a> to learn more about each game mode.
@@ -57,27 +57,27 @@
                 <div class="game-mode-options">
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="city">
-                        <img src="/static/assets/city-pfp.png" alt="Classic City Image">
-                        <div class="game-mode-label"><strong>Classic City</strong></div>
+                        <img src="/static/assets/streets.png" alt="Classic City Image">
+                        <div class="game-mode-label heading"><strong>Classic City</strong></div>
                     </label>
 
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="sleuth">
-                        <img src="/static/assets/sleuth-pfp.png" alt="Street Sleuth Image">
-                        <div class="game-mode-label"><strong>Streeth Sleuth</strong></div>
+                        <img src="/static/assets/kwinana-freeway-stock-image.webp" alt="Street Sleuth Image">
+                        <div class="game-mode-label heading">Streeth Sleuth</div>
                     </label>
 
                     <label class="game-mode-option">
                         <input type="radio" name="gameMode" value="landmark">
-                        <img src="/static/assets/landmark-pfp.png" alt="Local Landmark Image">
-                        <div class="game-mode-label"><strong>Local Landmark</strong></div>
+                        <img src="/static/assets/cactus.jpg" alt="Local Landmark Image">
+                        <div class="game-mode-label heading"><strong>Local Landmark</strong></div>
                     </label>
                 </div>
             </div>
             
             <div class="start-button-container">
                 <p style = "color: black;"><strong>Click the start button to begin playing!</strong></p>
-                <button id= "game-button" onclick= "enterMainPage()"><strong>Start Game</strong></button>
+                <button id= "game-button" class = 'heading' onclick= "enterMainPage()"><strong>Start Game</strong></button>
             </div>
         </div>
 
@@ -90,16 +90,27 @@
             const selectedMode = document.querySelector('input[name="gameMode"]:checked');
 
             if (!username){
-                alert("Please enter a username!");
-                window.location.href = "/";
+                //alert("Please enter a username!");
+                // window.location.href = "/";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                document.querySelector(".login-bar input").style.border = "3px solid red";
+
                 return;
             }
 
             if (!selectedMode){
                 alert("Please select a game mode before entering the main page.");
-                window.location.href = "/";
+                //window.location.href = "/";
                 return;
             }
+
+            document.querySelector(".login-bar input").style.border = "3px solid red";
+
             localStorage.setItem("game_mode", selectedMode.value);
             localStorage.setItem("username", username);
 
@@ -117,9 +128,6 @@
             else if (selectedMode.value == "landmark"){
                 alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/landmark";
-            }
-            else {
-                window.location.href = "/";
             }
             
         }

@@ -14,6 +14,10 @@ body,html
     gap: 9px;
 }
 
+.heading {
+    font-family: 'Lalezar', system-ui;
+}
+
 
 header { 
     display: flex;
@@ -415,7 +419,7 @@ cursor: crosshair !important;
 
 .sub-heading {
     font-size: 2.9rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 
@@ -477,8 +481,17 @@ input[type="radio"] {
     z-index: 1;
 }
 
+.game-mode-option img {
+
+    width: auto;
+    height: 330px;
+    object-fit: inherit;
+
+}
+
 .game-mode-option {
-    width: 300px;
+    object-fit: cover;
+    width: 340px;
     /* height: 440px; */
     /* min-height: 230px; */
     margin: 10px;
@@ -492,6 +505,7 @@ input[type="radio"] {
     flex-direction: column;
     z-index: 1;
     border-radius: 7px;
+    border: 15px solid #FDE112;
 }
 
 .game-mode-option input {
@@ -505,9 +519,10 @@ input[type="radio"] {
     transition: background-color 0.5s ease;
 }
 
-.game-mode-option div {
+.game-mode-label {
     transition: background-color 0.5s ease;
-    padding: 20px;
+    padding-top: 22px;
+    padding-bottom: 7px;
     font-size: 25px;
 }
 
