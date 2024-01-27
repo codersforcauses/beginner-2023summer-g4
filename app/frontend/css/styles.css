@@ -2,9 +2,7 @@ body,html
 {
     padding:0px;
     margin:0px;
-    height:100%;
     width:100%;
-    overflow: hidden;
     background: linear-gradient(to bottom, #5177FF, #00bbff);
     color: white;
 }
@@ -401,13 +399,13 @@ cursor: crosshair !important;
     margin: 0;
 }
 
-.login-bar p {
+.game-desc {
     line-height: 1.8;
     margin-bottom: 35px;
 }
 
 .sub-heading {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 500;
 }
 
@@ -470,7 +468,8 @@ input[type="radio"] {
 }
 
 .game-mode-title {
-    padding-top: 20px;
+    padding-top: 25px;
+    padding-bottom: 5px;
     z-index: 1;
 }
 
@@ -497,7 +496,7 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
     z-index: 1;
-    border-radius: 8px;
+    border-radius: 10px;
     position: relative;
     overflow: hidden;
     transition: transform 0.5s ease, width 0.3s, height 0.3s;

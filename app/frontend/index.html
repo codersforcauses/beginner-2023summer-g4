@@ -12,7 +12,7 @@
     
     <title>PerthPinpoint</title>
 </head>
-<body style="overflow: auto; overflow-x: hidden;">
+<body>
     <div class="landing-page">
         <header>
             <h1 class = 'landing-title heading' style = 'margin-top: 0; margin-bottom: 0;'><a href="/">PerthPinpoint</a></h1>
@@ -24,12 +24,21 @@
         </header>
 
         <div class = 'login-container'>
-            <div class = 'login-bar'>
-                <div class = 'sub-heading heading'>Enter a username</div>
-                <p>To play PerthPinpoint enter a username that you would like to play with. This username will appear on the leaderboard
-                    if you get a top score
-                </p>
+            <div class='login-bar'>
+                <div class='sub-heading heading'>Enter a username</div>
+                <p class = 'game-desc'>To play PerthPinpoint, enter a username that you would like to play with. This username will appear on the leaderboard
+                    if you get a top score.</p>
                 <input type="text" id="username" name="username" required placeholder="Enter a Username...">
+                <div style = 'display: none; color: #FF413D; line-height: 1.8;'class='username-rules' id = 'username-rules'>
+                    <p>The username must contain only:</p>
+                    <ul>
+                        <li>Letters</li>
+                        <li>Numbers</li>
+                        <li>Spaces</li>
+                        <li>Underscores (_)</li>
+                        <li>Periods (.)</li>
+                    </ul>
+                </div>
             </div>
             <img class="landing-image" src ="/static/assets/perth-image.jpg">
 
@@ -101,24 +110,29 @@
     </div>
     
     <script>
-        function enterMainPage(selectedMode) {
-            const username = document.getElementById('username').value;
 
-            if (!username){
-                //alert("Please enter a username!");
-                // window.location.href = "/";
-
-                window.scrollTo({
+        function notValidUsername() {
+            document.querySelector(".login-bar input").style.border = "3px solid red";
+            window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
 
-                document.querySelector(".login-bar input").style.border = "3px solid red";
+            const usernameRules = document.getElementById('username-rules');
+            if (usernameRules.style.display === 'none') {
+                usernameRules.style.display = 'block'
+            }
 
+        }
+        function enterMainPage(selectedMode) {
+            const username = document.getElementById('username').value;
+            const usernameRegex = new RegExp('^[a-zA-Z0-9._ ]+$', 'i');
+
+            if (!usernameRegex.test(username)) {
+                notValidUsername();
                 return;
             }
 
-            document.querySelector(".login-bar input").style.border = "3px solid red";
 
             localStorage.setItem("game_mode", selectedMode);
             localStorage.setItem("username", username);
@@ -126,16 +140,10 @@
             if (selectedMode === "city") {
                 window.location.href = "/city";
             }
-            else if (selectedMode == "discoveries"){
-                alert("we havent made this gamemode yet :)");
-                window.location.href = "/"; // /discoveries
-            }
             else if (selectedMode == "sleuth"){
-                alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/sleuth";
             }
             else if (selectedMode == "landmark"){
-                alert("WARNING: This Game Mode May not (yet) Work Properly!");
                 window.location.href = "/landmark";
             }
             
