@@ -685,5 +685,32 @@ input[type="radio"] {
     }
 }
 
+/* This is for when they have less than 10 seconds remaining */
+
+#glow-outline {
+    position: absolute;
+    top: 81.54px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 100px solid red;
+    border-image: linear-gradient(to right, red);
+    border-image-slice: 1;
+    animation: pulsate 0.8s infinite alternate;
+    z-index: 99;
+    display: none;
+    filter: blur(25px);
+    pointer-events: none;
+}
+
+@keyframes pulsate {
+    from {
+        border-width: 5px;
+    }
+    to {
+        border-width: 16px;
+    }
+}
+
 
     

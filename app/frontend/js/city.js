@@ -1,7 +1,7 @@
 // city.js
 
 import { generateNewStreetView, updateIframeLocation } from './components/streetview.js';
-import { runTimer, endTimer, currentTimerID} from './components/timer.js';
+import { runTimer, endTimer, resetClock, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
 import { makeSubmitButtonClickable, greyOutSubmitButton } from './components/submit-button.js';
@@ -40,7 +40,7 @@ loadStreetViewAndMap().then((result) => {
   if (result) {
     map = result.map;
     streetViewLocation = result.streetViewLocation;
-    runTimer(360, submit);
+    runTimer(30, submit);
     startGame();
   } else {
     console.error('Failed to load street view and map.');
@@ -288,6 +288,8 @@ async function closePopup(){
   map_guess_container.classList.remove('slide-away');
 
   document.title = `${roundNumber} | Classic City`
+
+  resetClock();
 
   runTimer(360);
 

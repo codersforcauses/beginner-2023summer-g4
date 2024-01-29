@@ -15,7 +15,7 @@ def city_points(data):
     scale_factor = 45000 
     distance = data["distance"]
     if distance < 0 or elapsed_time == None:
-        return -1
+        return -1,1
     points = -500/scale_factor*distance + 500
     if points > 498:
         points = 500

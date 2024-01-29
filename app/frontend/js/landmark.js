@@ -1,7 +1,7 @@
 // landmark.js
 
 import { generateNewStreetView, updateIframeLocation } from './components/streetview.js';
-import { runTimer, endTimer, currentTimerID} from './components/timer.js';
+import { runTimer, endTimer, resetClock, currentTimerID} from './components/timer.js';
 import { correctIcon, userIcon, dropIcon, tips } from './components/main.js';
 import { loadStreetViewAndMap } from './components/load.js';
 import { makeSubmitButtonClickable, greyOutSubmitButton } from './components/submit-button.js';
@@ -401,7 +401,8 @@ function submit() {
 
     updateLocationForRound();
 
-
+    resetClock();
+    
     runTimer(1000);
   
   }

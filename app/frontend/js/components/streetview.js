@@ -142,17 +142,21 @@ function getRandomCoordinates() {
       // Choose mainCity 98% of the time
       selectedLocation = mainCity;
 
-      const sectionVertical = Math.floor(Math.random() * 3);
-      const sectionHorizontal = Math.floor(Math.random() * 3);
+      const randomValue = Math.random();
+
+      let sectionVertical;
+      if (randomValue < 0.55) {
+        sectionVertical = 1;
+      } else {
+        sectionVertical = Math.floor(Math.random() * 2) * 2;
+      }
+
+      console.log("Section Vertical: " + sectionVertical);
 
       const sectionHeight = (mainCity.maxLat - mainCity.minLat) / 3;
-      const sectionWidth = (mainCity.maxLng - mainCity.minLng) / 3;
 
       selectedLocation.minLat = mainCity.minLat + sectionVertical * sectionHeight;
       selectedLocation.maxLat = selectedLocation.minLat + sectionHeight;
-
-      selectedLocation.minLng = mainCity.minLng + sectionHorizontal * sectionWidth;
-      selectedLocation.maxLng = selectedLocation.minLng + sectionWidth;
   }
 
   const randomLat = Math.random() * (selectedLocation.maxLat - selectedLocation.minLat) + selectedLocation.minLat;
