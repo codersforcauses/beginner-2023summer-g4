@@ -73,8 +73,6 @@ todo
 ## Notes & To Do:
 
 Upcoming Features: (Soon TM):
-- All gamemodes!
-- Time based point multiplier
 - Gamedata statistics (user and overall)
 
 stuff to do (development wise)
