@@ -11,11 +11,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Roboto&display=swap" rel="stylesheet">
     
     <title>PerthPinpoint | Tutorial</title>
-</head>
-    <body style="overflow: auto; overflow-x: hidden; color: black;" >
 
+    <style>
+        .section {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 65px;
+            
+        }
+
+        .section p {
+            line-height: 1.5;
+        }
+
+        .game-mode-info-title {
+            font-size: 1.8rem;
+        }
+
+        .sub-heading {
+            font-size: 2.8rem;
+        }
+
+        .game-mode-info video {
+            margin-top: 0;
+            margin-bottom: 0;
+            max-width: 780px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .game-specific-info-heading {
+            font-weight: bold;
+        }
+    </style>
+</head>
+    <body style = 'color: white; margin: 80px auto 65px; max-width: 1080px; padding: 1.5rem; background: linear-gradient(to bottom, #5177FF, #006aff);'>
         <header>
-            <h1 class = 'landing-title heading' style = 'margin-top: 0; margin-bottom: 0;'><a href="/">PerthPinpoint</a></h1>
+            <h1 class = 'landing-title heading' style = 'margin-top: 0; margin-bottom: 0;'><a title = 'Home' href="/">PerthPinpoint</a></h1>
             <nav>
                 <a href="/">Home</a>
                 <a href="/tutorial">Tutorial</a>
@@ -23,8 +55,8 @@
             </nav>
         </header>
 
-        <div>
-            <h2>What is PerthPinpoint?</h2>
+        <div class = 'intro-tutorial section'>
+            <h2 class = 'heading sub-heading' style = 'margin: 0;'>What is PerthPinpoint?</h2>
             <p>
                 PerthPinpoint is a game which tests your knoweldge about how well you know the city of Perth. 
                 Players who are familsiar with the city and are able to decipher clues about their surroundings will be able to score higher
@@ -34,49 +66,127 @@
             </p>
         </div>
 
-        <div class = "game-modes-tutorial">
-            <h2>
+        <div class = "game-modes-tutorial section">
+            <h2 class = 'heading sub-heading' style = 'margin: 0;'>
                 PerthPinpoint Game Modes - How to play them?
             </h2>
 
             <p>
-                <i>Note: All game modes are best played with a mouse and keyboard.</i>
+                <i>Note: All game modes are best played with a mouse and keyboard on a PC.</i>
             </p>
 
-            <div>
-                <h3>Classic City</h3>
+            <div class = 'game-mode-info section'>
+                <div class = 'game-mode-info-title heading'>Classic City</div>
                 <p>
                     You will be dropped in a random location within Perth. You are free to explore the location as much as you wish using the Google Street View. 
                     Your goal is to guess the original location before the timer runs out!
                 </p>
+                <video muted autoplay loop>
+                    <source src="/static/assets/classic-city-demo.mp4" type="video/mp4">
+                  The video demo could not load.
+                </video>
                 <br>
                 <p>
-                    <b>Time Limit:</b> 7 minutes
-                    <br><br>
-                    <b>Points System</b><br>The closer you are to the original location, the more points you will score.
-                    If you are 45km or more away from the correct location you will gain 0 points. 
-                    <br>
-                    A points-time multiplier is also applied to your score. The faster you guess the correct location, the more points you will score.
-                    <br>
-                    The aim of the game is to be fast and accurate!
+                    The drop location is randomly generated every time you start a game/new round. The location will be within the rectangular bounds shown on the map (usually).
+                    <br><i>Note: In rare cases the location may be sightly outside the rectangular border. Also Rottnest Island is a valid and possible location within this game mode</i>
                 </p>
-            </div>
-    
-    
-            <div>
-                <h3>Local Landmark</h3>
+                <div class = 'game-specific-info-heading'>Rounds</div>
+                <p>10</p>
+                <br>
+                <div class = 'game-specific-info-heading'>Points System</div>
                 <p>
-                    
+                    The closer you are to the original location, the more points you will score.
+                    If you are 45km or more away from the correct location you will gain 0 points. 
+                    Points range from 0 to 500 points (before multipliers are applied).
+                    <br>
+                    A points-time multiplier is also applied to your score so long as your guess isn't a bad guess. The faster and closer you guess the location, the more points you will score.
+                    <br>
+                    If a sufficently close location is gussed the following multipliers are applied: 
+                    <br>
+                    <ul style = 'line-height: 1.7;'>
+                        <li>1.5x if you guess within 10 seconds</li>
+                        <li>1.4x if you guess within 30 seconds</li>
+                        <li>1.3x if you guess within 60 seconds</li>
+                        <li>1.2x if you guess within 3 minutes (180s)</li>
+                    </ul>
+                    <br>
+                    If you take any longer, no multiplier is applied. This means the max points you can score is 750 (after multipliers are applied).
+                </p>
+                <div class = 'game-specific-info-heading'>Time Limit</div>
+                <p>6 Minutes</p>
+            </div>
+
+
+            <!-- NEXT GAME MODE -->
+
+            <div class = 'game-mode-info section'>
+                <div class = 'game-mode-info-title heading'>Local Landmark</div>
+                <p>
+                    You will be dropped in a random location within/near the Perth CBD or Fremantle. You will be prompted with locations within a small radius of your drop location.
+                    These locations may be buildings, shops, parks, or any other landmark. Your goal is to roam the area looking for the landmark and pin it on the map. The map in this
+                    game mode will have no labels to create more of a challenge.
+                </p>
+                <video muted autoplay loop>
+                    <source src="/static/assets/classic-city-demo.mp4" type="video/mp4">
+                  The video demo could not load.
+                </video>
+                <br>
+                <p>
+                    The landmarks are randomly generated, every time you start a game. If more than one of a landmark exists in the area,
+                    you may pick any one of them.
+                </p>
+                <div class = 'game-specific-info-heading'>Rounds</div>
+                <p>5</p>
+                <br>
+                <div class = 'game-specific-info-heading'>Points System</div>
+                <p>
+                    This game mode doesn't work on a points system but rather a Found/Not Found system. You must guess the exact building/location (with some leeway) for it to be considered found.
+                </p>
+                <div class = 'game-specific-info-heading'>Time Limit</div>
+                <p>6 Minutes</p>
+            </div>
+
+            <!-- NEXT GAME MODE -->
+
+            <div class = 'game-mode-info section'>
+                <div class = 'game-mode-info-title heading'>Street Sleuth</div>
+                <p>
+                    Perhaps the hardest game mode! You will be dropped in a random location within Perth. 
+                    You will be prompted with somewhat prominent street/road,
+                    your goal is to find on the map where that particular street/road is on the satellite map within a radius. 
+                    The map in this game mode will have no labels to create more of a challenge.
+                    The street view in this mode will serve less of a purpose (but is present in case you need it). 
+                    To make this game mode easier a reference street/road will be shown on the map.
+                </p>
+                <video muted autoplay loop>
+                    <source src="/static/assets/classic-city-demo.mp4" type="video/mp4">
+                  The video demo could not load.
+                </video>
+                <br>
+                <p>
+                    The drop location will be generated at random, and the streets/roads will be randomly generated, every time you start a game. Only roads/streets which are (even partially)
+                    within the circle radius will be potential answers.
+                </p>
+                <div class = 'game-specific-info-heading'>Rounds</div>
+                <p>5</p>
+                <br>
+                <div class = 'game-specific-info-heading'>Points System</div>
+                <p>
+                    This game mode doesn't work on a points system but rather a Found/Not Found system. You must guess the exact road/street (with some leeway) for it to be considered found.
+                </p>
+                <div class = 'game-specific-info-heading'>Time Limit</div>
+                <p>6 Minutes</p>
+            </div>
+            
+            <div>
+                <div class = 'sub-heading heading' heading>Credits</div>
+                <div class = 'game-mode-info-title heading'>Icons</div>
+                <p>
+                    Icons made by <a target = "_blank" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from 
+                    <a target = "_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
                 </p>
             </div>
-    
-    
-    
-    
-            <div>
-                1234
-    
-            </div>
+
 
         </div>
 

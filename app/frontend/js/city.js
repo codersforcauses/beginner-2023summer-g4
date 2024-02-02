@@ -40,7 +40,7 @@ loadStreetViewAndMap().then((result) => {
   if (result) {
     map = result.map;
     streetViewLocation = result.streetViewLocation;
-    runTimer(30, submit);
+    runTimer(360, submit);
     startGame();
   } else {
     console.error('Failed to load street view and map.');
