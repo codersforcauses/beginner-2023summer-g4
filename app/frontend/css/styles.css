@@ -635,7 +635,8 @@ input[type="radio"] {
 }
 
 #game-button:hover {
-    background-color: #283EB4;
+    background-color: #ffffff;
+    color: black;
 }
 
 /* @media only screen and (max-width: 700px) {
