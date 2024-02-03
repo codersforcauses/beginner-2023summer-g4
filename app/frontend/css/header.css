@@ -1,0 +1,15 @@
+@media only screen and (max-width: 1000px) {
+
+    .menu-header {
+        display: none; /* Hide the regular navigation links */
+    }
+
+    .menu-bar {
+        display: block; /* Display the menu icon */
+        margin-right: 9vw;
+        cursor: pointer;
+    }
+
+}
+
+/* <a href="https://www.flaticon.com/free-icons/open-menu" title="open menu icons">Open menu icons created by Pixel perfect - Flaticon</a> */

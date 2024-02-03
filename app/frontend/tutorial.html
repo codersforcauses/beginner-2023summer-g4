@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/header.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,16 +45,43 @@
             font-weight: bold;
         }
     </style>
+
+    <script>
+        function toggleMenu() {
+            let menu = document.querySelector('.menu');
+            if (menu.style.right === '0px') {
+                menu.style.right = '-300px';
+            } else {
+                menu.style.right = '0px';
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            let menu = document.querySelector('.menu');
+            let menuBar = document.querySelector('.menu-bar');
+            if (event.target !== menu && event.target !== menuBar) {
+                // Close the menu when clicking outside of it
+                menu.style.right = '-300px';
+            }
+        });
+    </script>
 </head>
     <body style = 'color: white; margin: 80px auto 65px; max-width: 1080px; padding: 1.5rem; background: linear-gradient(to bottom, #5177FF, #006aff);'>
         <header>
             <h1 class = 'landing-title heading' style = 'margin-top: 0; margin-bottom: 0;'><a title = 'Home' href="/">PerthPinpoint</a></h1>
-            <nav>
+            <nav class = 'menu-header'>
                 <a href="/">Home</a>
                 <a href="/tutorial">Tutorial</a>
                 <a href="/leaderboard">Leaderboard</a>
             </nav>
+            <svg onclick = 'toggleMenu()' class = 'menu-bar' fill="none" height="32" viewBox="0 0 20 20" width="32" xmlns="http://www.w3.org/2000/svg"><g fill="#212121"><path d="m2 4.75c0-.41421.33579-.75.75-.75h14.5c.4142 0 .75.33579.75.75s-.3358.75-.75.75h-14.5c-.41421 0-.75-.33579-.75-.75z"/><path d="m2 9.75c0-.41421.33579-.75.75-.75h14.5c.4142 0 .75.33579.75.75 0 .4142-.3358.75-.75.75h-14.5c-.41421 0-.75-.3358-.75-.75z"/><path d="m2.75 14c-.41421 0-.75.3358-.75.75s.33579.75.75.75h14.5c.4142 0 .75-.3358.75-.75s-.3358-.75-.75-.75z"/></g></svg>
         </header>
+
+        <nav class="menu">
+            <a href="/">Home</a>
+            <a href="/tutorial">Tutorial</a>
+            <a href="/leaderboard">Leaderboard</a>
+        </nav>
 
         <div class = 'intro-tutorial section'>
             <h2 class = 'heading sub-heading' style = 'margin: 0;'>What is PerthPinpoint?</h2>
