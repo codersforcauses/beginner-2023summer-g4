@@ -486,6 +486,7 @@ input[type="radio"] {
     margin-top: 65px;
     margin-right: 65px;
     margin-left: 65px;
+    padding: auto;
 }
 
 .game-modes-submit {
@@ -510,6 +511,7 @@ input[type="radio"] {
     padding-top: 25px;
     padding-bottom: 5px;
     z-index: 1;
+    text-align: center;
 }
 
 .game-mode-option img {
@@ -523,8 +525,8 @@ input[type="radio"] {
 
 .game-mode-option {
     object-fit: cover;
-    width: 350px;
-    height: 470px;
+    width: 320px;
+    height: 430px;
     /* min-height: 230px; */
     margin: 10px;
     cursor: pointer;
@@ -534,6 +536,8 @@ input[type="radio"] {
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
     border-radius: 10px;
     position: relative;
@@ -546,21 +550,16 @@ input[type="radio"] {
     transition: filter 0.5s ease;
 }
 
-.game-mode-option:hover .game-submit{
-    display: block;
-}
 
 .game-submit:hover {
     color: black;
     background-color: white;
     border: 11px solid white;
-
-
 }
 
 .game-mode-option:hover{
-    width: 450px;
-    height: 639px;
+    width: 350px;
+    height: 470.3125px;
 }
 
 .game-mode-option input {
@@ -568,49 +567,52 @@ input[type="radio"] {
     z-index: 1;
 }
 
-.game-mode-option:hover .game-mode-card-description {
-    display: block;
+.game-mode-card-description,
+.game-submit {
+    transform: translateY(200%);
+    display: none; /* Adjust the duration and timing function as needed */
 }
 
-/* .game-card-info-text {
-    position: absolute;
-} */
+
+
+
+.game-mode-option:hover .game-mode-card-description,
+.game-mode-option:hover .game-submit {
+    display: block;
+    transform: translateY(0);
+}
 
 .game-submit {
-    display: none;
     color: white;
     border: 4px solid white;
     background-color: transparent;
     padding: 10px 20px;
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%) scale(1);
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
     transition: border 0.2s ease;
 }
 
-.game-mode-card-description {
-    display: none;
+.game-card-info-text {
     position: absolute;
-    bottom: 185px;
-    left: 50%;
-    transform: translateX(-50%) scale(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.game-mode-card-description {
     color: white;
     line-height: 1.8;
     width: 80%; 
+    transition: transform 0.5s ease;
 }
 
 .game-mode-label {
     transition: background-color 0.5s ease;
     color: white;
     font-size: 75px;
-    position: absolute;
-    left: 50%;
-    top: 25%;
-    transform: translateX(-50%) scale(1);
     paint-order: stroke;
     line-height: 1;
 }
@@ -632,11 +634,6 @@ input[type="radio"] {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.5s ease;
-}
-
-#game-button:hover {
-    background-color: #ffffff;
-    color: black;
 }
 
 /* @media only screen and (max-width: 700px) {
