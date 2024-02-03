@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style = 'height: 100%;'>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -61,15 +61,21 @@
         .leaderboard-header {
             font-weight: bold;
             background-color: #ddd;
-            font-size: 30px;
+            font-size: 22px;
         }
 
         .leaderboard-item {
-            font-size: 25px;
-            height: 40px;
+            font-size: 19px;
             align-items: center;
             font-weight: bold;
             box-shadow: rgb(221, 225, 230) 0px 8px 5px 0px;
+        }
+
+        .trophy-image {
+            background-image: url('/static/assets/trophy.png');
+            object-fit: contain;
+            width: 100px;
+            height: auto;
         }
 
     </style>
@@ -93,7 +99,7 @@
             }
         });
     </script>
-<body>
+<body style = 'margin: auto; max-width: 1080px; background: linear-gradient(to bottom, #CA2FEC, #291887)'>
     <div class="landing-page">
 
         <header>
@@ -113,7 +119,16 @@
         </nav>
 
             <div class = 'leaderboard-container'>
-                <h2  class = 'leaderboard heading'>Leaderboard!</h2>
+                <h2  class = 'leaderboard heading'>Leaderboard</h2>
+                <div>
+                    <img src="/static/assets/trophy.png" alt="trophy image">
+                    <p>
+                        Welcome to the competitive Classic City leaderboard! 
+                        Discover the top 10 players who've showcased their strategic prowess in this thrilling game mode. 
+                        Whether you're a seasoned veteran or a newcomer, this leaderboard is where you witness the pinnacle of Classic City competition. 
+                        Join the ranks, prove your skills, and aim for the top spot!
+                    </p>
+                </div>
                 <div class = 'leaderboard-elements' id = 'leaderboard-elements'>
                     <div class="leaderboard-header heading">
                         <div>Position</div>
