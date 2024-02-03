@@ -21,12 +21,10 @@ Perth PinPoint is a remake of the popular game "GeoGuessr" within the context of
 ## Features
 Perth PinPoint features 4 gamemodes, including:
 - City (Classic)
-- Divs Discoveries (Classic +Events)
 - Street Sleuth (Accuracy)
 - Local Landmark (Awareness)
 
-Leaderboard to compete with friends!  
-a bunch of errors in the browser console you can ignore!
+Challenge your friends by getting on the leaderboard for the Classic mode!
 
 ## Required APIs
 Perth PinPoint relies on multiple APIs in order to function, this includes `<apis>`. Perth PinPoint provides restricted keys for this that are free to use, however instructions on using your own API keys are below:
@@ -68,21 +66,15 @@ docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core 
 ```
 
 ## Demo
-todo
+You can visit the `tutorial` page for more information on the game, but here is a quick demo of what it looks like:
+![demovideo](https://github.com/codersforcauses/beginner-2023summer-g4/assets/102455961/c782b37e-727f-4cc4-81c8-8c8eb776ff5e)
+
+
 
 ## Notes & To Do:
 
 Upcoming Features: (Soon TM):
-- Gamedata statistics (user and overall)
-
-stuff to do (development wise)
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP uhhhhhhhhhhhhhhhhhh * hehe
-- finish all gamemodes
-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries FIX SCALING ISSUES LMAO
-- end game screen
-- leaderboard page
-- landing page css uhh
-- MAKE IT LOOK NICE!!!!!!!!!!!!
+- uhhhhhhhhhhhhhhhhhhhhh
 
 ## LICENSE
 License: [here](/LICENSE)
