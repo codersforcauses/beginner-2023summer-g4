@@ -81,8 +81,10 @@
                     </div>
                 </div>
             </div>
-        
+            
+            <script>var toggle = 0;</script>
             <script>
+            
                 function parseboard(endpoint) {
                     const leaderboard = document.getElementById('leaderboard-elements');
 
@@ -111,11 +113,26 @@
                 }
 
                 parseboard('/api/top');
+                
+                function switchview() {
+
+                    const leaderboard = document.getElementById('leaderboard-elements');
+                    
+                    leaderboard.replaceChildren(leaderboard.firstElementChild);
+
+                    if (toggle === 0) {
+                        parseboard('/api/all');
+                        toggle = 1;
+                    } else {
+                        parseboard('/api/top');
+                        toggle = 0;
+                    }        
+                }
             </script>
 
             <div class="start-button-container">
                 <p style="color: black;"><strong>Thank you for Playing PerthPinPoint!</strong></p>
-                <a href="/api/all"><button id="game-button"><strong>full leaderboard (wip)</strong></button></a>
+                <button id="game-button" onclick="switchview()"><strong>Toggle Full Leaderboard</strong></button>
                 <a href="/"><button id="game-button"><strong>Return Home</strong></button></a>
             </div>
         </div>
