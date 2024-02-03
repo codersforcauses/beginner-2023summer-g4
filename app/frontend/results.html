@@ -37,12 +37,9 @@
             flex-grow: 2;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
             width: 95%;
             align-self: center;
-            background-color: white;
             padding: 20px;
-            border-radius: 30px;
         }
 
         .leaderboard-header,
@@ -51,24 +48,26 @@
             grid-template-columns: 1fr 2fr 1fr;
             gap: 5px;
             padding: 8px;
-            border: 1px solid #ddd; /* Optional: Add a border for visual separation */
-            border-radius: 30px; /* Optional: Add rounded corners */
+            border: 0.1px solid #a3a3a3; /* Optional: Add a border for visual separation */
             justify-items: center; /* Center content horizontally */
-            color: black;
         }
 
         /* Optional: Style the header differently */
         .leaderboard-header {
-            font-weight: bold;
             background-color: #ddd;
             font-size: 22px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.45);
         }
 
         .leaderboard-item {
             font-size: 19px;
             align-items: center;
             font-weight: bold;
-            box-shadow: rgb(221, 225, 230) 0px 8px 5px 0px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
 
         .trophy-image {
@@ -99,7 +98,15 @@
             }
         });
     </script>
-<body style = 'margin: auto; max-width: 1080px; background: linear-gradient(to bottom, #CA2FEC, #291887)'>
+<body style = 'margin: auto; max-width: 1080px; background-color: #3c00ff;
+ background-image: radial-gradient(
+    circle farthest-corner at top left, rgb(91, 3, 255) 0%, rgba(144, 192, 240,0) 50%),
+      radial-gradient(
+      circle farthest-side at top right, rgba(154, 133, 195,1) 0%, rgba(154, 133, 195,0) 10%),
+  radial-gradient(circle farthest-corner at bottom right, rgb(241, 17, 151) 0%, rgba(204, 104, 119, 0) 33%),
+      radial-gradient(
+      circle farthest-corner at top right, rgb(218, 41, 162) 0%, rgba(242, 165, 217,0) 50%),
+    radial-gradient(ellipse at bottom center, rgb(201, 5, 250) 0%, rgba(255, 192, 203, 0) 80%);'>
     <div class="landing-page">
 
         <header>
