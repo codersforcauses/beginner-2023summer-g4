@@ -60,7 +60,7 @@ SELECT * FROM users WHERE username=(?)
 '''
 # (username,)
 user_query_new = '''
-INSERT INTO users (username) VALUES (?)
+INSERT OR IGNORE INTO users (username) VALUES (?)
 '''
 # (username,)
 game_query_exist = '''
@@ -68,7 +68,7 @@ SELECT * FROM games WHERE user_id IN (SELECT user_id FROM users WHERE username=(
 '''
 # (username, game_mode)
 game_query_new = '''
-INSERT INTO games (user_id, game_mode, maxpoints, totalpoints) SELECT user_id, (?), (?), (?) FROM users WHERE username=(?)
+INSERT OR IGNORE INTO games (user_id, game_mode, maxpoints, totalpoints) SELECT user_id, (?), (?), (?) FROM users WHERE username=(?)
 '''
 # (game_mode, maxpoints, totalpoints, username)
 
