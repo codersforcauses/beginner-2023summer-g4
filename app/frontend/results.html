@@ -71,11 +71,23 @@
             box-shadow: rgb(221, 225, 230) 0px 8px 5px 0px;
         }
 
-        .trophy-image {
-            background-image: url('/static/assets/trophy.png');
-            object-fit: contain;
-            width: 100px;
-            height: auto;
+        .leaderboard-info-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4vw;
+            padding: 25px;
+        }
+
+        .leaderboard-info-container img {
+            width: 200px;
+            height:auto;
+        }
+
+        .leaderboard-info-container a:visited {
+
+            color: white;
+
         }
 
     </style>
@@ -120,13 +132,16 @@
 
             <div class = 'leaderboard-container'>
                 <h2  class = 'leaderboard heading'>Leaderboard</h2>
-                <div>
+                <div class = 'leaderboard-info-container'>
                     <img src="/static/assets/trophy.png" alt="trophy image">
-                    <p>
+                    <p style = 'line-height: 1.8;'>
                         Welcome to the competitive Classic City leaderboard! 
                         Discover the top 10 players who've showcased their strategic prowess in this thrilling game mode. 
                         Whether you're a seasoned veteran or a newcomer, this leaderboard is where you witness the pinnacle of Classic City competition. 
                         Join the ranks, prove your skills, and aim for the top spot!
+                        <br>
+                        <br>
+                        To try and get on the leaderboard play the <a href="/home">Classic City</a> game mode.
                     </p>
                 </div>
                 <div class = 'leaderboard-elements' id = 'leaderboard-elements'>
