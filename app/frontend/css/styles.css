@@ -37,6 +37,10 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.menu-bar {
+    display: none;
+}
+
 .map-guess-container{
     position: absolute;
     display: flex;
@@ -76,7 +80,7 @@ header {
 
 
 
-@media only screen and (max-width: 1360px) {
+/* @media only screen and (max-width: 1360px) {
 
     header .round-info-header{
         display: flex;
@@ -145,12 +149,12 @@ header {
         position: relative;
     }
 
-}
+} */
 
 
 header h1 {
     margin-right: auto;
-    margin-left: 100px;
+    margin-left: 9vw;
     text-decoration: none;
     cursor: pointer;
 }
@@ -162,7 +166,7 @@ header a {
 
 header a:visited {
     color: black; /* Set the same color for visited links */
-  }
+}
 
 .round-info-header{
     display: flex;
@@ -172,10 +176,43 @@ header a:visited {
     transition: gap 0.3s ease;
 }
 
-header nav {
+.menu-header {
     display: flex;
     margin-right: 100px;
     gap: 140px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    align-items: center;
+    color: white;
+    gap: 50px;
+    top: 81.54px;
+    right: -300px;
+    padding: 30px;
+    width: 180px;
+    height: 100%;
+    transition: left 0.3s ease-in-out;
+    z-index: 90;
+    border-top-left-radius: 9px;
+    background: linear-gradient(to bottom, #5177FF, #00bbff);
+    text-decoration: none;
+    transition: right 0.4s ease-in-out;
+
+    /* Add more pronounced box-shadow to top, bottom, and left edges */
+    box-shadow: -8px 0 10px -8px rgba(0, 0, 0, 0.8), 0 8px 10px -8px rgba(0, 0, 0, 0.8), 8px 0 10px -8px rgba(0, 0, 0, 0.8);
+}
+
+
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu a:visited {
+    color: white;
 }
 
 header nav a:hover {
@@ -431,6 +468,7 @@ cursor: crosshair !important;
     height: auto;
     margin-top: 2%;
     border-radius: 30px;
+    object-fit: cover;
 }
 
 input[type="radio"] {
@@ -600,7 +638,7 @@ input[type="radio"] {
     background-color: #283EB4;
 }
 
-@media only screen and (max-width: 700px) {
+/* @media only screen and (max-width: 700px) {
 
     .map-guess-container {
         display: none;
@@ -684,7 +722,7 @@ input[type="radio"] {
     .score-for-a-round-popup.open-popup.pop-up-multiplier {
         display: none;
     }
-}
+} */
 
 /* This is for when they have less than 10 seconds remaining */
 
