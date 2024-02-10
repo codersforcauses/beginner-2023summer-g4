@@ -36,7 +36,7 @@ loadStreetViewAndMap().then(async (result) => {
       referenceLoc = result.referenceLoc;
       updateLocationForRound();
 
-      runTimer(360, submit);
+      runTimer(300, submit);
 
       startGame();
     } else {
@@ -333,7 +333,7 @@ function submit() {
     updateLocationForRound();
 
     resetClock();
-    runTimer(360, submit);
+    runTimer(300, submit);
   
   }
 

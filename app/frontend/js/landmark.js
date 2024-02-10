@@ -39,7 +39,7 @@ loadStreetViewAndMap().then(async (result) => {
       current_location = locations[roundNumber-1];
       updateLocationForRound();
 
-      runTimer(15, submit);
+      runTimer(300, submit);
       // let map_guess = document.getElementById('map-guess-container');
       // map_guess.style.height = '95%';
       // map_guess.style.width = '43%';
@@ -398,7 +398,7 @@ function submit() {
 
     resetClock();
     
-    runTimer(15, submit);
+    runTimer(300, submit);
   
   }
 
