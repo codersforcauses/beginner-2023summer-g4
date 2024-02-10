@@ -67,7 +67,7 @@ docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core 
 
 ## Demo
 You can visit the `tutorial` page for more information on the game, but here is a quick demo of what it looks like:
-![demo](https://github.com/codersforcauses/beginner-2023summer-g4/app/frontend/static/assets/classic-city-demo.gif)
+![demo](https://github.com/codersforcauses/beginner-2023summer-g4/blob/main/app/frontend/assets/classic-city-demo.gif?raw=true)
 
 
 
