@@ -41,7 +41,7 @@ loadStreetViewAndMap().then((result) => {
     document.title = "PerthPinpoint | Classic City"
     map = result.map;
     streetViewLocation = result.streetViewLocation;
-    runTimer(360, submit);
+    runTimer(300, submit);
     startGame();
   } else {
     console.error('Failed to load street view and map.');
@@ -284,7 +284,7 @@ async function closePopup(){
 
   resetClock();
 
-  runTimer(360, submit);
+  runTimer(300, submit);
 
 }
 
