@@ -61,7 +61,7 @@ A Dockerfile exists, note this is configured for production deployment:
 
 ```
 docker build -t perthpinpoint .
-docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 127.0.0.1:80:8080 --name "pinpoint" perthpinpoint
+docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 0.0.0.0:80:8080 --name "pinpoint" perthpinpoint
 # docker stop pinpoint ; docker rm pinpoint
 ```
 
