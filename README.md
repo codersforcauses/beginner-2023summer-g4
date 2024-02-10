@@ -2,7 +2,7 @@
 Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)  
 > Members: [Torry](https://torrytw.ooo), [Anay](https://github.com/Anay-Joshi26) & [Connor](https://github.com/CJFernie)
 
-to do: insert a image here
+![banner](https://github.com/codersforcauses/beginner-2023summer-g4/blob/main/app/frontend/assets/banner.png?raw=true)
 
 ## Table of Contents:
 0. [Original Repository](#original-repository)
