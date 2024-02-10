@@ -16,15 +16,15 @@ Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)
 8. [LICENSE](#license)
 
 ## Concept
-Perth PinPoint is a remake of the popular game "GeoGuessr" within the context of Perth, Western Australia. It features several different game modes which will test your knowledge about how well you know the amazing city of Perth.
+PerthPinpoint is a remake of the popular game "GeoGuessr" within the context of Perth, Western Australia. It features several different game modes which will test your knowledge about how well you know the amazing city of Perth.
 
 ## Features
 Perth PinPoint features 4 gamemodes, including:
-- City (Classic)
-- Street Sleuth (Accuracy)
-- Local Landmark (Awareness)
+- Classic City
+- Local Landmark
+- Street Sleuth 
 
-Challenge your friends by getting on the leaderboard for the Classic mode!
+Challenge your friends by getting on the leaderboard for the Classic City game mode!
 
 ## Required APIs
 Perth PinPoint relies on multiple APIs in order to function, this includes `<apis>`. Perth PinPoint provides restricted keys for this that are free to use, however instructions on using your own API keys are below:
@@ -66,15 +66,10 @@ docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core 
 ```
 
 ## Demo
-You can visit the `tutorial` page for more information on the game, but here is a quick demo of what it looks like:
+Here is a quick demo of what the game looks like:
 ![demo](https://github.com/codersforcauses/beginner-2023summer-g4/blob/main/app/frontend/assets/classic-city-demo.gif?raw=true)
 
-
-
-## Notes & To Do:
-
-Upcoming Features: (Soon TM):
-- uhhhhhhhhhhhhhhhhhhhhh
+You can visit the `/tutorial` page for more information on the game 
 
 ## LICENSE
 License: [here](/LICENSE)
