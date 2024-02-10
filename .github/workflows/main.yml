@@ -17,5 +17,10 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          echo "test"
-          echo "test2"
+          echo "this is terrible"
+          docker stop pinpoint
+          docker rm pinpoint
+          cd /root/beginner-2023summer-g4
+          git pull origin main
+          docker build -t perthpinpoint .
+          docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 0.0.0.0:80:8080 --name "pinpoint" perthpinpoint          
