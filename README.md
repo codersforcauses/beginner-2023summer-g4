@@ -1,19 +1,20 @@
-# Perth PinPoint by "Nef Fan Club"  
+  # Perth PinPoint by "Nef Fan Club"  
 Group (4) repository for Coders for Causes Summer Beginner Project (2023/24)  
 > Members: [Torry](https://torrytw.ooo), [Anay](https://github.com/Anay-Joshi26) & [Connor](https://github.com/CJFernie)
 
 ![banner](https://github.com/codersforcauses/beginner-2023summer-g4/blob/main/app/frontend/assets/banner.png?raw=true)
 
+Play PerthPinPoint Now: [perthpinpoint.city](https://perthpinpoint.city)
+
 ## Table of Contents:
 0. [Original Repository](#original-repository)
 1. [Concept](#concept)
 2. [Features](#features)
-3. [Required APIs](#required-apis)
+3. [Google Maps API](#google-maps-ai)
 4. [Structure](#structure)  
 5. [Dependencies & Deployment](#dependencies--deployment)
 6. [Demo](#demo)  
-7. [Notes & To Do](#notes--to-do)
-8. [LICENSE](#license)
+7. [LICENSE](#license)
 
 ## Concept
 PerthPinpoint is a remake of the popular game "GeoGuessr" within the context of Perth, Western Australia. It features several different game modes which will test your knowledge about how well you know the amazing city of Perth.
@@ -26,9 +27,12 @@ Perth PinPoint features 4 gamemodes, including:
 
 Challenge your friends by getting on the leaderboard for the Classic City game mode!
 
-## Required APIs
-Perth PinPoint relies on multiple APIs in order to function, this includes `<apis>`. Perth PinPoint provides restricted keys for this that are free to use, however instructions on using your own API keys are below:
-`todo`
+## Google Maps API
+Perth PinPoint relies on Google Maps API for street view functionality. PerthPinPoint has its own associated API keys preloaded, or you can obtain your own [here](https://developers.google.com/maps/documentation/embed/get-api-key).
+
+API Key Locations:
+- `/app/frontend/main.html` (L31)
+- `/app/frontend/js/components/streetview.js` (L71)
 
 ## Structure
 Perth PinPoint is built with the stack such as:
