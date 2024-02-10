@@ -333,7 +333,7 @@ function submit() {
     updateLocationForRound();
 
     resetClock();
-    runTimer(1000);
+    runTimer(360, submit);
   
   }
 

@@ -284,7 +284,7 @@ async function closePopup(){
 
   resetClock();
 
-  runTimer(360);
+  runTimer(360, submit);
 
 }
 
