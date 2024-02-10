@@ -6,11 +6,13 @@
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/static/css/header.css">
+    <link rel="icon" href="static/assets/favicon.ico">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Roboto&display=swap" rel="stylesheet">
+
     
     <title>PerthPinpoint</title>
 
@@ -33,6 +35,63 @@
             }
         });
     </script>
+
+<script>
+
+
+    function notValidUsername() {
+        document.querySelector(".login-bar input").style.border = "3px solid red";
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        const usernameRules = document.getElementById('username-rules');
+        if (usernameRules.style.display === 'none') {
+            usernameRules.style.display = 'block'
+        }
+    }
+
+    function profaneUsername() {
+        document.querySelector(".login-bar input").style.border = "3px solid red";
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        const profanityRules = document.getElementById('profanity-rules');
+        if (profanityRules.style.display === 'none') {
+            profanityRules.style.display = 'block'
+        }
+    }
+
+    function enterMainPage(selectedMode) {
+        const username = document.getElementById('username').value;
+
+        // const matcher = new RegExpMatcher({
+        //     ...englishDataset.build(),
+        //     ...englishRecommendedTransformers,
+        // });
+        // const hasMatch = matcher.hasMatch(username);
+
+        const usernameRegex = new RegExp('^[a-zA-Z0-9._ ]+$', 'i');
+        if (!usernameRegex.test(username)) {
+            notValidUsername();
+            return;
+        }
+        // if (hasMatch) {
+        //     profaneUsername();
+        //     return;
+        // }
+        localStorage.setItem("game_mode", selectedMode);
+        localStorage.setItem("username", username);
+        if (selectedMode === "city") {
+            window.location.href = "/city";
+        } else if (selectedMode == "sleuth") {
+            window.location.href = "/sleuth";
+        } else if (selectedMode == "landmark") {
+            window.location.href = "/landmark";
+        }
+    }
+</script>
 
     <style>
         @media screen and (max-width: 1095px){
@@ -72,7 +131,7 @@
                 <p class = 'game-desc'>To play PerthPinpoint, enter a username that you would like to play with. This username will appear on the leaderboard
                     if you get a top score.</p>
                 <input type="text" id="username" name="username" required placeholder="Enter a Username...">
-                <div style = 'display: none; color: #FF413D; line-height: 1.8;'class='username-rules' id = 'username-rules'>
+                <div style = 'display: none; color: red; line-height: 1.8;'class='username-rules' id = 'username-rules'>
                     <p>The username must contain only:</p>
                     <ul>
                         <li>Letters</li>
@@ -137,7 +196,7 @@
                         <input type="radio" name="gameMode" value="landmark">
                         <img src="/static/assets/cactus.jpg" alt="Local Landmark Image">
                         <div class = 'game-card-info-text'>
-                            <div class="game-mode-label heading">Local Landmark</div>
+                            <div style = 'font-size: 70px;' class="game-mode-label heading">Local Landmark</div>
                             <p class = 'game-mode-card-description' style = ''>
                                 Find the location of the landmark you are playing in. 
                                 The closer you are to the location, the more points you get.
@@ -151,48 +210,6 @@
 
 
     </div>
-    
-    <script>
-
-        function notValidUsername() {
-            document.querySelector(".login-bar input").style.border = "3px solid red";
-            window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
-            const usernameRules = document.getElementById('username-rules');
-            if (usernameRules.style.display === 'none') {
-                usernameRules.style.display = 'block'
-            }
-
-        }
-        function enterMainPage(selectedMode) {
-            const username = document.getElementById('username').value;
-            const usernameRegex = new RegExp('^[a-zA-Z0-9._ ]+$', 'i');
-
-            if (!usernameRegex.test(username)) {
-                notValidUsername();
-                return;
-            }
-
-
-            localStorage.setItem("game_mode", selectedMode);
-            localStorage.setItem("username", username);
-
-            if (selectedMode === "city") {
-                window.location.href = "/city";
-            }
-            else if (selectedMode == "sleuth"){
-                window.location.href = "/sleuth";
-            }
-            else if (selectedMode == "landmark"){
-                window.location.href = "/landmark";
-            }
-            
-        }
-    </script>
-
 
 <br><br>
 <center>

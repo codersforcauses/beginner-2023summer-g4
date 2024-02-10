@@ -38,6 +38,7 @@ const reset_sv_button = document.getElementById('reset-sv-button');
 loadStreetViewAndMap().then((result) => {
 
   if (result) {
+    document.title = "PerthPinpoint | Classic City"
     map = result.map;
     streetViewLocation = result.streetViewLocation;
     runTimer(360, submit);
@@ -48,7 +49,6 @@ loadStreetViewAndMap().then((result) => {
 });
 
 function startGame(){
-  console.log("start game now!");
   map.on('click', function(e) {
 
     if (marker !== undefined){
@@ -86,8 +86,6 @@ function post_data(send, endpoint){
     body: JSON.stringify(send)
   };
 
-  console.log(send);
-
   fetch(endpoint, picked_post)
   .then(response => {
     if (!response.ok) {
@@ -99,7 +97,6 @@ function post_data(send, endpoint){
 
     if (data.hasOwnProperty('alert')) {
         let alert = data['alert'];
-        console.log(alert);
 
         if (alert === "new high score") {
           sessionStorage.setItem("newhighscore", 'true');
@@ -111,8 +108,6 @@ function post_data(send, endpoint){
 
       const score = data['score'];
       const multiplier = data['multiplier'];
-
-      console.log(data);
 
 
       totalScore += Math.round(((score == -1) ? 0 : score) * multiplier);
@@ -287,11 +282,9 @@ async function closePopup(){
   }
   map_guess_container.classList.remove('slide-away');
 
-  document.title = `${roundNumber} | Classic City`
-
   resetClock();
 
-  runTimer(360);
+  runTimer(360, submit);
 
 }
 

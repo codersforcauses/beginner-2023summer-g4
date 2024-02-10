@@ -28,6 +28,7 @@ const reset_sv_button = document.getElementById('reset-sv-button');
 loadStreetViewAndMap().then(async (result) => {
 
     if (result) {
+      document.title = "PerthPinpoint | Street Sleuth";
       map = result.map;
       streetViewLocation = result.streetViewLocation;
       locations = result.locationsSelected;
@@ -36,9 +37,6 @@ loadStreetViewAndMap().then(async (result) => {
       updateLocationForRound();
 
       runTimer(360, submit);
-      // let map_guess = document.getElementById('map-guess-container');
-      // map_guess.style.height = '95%';
-      // map_guess.style.width = '43%';
 
       startGame();
     } else {
@@ -170,15 +168,11 @@ function updatePopUpMap(current_loc) {
 
 function checkIfLocationIsFound(locations) {
   const roadPolyLine = generatePolyLine(locations);
-  console.log(roadPolyLine);
-  console.log(userPickedLocation);
-  console.log(map);
 
   // Make sure L.GeometryUtil is defined before calling closest
   if (L.GeometryUtil) {
       const closestPoint = L.GeometryUtil.closest(map, roadPolyLine, userPickedLocation);
       const distance = closestPoint.distanceTo(userPickedLocation);
-      console.log(distance);
       return distance < 25; // 30m tolerance
   } else {
       console.error('L.GeometryUtil is not defined. Make sure the library is loaded.');
@@ -213,8 +207,6 @@ function submit() {
     document.getElementById('map-guess-container').classList.add('slide-away');
     document.getElementById('location-for-round-container').classList.add('slide-away');
 
-  
-    console.log(`picked: ${picked_data} | distance: ${distanced}`);
     //post_data(picked);
     post_data(distanced);
     
@@ -312,7 +304,6 @@ function submit() {
 
     for (const key in currentLocationMapElements){
       if (currentLocationMapElements[key] !== null) {
-        console.log(currentLocationMapElements[key]);
         popUpMap.removeLayer(currentLocationMapElements[key]);
       }
     }
@@ -330,7 +321,6 @@ function submit() {
     // document.getElementById('total-points').innerHTML = "<strong>Points: " +  totalScore+"</strong>";
     document.getElementById('map-guess-container').classList.remove('slide-away');
     document.getElementById('location-for-round-container').classList.remove('slide-away');
-    //document.title = `${roundNumber} | PerthPinpoint`
 
     let map_guess_container = document.getElementById('map-guess-container')
     if (window.innerWidth < 700) {
@@ -340,12 +330,10 @@ function submit() {
 
     current_location = locations[roundNumber-1];
 
-    console.log("FIND: "+ current_location.name);
-
     updateLocationForRound();
 
     resetClock();
-    runTimer(1000);
+    runTimer(360, submit);
   
   }
 

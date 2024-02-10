@@ -32,14 +32,14 @@ const reset_sv_button = document.getElementById('reset-sv-button');
 loadStreetViewAndMap().then(async (result) => {
 
     if (result) {
+      document.title = "PerthPinpoint | Local Landmark";
       map = result.map;
       streetViewLocation = result.streetViewLocation;
       locations = result.locationsSelected;
       current_location = locations[roundNumber-1];
-      console.log("FIND: "+ current_location[0].name);
       updateLocationForRound();
 
-      runTimer(360, submit);
+      runTimer(15, submit);
       // let map_guess = document.getElementById('map-guess-container');
       // map_guess.style.height = '95%';
       // map_guess.style.width = '43%';
@@ -287,8 +287,6 @@ function submit() {
     document.getElementById('map-guess-container').classList.add('slide-away');
     document.getElementById('location-for-round-container').classList.add('slide-away');
 
-  
-    console.log(`picked: ${picked_data} | distance: ${distanced}`);
     //post_data(picked);
     post_data(distanced);
     
@@ -369,7 +367,6 @@ function submit() {
     for (const location of currentLocationMapElements){
       for (const key in location){
         if (location[key] !== null) {
-          console.log(location[key]);
           popUpMap.removeLayer(location[key]);
         }
       }
@@ -397,13 +394,11 @@ function submit() {
 
     current_location = locations[roundNumber-1];
 
-    console.log("FIND: "+ current_location[0].name);
-
     updateLocationForRound();
 
     resetClock();
     
-    runTimer(1000);
+    runTimer(15, submit);
   
   }
 
