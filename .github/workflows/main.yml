@@ -17,8 +17,12 @@ jobs:
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          echo "this is terrible"
-          docker stop pinpoint ; docker rm pinpoint
+          echo "epik deployment script!!1!@2!"
+          docker stop pinpoint
+          docker rm pinpoint
+          echo "downtime :("
           git -C /root/beginner-2023summer-g4 pull origin main
+          echo "updated!!!!!!"
           docker build -t perthpinpoint .
           docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core -dp 0.0.0.0:80:8080 --name "pinpoint" perthpinpoint          
+          echo "rebuilt +done"
