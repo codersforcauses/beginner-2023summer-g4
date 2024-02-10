@@ -27,15 +27,70 @@
 //     });
 // }
 
+
+
+
+
+const mainCityPolygon = L.polygon([
+  [-32.515434, 115.704604],
+  [-32.543877, 115.677171],
+  [-32.562313, 115.704233],
+  [-32.554814, 115.739082],
+  [-32.523717, 115.769666],
+  [-32.494642, 115.797471],
+  [-32.419567, 115.836397],
+  [-32.378092, 115.853821],
+  [-32.336442, 115.865684],
+  [-32.308018, 115.887338],
+  [-32.312633, 115.962443],
+  [-32.31044, 116.014344],
+  [-32.270482, 116.021759],
+  [-32.213728, 116.03251],
+  [-32.159763, 116.04808],
+  [-32.0869, 116.047319],
+  [-31.986544, 116.043053],
+  [-31.92501, 116.06225],
+  [-31.848034, 116.064383],
+  [-31.825382, 115.97906],
+  [-31.773715, 115.894804],
+  [-31.715668, 115.847876],
+  [-31.646876, 115.759651],
+  [-31.662044, 115.67989],
+  [-31.781857, 115.704497],
+  [-31.882063, 115.721467],
+  [-31.933925, 115.727407],
+  [-32.04979, 115.712134],
+  [-32.175563, 115.727407],
+  [-32.298294, 115.683708],
+  [-32.516788, 115.704073]
+]);
+
+function getRandomPointInBoundingBox(bounds) {
+  var randomLat = bounds.getSouth() + Math.random() * (bounds.getNorth() - bounds.getSouth());
+  var randomLng = bounds.getWest() + Math.random() * (bounds.getEast() - bounds.getWest());
+  return {lat: randomLat, lng: randomLng};
+}
+
+function getRandomPointInPolygon(polygon) {
+  var bounds = polygon.getBounds();
+  var randomPoint = getRandomPointInBoundingBox(bounds);
+
+  while (!polygon.contains(randomPoint)) {
+      randomPoint = getRandomPointInBoundingBox(bounds);
+  }
+
+  return randomPoint;
+}
+
 function checkStreetViewAvailability(lat, lng) {
 
     const location = new google.maps.LatLng(lat, lng);
 
-    var radius = (game_mode === "city" || game_mode === "sleuth") ? 3000 : 15;
+    var radius = (game_mode === "city" || game_mode === "sleuth") ? 2000 : 15;
     var sources = (game_mode === "city") ? ['google', 'outdoor'] : ['google'];
 
     var locationRequest = { 
-        preference: "best", 
+        preference: "nearest", 
         radius: radius, 
         location: location, 
         sources: sources
@@ -118,22 +173,15 @@ function getRandomCoordinates() {
       // Choose Rottnest 2% of the time
       selectedLocation = rotnest;
   } else {
-      // Choose mainCity 98% of the time
       selectedLocation = mainCity;
 
-      const randomValue = Math.random();
+      const areaLoc = Math.random();
 
-      let sectionVertical;
-      if (randomValue < 0.55) {
-        sectionVertical = 1;
-      } else {
-        sectionVertical = Math.floor(Math.random() * 2) * 2;
+      if (areaLoc < 0.8) {
+        const loc = getRandomPointInPolygon(mainCityPolygon);
+        return loc;
       }
 
-      const sectionHeight = (mainCity.maxLat - mainCity.minLat) / 3;
-
-      selectedLocation.minLat = mainCity.minLat + sectionVertical * sectionHeight;
-      selectedLocation.maxLat = selectedLocation.minLat + sectionHeight;
   }
 
   const randomLat = Math.random() * (selectedLocation.maxLat - selectedLocation.minLat) + selectedLocation.minLat;
