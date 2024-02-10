@@ -179,8 +179,10 @@ function getRandomCoordinates() {
 
       if (areaLoc < 0.8) {
         const loc = getRandomPointInPolygon(mainCityPolygon);
+        console.log("THE LOCATION IS INSIDE POLYGON");
         return loc;
       }
+      console.log("NOT IN 80%");
 
   }
 
