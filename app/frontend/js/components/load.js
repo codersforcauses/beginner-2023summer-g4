@@ -7,7 +7,6 @@ async function generateLandmarksUntilLength5() {
   let streetViewLocation; 
 
   while (locationsSelected.length < 5) {
-    console.log("LESS THAN 5!");
     const result = await generateNewStreetView();
 
     if (result !== null) {
@@ -15,8 +14,6 @@ async function generateLandmarksUntilLength5() {
       locationsSelected = await getLocations(streetViewLocation);
     }
   }
-
-  console.log("Locations:", locationsSelected);
   
   return {streetViewLocation, locationsSelected};
 }
@@ -26,7 +23,6 @@ async function generateRoadsUntilLength6() {
   let streetViewLocation; 
 
   while (locationsSelected.length < 6) {
-    console.log("LESS THAN 6!");
     const result = await generateNewStreetView();
 
     if (result !== null) {
@@ -34,8 +30,6 @@ async function generateRoadsUntilLength6() {
       locationsSelected = await getRoadsAndStreets(streetViewLocation);
     }
   }
-
-  console.log("Roads:", locationsSelected);
 
   const referenceLoc = locationsSelected[5];
   locationsSelected = locationsSelected.slice(0, 5);

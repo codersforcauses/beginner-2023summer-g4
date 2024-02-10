@@ -49,7 +49,6 @@ function runTimer(time, submit_func) {
     currentTimerID = setInterval(function () {
 
         if (time <= 10) {
-            console.log("Time is less than 10");
             glowOutline.style.display = "block";
         }
         else {

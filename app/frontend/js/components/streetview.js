@@ -31,11 +31,8 @@ function checkStreetViewAvailability(lat, lng) {
 
     const location = new google.maps.LatLng(lat, lng);
 
-    var radius = (game_mode === "city" || game_mode === "sleuth") ? 1000 : 15;
+    var radius = (game_mode === "city" || game_mode === "sleuth") ? 3000 : 15;
     var sources = (game_mode === "city") ? ['google', 'outdoor'] : ['google'];
-
-    console.log("Radius:", radius);
-    console.log("Sources:", sources);
 
     var locationRequest = { 
         preference: "best", 
@@ -52,7 +49,6 @@ function checkStreetViewAvailability(lat, lng) {
         streetViewService.getPanorama(locationRequest, function (panoramaData, status) {
           if (status === google.maps.StreetViewStatus.OK) {
             const panoramaLocation = panoramaData.location.latLng;
-            console.log(panoramaData.location.description)
             const panoramaLat = panoramaLocation.lat();
             const panoramaLng = panoramaLocation.lng();
             //updateIframeLocation(panoramaLat, panoramaLng);
@@ -100,23 +96,6 @@ function getRandomLandmarkCoordinates(){
     return { lat: randomLat, lng: randomLng };
 }
 
-// function isLocationWithinPerthCBD(location) {
-
-//   const perthCBD = {
-//       minLat: -31.963036,
-//       maxLat: -31.943482,
-//       minLng: 115.851513,
-//       maxLng: 115.870267,
-//   };
-
-//   return (
-//       location.lat >= perthCBD.minLat &&
-//       location.lat <= perthCBD.maxLat &&
-//       location.lng >= perthCBD.minLng &&
-//       location.lng <= perthCBD.maxLng
-//   );
-// }
-
 function getRandomCoordinates() {
   let rotnest = {
       minLat: -32.030745,
@@ -151,8 +130,6 @@ function getRandomCoordinates() {
         sectionVertical = Math.floor(Math.random() * 2) * 2;
       }
 
-      console.log("Section Vertical: " + sectionVertical);
-
       const sectionHeight = (mainCity.maxLat - mainCity.minLat) / 3;
 
       selectedLocation.minLat = mainCity.minLat + sectionVertical * sectionHeight;
@@ -178,12 +155,9 @@ async function generateNewStreetView() {
         streetViewLocation = await checkStreetViewAvailability(lat_lon_obj.lat, lat_lon_obj.lng);
     }
 
-    console.log("STREETVIEW FOUND: " + streetViewLocation.lat + ", " + streetViewLocation.lng);
     return streetViewLocation;
 }
 
-
-//generateNewStreetView();
 
 
 export {generateNewStreetView, updateIframeLocation};
