@@ -20,7 +20,7 @@ Play PerthPinPoint Now: [perthpinpoint.city](https://perthpinpoint.city)
 PerthPinpoint is a remake of the popular game "GeoGuessr" within the context of Perth, Western Australia. It features several different game modes which will test your knowledge about how well you know the amazing city of Perth.
 
 ## Features
-Perth PinPoint features 4 gamemodes, including:
+Perth PinPoint features 3 gamemodes, including:
 - Classic City
 - Local Landmark
 - Street Sleuth 
