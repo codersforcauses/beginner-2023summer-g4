@@ -26,8 +26,9 @@ async def discoveries_leaderboard():
 @router.get("/all")
 async def discoveries_leaderboard():  
     leaderboard = get_leaderboard('city', 'all')
-    response = {i + 1: list(val) for i, val in enumerate(leaderboard)}
+    response = [{'pos': i + 1, 'score': val[0], 'usern': val[1]} for i, val in enumerate(leaderboard)]
     return JSONResponse(content=response) 
+ 
 '''
 NOTICE:
 DO NOT REFACTOR/MERGE THESE APIS; IF WE DYNAMICALLY SELECT LEADERBORADS VIA DYNAMIC USER INPUT - THIS MEANS WE NEED TO VALIDATE/SANITISE SUCH INPUT, THIS IS NOT DONE VIA THESE FUNCTIONS THAT INTERACT WITH THE DB
