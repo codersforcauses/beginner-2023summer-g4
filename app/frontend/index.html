@@ -90,21 +90,14 @@
     function enterMainPage(selectedMode) {
         const username = document.getElementById('username').value;
 
-        // const matcher = new RegExpMatcher({
-        //     ...englishDataset.build(),
-        //     ...englishRecommendedTransformers,
-        // });
-        // const hasMatch = matcher.hasMatch(username);
-
-        const usernameRegex = new RegExp('^[a-zA-Z0-9._ ]+$', 'i');
+        const usernameRegex = new RegExp('^[a-zA-Z0-9._]{1,15}$', 'i');
+        
         if (!usernameRegex.test(username)) {
             notValidUsername();
             return;
         }
-        // if (hasMatch) {
-        //     profaneUsername();
-        //     return;
-        // }
+
+
         localStorage.setItem("game_mode", selectedMode);
         localStorage.setItem("username", username);
         if (selectedMode === "city") {
@@ -128,6 +121,17 @@
                 
             }
             
+        }
+
+        @media screen and (max-width: 600px){
+
+            .game-modes {
+
+                margin-left: 2vw;
+                margin-right: 2vw;
+
+            }
+
         }
     </style>
 </head>
@@ -156,11 +160,10 @@
                     if you get a top score.</p>
                 <input type="text" id="username" name="username" required placeholder="Enter a Username...">
                 <div style = 'display: none; color: red; line-height: 1.8;'class='username-rules' id = 'username-rules'>
-                    <p>The username must contain only:</p>
+                    <p>The username must be less than 15 characters long and contain only:</p>
                     <ul>
                         <li>Letters</li>
                         <li>Numbers</li>
-                        <li>Spaces</li>
                         <li>Underscores (_)</li>
                         <li>Periods (.)</li>
                     </ul>
@@ -185,7 +188,7 @@
         <div class= "game-modes-submit">
             <div class="game-modes">
                 <div class="game-mode-title sub-heading heading" style = 'color: black; margin-bottom: 0;'>Select a Game Mode</div>
-                    <p style = 'color: black; text-align: center; line-height: 1.8; margin-top: 0; margin-bottom: 15px;'>
+                    <p style = 'color: black; text-align: center; line-height: 1.8; margin-top: 0; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;'>
                         Select a game mode to play.<br> Each game mode has a different objective and different rules.
                         Visit the <a href="/tutorial">tutorial page</a> to learn more about each game mode.
                     </p>
@@ -209,8 +212,7 @@
                         <div class = 'game-card-info-text'>
                             <div class="game-mode-label heading">Street Sleuth</div>
                             <p class = 'game-mode-card-description' style = ''>
-                                Find the location of the street you are playing in. 
-                                The closer you are to the location, the more points you get.
+                                Find the streets presented to you, and locate them on a satellite map.
                             </p>
                             <button class = 'game-submit' onclick= "enterMainPage('sleuth')">Play Now</button>
                         </div>
@@ -222,8 +224,8 @@
                         <div class = 'game-card-info-text'>
                             <div style = 'font-size: 70px;' class="game-mode-label heading">Local Landmark</div>
                             <p class = 'game-mode-card-description' style = ''>
-                                Find the location of the landmark you are playing in. 
-                                The closer you are to the location, the more points you get.
+                                Find the different locations and landmarks presented to you. 
+                                You must nagivate the Street View and use your own knowledge to find the locations.
                             </p>
                             <button class = 'game-submit' onclick= "enterMainPage('landmark')">Play Now</button>
                         </div>
@@ -237,10 +239,10 @@
 
 <br><br>
 <center>
-<footer>
-    <p>2023/24 CFC Summer Project (Beginners) | <a href="https://github.com/codersforcauses/beginner-2023summer-g4">Github</a><br>
-    <a href="mailto:contact@perthpinpoint.city">contact@perthpinpoint.city</a></p><br>
-  </footer>
+    <footer>
+        <p>2023/24 CFC Summer Project (Beginners) | <a href="https://github.com/codersforcauses/beginner-2023summer-g4">Github</a><br>
+        <a href="mailto:contact@perthpinpoint.city">contact@perthpinpoint.city</a></p><br>
+    </footer>
 </center>
 
 </body>

@@ -40,7 +40,6 @@
             grid-template-columns: 1fr;
             width: 95%;
             align-self: center;
-            padding: 20px;
         }
 
         .leaderboard-header,
@@ -86,6 +85,55 @@
 
         .leaderboard-info-container a:visited {
             color: white;
+        }
+
+        .next-page-leaderboard {
+
+            background: transparent;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .page-label-container a {
+            text-decoration: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .page-label-container {
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .page-label-container:hover {
+            background-color: #ddd;
         }
 
         @media screen and (max-width: 700px) {
@@ -143,9 +191,9 @@
             <a href="/leaderboard">Leaderboard</a>
         </nav>
 
-            <div style = 'margin-bottom: 50px;' class = 'leaderboard-container'>
+            <div style = 'margin-bottom: 25px;' class = 'leaderboard-container' id = 'leaderboard-container'>
                 <h2  class = 'leaderboard heading'>Leaderboard</h2>
-                <div class = 'leaderboard-info-container'>
+                <div style = 'margin-bottom: 25px;'class = 'leaderboard-info-container'>
                     <img src="/static/assets/trophy.png" alt="trophy image">
                     <p style = 'line-height: 1.8;'>
                         Welcome to the competitive Classic City leaderboard! 
@@ -158,6 +206,7 @@
                     </p>
                 </div>
                 <div class = 'leaderboard-elements' id = 'leaderboard-elements'>
+                    <div id = 'leaderboard-type-title' style = 'font-size: 40px; margin-bottom: 12px;' class = 'heading'>Top 10 Classic City</div>
                     <div class="leaderboard-header heading">
                         <div>Position</div>
                         <div>Username</div>
@@ -166,11 +215,72 @@
                 </div>
             </div>
             
-            <script>var toggle = 0;</script>
             <script>
+                var toggle = 0;
+                let startIndexOfLeaderboard = 0;
+                let leaderboard = document.getElementById('leaderboard-elements');
+                let reachedEndOfLeaderboard = false;
+            </script>
+            <script>
+
+                function changeStartOfLeaderboardIndex(arg) {
+                    if (arg === 'next') {
+                        startIndexOfLeaderboard += 15;
+                    } 
+                    else if (arg === 'prev' && startIndexOfLeaderboard !== 0) {
+                        startIndexOfLeaderboard -= 15;
+                    } else {
+                        startIndexOfLeaderboard = (arg - 1) * 15;
+                    }
+                }
+
+
+                function get15LeaderboardElements() {
+                    const endpoint = '/api/all';
+                    const itemsPerPage = 15; // this is for the full leaderboard to minise the number of button clicks
+                    //const leaderboard = document.getElementById('leaderboard-elements');
+                    const endIndex = startIndexOfLeaderboard + itemsPerPage;
+
+                    fetch(endpoint)
+                        .then(response => response.json())
+                        .then(data => {
+                            
+                            const result = data.slice(startIndexOfLeaderboard, endIndex);
+
+
+                            for (const obj of result) {
+                                
+                                const listItem = document.createElement('div');
+
+                                listItem.classList.add('leaderboard-item');
+
+                                listItem.innerHTML = `
+                                    <div>${obj['pos']}</div>
+                                    <div>${obj['usern']}</div>
+                                    <div>${obj['score']}</div>
+                                `;
+                                
+                                leaderboard.appendChild(listItem);
+                                
+                            }
+
+                            if (result.length < 15) {
+                                document.getElementById('next-page').style.display = 'none';
+                            }
+                            else {
+                                document.getElementById('next-page').style.display = 'block';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching JSON:', error);
+                        });
+                }
             
-                function parseboard(endpoint) {
-                    const leaderboard = document.getElementById('leaderboard-elements');
+                function getTopTen() {
+
+                    const endpoint = '/api/top';
+
+                    //const leaderboard = document.getElementById('leaderboard-elements');
 
                     fetch(endpoint)
                         .then(response => response.json())
@@ -194,27 +304,71 @@
                         .catch(error => {
                             console.error('Error fetching JSON:', error);
                         });
+
                 }
 
-                parseboard('/api/top');
+                getTopTen();
                 
                 function switchview() {
-
-                    const leaderboard = document.getElementById('leaderboard-elements');
                     
                     leaderboard.replaceChildren(leaderboard.firstElementChild);
 
                     if (toggle === 0) {
-                        parseboard('/api/all');
+                        get15LeaderboardElements();
                         document.querySelector('#game-button strong').innerHTML = 'See Top 10';
+                        document.getElementById('pagination').style.display = '';
+                        document.getElementById('leaderboard-type-title').innerHTML = 'Full Classic City Leaderboard';
                         toggle = 1;
                     } else {
-                        parseboard('/api/top');
+                        getTopTen();
                         document.querySelector('#game-button strong').innerHTML = 'See Full Leaderboard';
                         toggle = 0;
+                        document.getElementById('pagination').style.display = 'none';
+                        document.getElementById('leaderboard-type-title').innerHTML = 'Top 10 Classic City';
+                        startIndexOfLeaderboard = 0;
                     }        
                 }
+
+
+                function handleClick(arg) {
+
+                    let anchorElement = document.querySelector('.page-label-container a');
+                    if (anchorElement) {
+                        anchorElement.click();
+                    }
+
+                    if (startIndexOfLeaderboard === (arg -1)) return
+
+                    changeStartOfLeaderboardIndex(arg);
+
+                    leaderboard.replaceChildren(leaderboard.firstElementChild);
+
+                    get15LeaderboardElements();
+
+                    if (startIndexOfLeaderboard === 0) {
+                        document.getElementById('prev-page').style.display = 'none';
+                    }
+                    else {
+                        document.getElementById('prev-page').style.display = 'block';
+                    }
+
+                    if (startIndexOfLeaderboard === 20) {
+
+                    }
+
+                }
             </script>
+
+            <div style='display: none;' class="pagination" id = 'pagination'>
+                
+                <div title = 'Previous page' style='font-size:24px; display: none;' class = 'page-label-container' id = 'prev-page' onclick="handleClick('prev')">
+                    &#10229
+                </div>
+                <div title = 'Next page'  style='font-size:24px;' class = 'page-label-container' id = 'next-page'onclick="handleClick('next')">
+                    &#10230
+                </div>
+                
+            </div>
 
             <div style = 'margin-bottom: 100px;' class="start-button-container">
                 <p style="color: white; margin-bottom: 30px;"><strong>Thank you for Playing PerthPinpoint!</strong></p>

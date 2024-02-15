@@ -51,6 +51,7 @@
         function toggleMenu() {
             let menu = document.querySelector('.menu');
             if (menu.style.right === '0px') {
+                console.log('closing');
                 menu.style.right = '-300px';
             } else {
                 menu.style.right = '0px';
@@ -59,7 +60,14 @@
 
         document.addEventListener('click', function(event) {
             let menu = document.querySelector('.menu');
+            const computedStyles = window.getComputedStyle(menu);
+            const rightValue = computedStyles.getPropertyValue('right');
+            console.log(rightValue);
+            console.log("AHHHHHH");
             let menuBar = document.querySelector('.menu-bar');
+            if (rightValue === '-300px') {
+                return;
+            }
             if (event.target !== menu && event.target !== menuBar) {
                 // Close the menu when clicking outside of it
                 menu.style.right = '-300px';

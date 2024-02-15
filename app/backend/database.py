@@ -119,4 +119,4 @@ def update_game(game_mode, username, totalscore):
     if newmax:
         return {"score":"complete", "alert":"new high score"}
     else:
-        return {"score":"complete", "alert":"no new high score"}
+        return {"score":"complete", "alert":"no new high score"}    
