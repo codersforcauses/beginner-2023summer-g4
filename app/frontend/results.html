@@ -207,10 +207,12 @@
                 </div>
                 <div class = 'leaderboard-elements' id = 'leaderboard-elements'>
                     <div id = 'leaderboard-type-title' style = 'font-size: 40px; margin-bottom: 12px;' class = 'heading'>Top 10 Classic City</div>
-                    <div class="leaderboard-header heading">
-                        <div>Position</div>
-                        <div>Username</div>
-                        <div>Score</div>
+                    <div class = 'leaderboard-items' id = 'leaderboard-items'>
+                        <div class="leaderboard-header heading">
+                            <div>Position</div>
+                            <div>Username</div>
+                            <div>Score</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -218,7 +220,7 @@
             <script>
                 var toggle = 0;
                 let startIndexOfLeaderboard = 0;
-                let leaderboard = document.getElementById('leaderboard-elements');
+                let leaderboard = document.getElementById('leaderboard-items');
                 let reachedEndOfLeaderboard = false;
             </script>
             <script>
