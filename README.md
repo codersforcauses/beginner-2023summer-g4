@@ -13,8 +13,9 @@ Play PerthPinPoint Now: [perthpinpoint.city](https://perthpinpoint.city)
 3. [Google Maps API](#google-maps-ai)
 4. [Structure](#structure)  
 5. [Dependencies & Deployment](#dependencies--deployment)
-6. [Demo](#demo)  
-7. [LICENSE](#license)
+6. [Testing](#tests)
+7. [Demo](#demo)  
+8. [LICENSE](#license)
 
 ## Concept
 PerthPinpoint is a remake of the popular game "GeoGuessr" within the context of Perth, Western Australia. It features several different game modes which will test your knowledge about how well you know the amazing city of Perth.
