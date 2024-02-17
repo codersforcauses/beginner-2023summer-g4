@@ -70,6 +70,10 @@ docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core 
 # docker stop pinpoint ; docker rm pinpoint
 ```
 
+## Testing
+
+Some basic tests have been developed to create a more robust program
+
 ## Demo
 Here is a quick demo of what the game looks like:
 ![demo](https://github.com/codersforcauses/beginner-2023summer-g4/blob/main/app/frontend/assets/classic-city-demo.gif?raw=true)
