@@ -22,15 +22,15 @@ def test_sanitise():
     for username in valid_usernames:
         assert sanitise_gamedata(control_game_mode, username, control_totalscore)[1] == username
 
-    invalid_username = "f@ucky!ou"
-    assert sanitise_gamedata(control_game_mode, invalid_username, control_totalscore)[1] == "fuckyou"
+    invalid_username = "hello@test"
+    assert sanitise_gamedata(control_game_mode, invalid_username, control_totalscore)[1] == "hellotest"
 
     # TEST TOTALSORE VALIDITY
     valid_totalscores = [0, 2000, 300, 3043]
     for score in valid_totalscores:
         assert sanitise_gamedata(control_game_mode, control_usern, score)[2] == score
 
-    invalid_totalscore = "piss" #string is an invalid total score
+    invalid_totalscore = "invalid" # string is an invalid total score
     assert sanitise_gamedata(control_game_mode, control_usern, invalid_totalscore)[2] == 0
 
 def test_new_leaderboard_entry():
