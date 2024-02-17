@@ -13,7 +13,7 @@ Play PerthPinPoint Now: [perthpinpoint.city](https://perthpinpoint.city)
 3. [Google Maps API](#google-maps-ai)
 4. [Structure](#structure)  
 5. [Dependencies & Deployment](#dependencies--deployment)
-6. [Testing](#tests)
+6. [Testing](#testing)
 7. [Demo](#demo)  
 8. [LICENSE](#license)
 
