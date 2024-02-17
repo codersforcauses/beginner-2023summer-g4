@@ -72,7 +72,15 @@ docker run --mount type=bind,source="$(pwd)/app/core",target=/pinpoint/app/core 
 
 ## Testing
 
-Some basic tests have been developed to create a more robust program
+Some basic tests have been developed to create a more robust program.
+
+The tests are located in `app/tests/test_backend.py`.
+
+To execute the tests run
+
+```
+pytest app/tests/test_backend.py
+```
 
 ## Demo
 Here is a quick demo of what the game looks like:
