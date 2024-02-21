@@ -302,12 +302,9 @@ function generateEndGameMap() {
 
   popUpMap.doubleClickZoom = false;
 
-  L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62',{ //style URL
-  tileSize: 512,
-  zoomOffset: -1,
-  minZoom: 1,
-  crossOrigin: true,
-  }).addTo(popUpMap);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}@4x.png", {
+            attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+          }).addTo(popUpMap);
 
 }
 

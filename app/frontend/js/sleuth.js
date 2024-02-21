@@ -117,10 +117,9 @@ function generateEndGameMap() {
     wheelDebounceTime: 100
   }).setView(streetViewLocation, 13);
 
-  L.tileLayer("https://api.maptiler.com/maps/satellite/{z}/{x}/{y}@2x.jpg?key=yKxYycTR24wt9spqlP62", {
-    tileSize: 512,
-    zoomOffset: -1,
-    }).addTo(popUpMap);
+  L.tileLayer("https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+
+          }).addTo(popUpMap);
 
   let sleuthDropLocationMarker = L.marker(streetViewLocation, {
     icon: dropIcon
