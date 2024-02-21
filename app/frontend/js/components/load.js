@@ -78,12 +78,11 @@ async function loadStreetViewAndMap() {
           wheelDebounceTime: 100
         }).setView([-31.997564, 115.824893], 9);
 
-        L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62', {
-          tileSize: 512,
-          zoomOffset: -1,
-          minZoom: 1,
-          crossOrigin: true,
-        }).addTo(map);
+        // https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=yKxYycTR24wt9spqlP62
+
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}@4x.png", {
+            attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
+          }).addTo(map);
 
 
         // create a rectangle boundary
@@ -98,14 +97,13 @@ async function loadStreetViewAndMap() {
         }).setView(streetViewLocation, (game_mode === "landmark") ? 16 : 12.5);
 
         if (game_mode === "landmark"){
-          L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}@2x.png", {
+          L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}@4x.png", {
             attribution: "\u003ca href=\"https://carto.com/legal/\" target=\"_blank\"\u003e\u0026copy; Carto\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e",
           }).addTo(map);
         }
         else if (game_mode === "sleuth"){
-          L.tileLayer("https://api.maptiler.com/maps/satellite/{z}/{x}/{y}@2x.jpg?key=yKxYycTR24wt9spqlP62", {
-          tileSize: 512,
-          zoomOffset: -1,
+          L.tileLayer("https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+
           }).addTo(map);
           L.rectangle(boundsCity, {color: "pink", weight: 2, opacity: 0.5, fill: false, dashArray: '5, 10' }).addTo(map);
           L.rectangle(boundsRotnest, {color: "pink", weight: 2, opacity: 0.5, fill: false, dashArray: '5, 10' }).addTo(map);
