@@ -34,6 +34,21 @@ if __name__ == "__main__":
 
     if BANNER:
         print(f"{pp_banner}")
+
+    print(LOGGING_CONFIG)
+
+    # add a file
+    LOGGING_CONFIG["handlers"]["file"] = {
+        "class": "logging.FileHandler",
+        "filename": LOGS_FILENAME,
+        "formatter": "default",
+        "level": "INFO",
+    }
+
+    LOGGING_CONFIG["loggers"]["uvicorn"]["handlers"].append("file")
+    LOGGING_CONFIG["loggers"]["uvicorn.error"]["handlers"] = ["file"]
+    #LOGGING_CONFIG["loggers"]["uvicorn.error"]["handlers"].append("file")
+    LOGGING_CONFIG["loggers"]["uvicorn.access"]["handlers"].append("file")
     
     # why is this not done by default
     LOGGING_CONFIG["formatters"]["default"]["fmt"] = "%(asctime)s [%(name)s] %(levelprefix)s %(message)s"

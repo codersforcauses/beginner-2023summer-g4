@@ -9,11 +9,12 @@ SILENT = False ; BANNER = True
 # Enabled, Disabled if "DEV" True
 
 ##### PROD OPTIONS #####
-uvicorn_LOGGING = "error"
+uvicorn_LOGGING = "info"
 uvicorn_HOST = "0.0.0.0"
 uvicorn_PORT = 8080
 uvicorn_WORKERS = 4
 uvicorn_ACCESSLOG = True
+LOGS_FILENAME = "perthpinpoint.log"
 ##### PROD OPTIONS #####
 
 # Development
